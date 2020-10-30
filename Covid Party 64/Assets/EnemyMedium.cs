@@ -11,6 +11,7 @@ public class EnemyMedium : MonoBehaviour
     private Rigidbody2D rigidbodyComponent;
     private Vector2 enemyDir;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,6 @@ public class EnemyMedium : MonoBehaviour
         if (rigidbodyComponent == null) rigidbodyComponent = GetComponent<Rigidbody2D>();
         
         // Apply movement to the rigidbody
-        rigidbodyComponent.velocity = speed * enemyDir;
+        rigidbodyComponent.velocity = EnemyStat.Speed * enemyDir;
     }
 }
