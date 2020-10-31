@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
+
+    private bool isFacingRight = true;
     
     void Update()
     {
@@ -32,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
 
-        Flip(rb.velocity.x);
         float characterVeclocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", characterVeclocity);
     }
@@ -47,6 +48,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
 
+        if(_horizontalMovement > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if(_horizontalMovement < 0 && isFacingRight)
+        {
+            Flip();
+        }
+
         if(isJumping == true)
         {
             rb.AddForce(new Vector2(0f, jumpForce));
@@ -54,15 +64,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Flip(float _velocity)
+    void Flip()
     {
-        if(_velocity > 0.1f)
-        {
-            spriteRenderer.flipX = false;
-        } else if(_velocity < -0.1f)
-        {
-            spriteRenderer.flipX = true;
-        }
+        isFacingRight = !isFacingRight;
+        transform.Rotate(0f, 180f, 0f);
     }
 
     private void OnDrawGizmos()
