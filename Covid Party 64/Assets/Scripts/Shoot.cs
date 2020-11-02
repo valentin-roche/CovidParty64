@@ -44,6 +44,7 @@ public class Shoot : MonoBehaviour
 
     void shootHorizontal()
     {
+        Debug.Log("Horizontal shot");
         GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
         Destroy(BulletIns, 0.5f);
@@ -51,6 +52,7 @@ public class Shoot : MonoBehaviour
 
     void shootVertical()
     {
+        Debug.Log("Vertical shot");
         GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.up * bulletSpeed);
         Destroy(BulletIns, 0.5f);
