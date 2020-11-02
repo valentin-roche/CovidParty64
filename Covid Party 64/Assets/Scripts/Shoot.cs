@@ -29,16 +29,30 @@ public class Shoot : MonoBehaviour
             if(Time.time > readyForNextShot)
             {
                 readyForNextShot = Time.time * 1 / fireRate;
-                shoot();
+                shootHorizontal();
             }
             
+        } else if (Input.GetMouseButton(1))
+        {
+            if (Time.time > readyForNextShot)
+            {
+                readyForNextShot = Time.time * 1 / fireRate;
+                shootVertical();
+            }
         }
     }
 
-    void shoot()
+    void shootHorizontal()
     {
         GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
+        Destroy(BulletIns, 0.5f);
+    }
+
+    void shootVertical()
+    {
+        GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.up * bulletSpeed);
         Destroy(BulletIns, 0.5f);
     }
 }
