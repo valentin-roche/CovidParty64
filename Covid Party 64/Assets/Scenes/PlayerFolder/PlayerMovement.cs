@@ -1,28 +1,35 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     public float moveSpeed;
-    public float jumpForce;
+    private float jumpForce = 300;
 
     private bool isJumping;
     private bool isGrounded;
 
-    public Transform groundCheck;
+    private Transform groundCheck;
     public float groundCheckRadius;
-    public LayerMask collisionLayer;
+    private LayerMask collisionLayer;
 
-    public Rigidbody2D rb;
-    public Animator animator;
+    private Rigidbody2D rb;
+    private Animator animator;
     public SpriteRenderer spriteRenderer;
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
 
     private bool isFacingRight = true;
-    
+
+    private void Start()
+    {
+        groundCheck = GameObject.FindWithTag("Player").transform.Find("GroundCheck");
+        rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
+        animator = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        collisionLayer = LayerMask.GetMask("Foundation");
+    }
+
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
@@ -34,17 +41,20 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
 
-        float characterVeclocity = Mathf.Abs(rb.velocity.x);
-        animator.SetFloat("Speed", characterVeclocity);
+        
+        
     }
 
     private void FixedUpdate()
     {
         MovePlayer(horizontalMovement);
+        float characterVeclocity = Mathf.Abs(rb.velocity.x);
+        animator.SetFloat("Speed", characterVeclocity);
     }
 
     void MovePlayer(float _horizontalMovement)
     {
+        
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
 

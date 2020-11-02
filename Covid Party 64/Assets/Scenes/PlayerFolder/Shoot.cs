@@ -28,7 +28,7 @@ public class Shoot : MonoBehaviour
         {
             if(Time.time > readyForNextShot)
             {
-                readyForNextShot = Time.time * 1 / fireRate;
+                readyForNextShot = Time.time + fireRate;
                 shootHorizontal();
             }
             
@@ -36,7 +36,7 @@ public class Shoot : MonoBehaviour
         {
             if (Time.time > readyForNextShot)
             {
-                readyForNextShot = Time.time * 1 / fireRate;
+                readyForNextShot = Time.time + fireRate;
                 shootVertical();
             }
         }
@@ -47,7 +47,7 @@ public class Shoot : MonoBehaviour
         Debug.Log("Horizontal shot");
         GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
-        Destroy(BulletIns, 0.5f);
+        Destroy(BulletIns, 2f);
     }
 
     void shootVertical()
@@ -55,6 +55,6 @@ public class Shoot : MonoBehaviour
         Debug.Log("Vertical shot");
         GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.up * bulletSpeed);
-        Destroy(BulletIns, 0.5f);
+        Destroy(BulletIns, 2f);
     }
 }
