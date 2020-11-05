@@ -1,23 +1,22 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
-public static class PlayerStat
+public class PlayerStat : MonoBehaviour
 {
+    // Start is called before the first frame update
     private static int
         contaminationRate = 0,
         speed = 5000,
         armor = 0;
-    private static bool
-        dodge = false,
-        block = false,
-        critical = false,
-        slow = false,
-        fly = false,
-        regen = false;
 
+    private static bool
+       dodge = false,
+       block = false,
+       critical = false,
+       slow = false,
+       fly = false,
+       regen = false;
     public static int ContaminationRate { get => contaminationRate; set => contaminationRate = value; }
     public static int Speed { get => speed; set => speed = value; }
     public static int Armor { get => armor; set => armor = value; }
@@ -41,4 +40,5 @@ public static class PlayerStat
         Regen = false;
     }
 }
+
 

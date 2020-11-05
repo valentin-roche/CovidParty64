@@ -9,12 +9,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping;
     private bool isGrounded;
 
-    private Transform groundCheck;
+    public Transform groundCheck;
     public float groundCheckRadius;
     private LayerMask collisionLayer;
 
     private Rigidbody2D rb;
-    private Animator animator;
+    public Animator animator;
     public SpriteRenderer spriteRenderer;
 
     private Vector3 velocity = Vector3.zero;
@@ -22,11 +22,22 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isFacingRight = true;
 
-    private void Start()
+    public static PlayerMovement instance;
+
+    private void Awake()
     {
-        groundCheck = GameObject.FindWithTag("Player").transform.Find("GroundCheck");
+        if(instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de PlayerMovement dans la scène.");
+            return;
+        }
+
+        instance = this;
+    }
+
+    private void Start()
+    {           
         rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
-        animator = GameObject.FindWithTag("Player").GetComponent<Animator>();
         collisionLayer = LayerMask.GetMask("Foundation");
     }
 
@@ -81,9 +92,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnDrawGizmos()
-    {
-        
+    {        
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);        
+        
     }
 }

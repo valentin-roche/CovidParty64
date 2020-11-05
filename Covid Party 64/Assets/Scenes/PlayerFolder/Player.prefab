@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8493293994997029730}
   m_Layer: 0
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: Player/GroundCheck
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 8493293995025520053}
   - component: {fileID: 8493293995025520050}
   m_Layer: 0
-  m_Name: pngegg
+  m_Name: PissetteGel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8493293995025520052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.394, y: -0.113, z: 0}
+  m_LocalPosition: {x: 0.45, y: -0.26, z: 0}
   m_LocalScale: {x: 1.9048469, y: 1.7874457, z: 1}
   m_Children:
   - {fileID: 8493293996038095743}
@@ -99,10 +99,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -696949397
+  m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b2faffa1d8e452a468dbb599c2a16b8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e990dcc0f202c2b43bfca25871df4649, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,7 +122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8493293995286146549}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GameHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,13 +186,14 @@ GameObject:
   - component: {fileID: 8493293996653898775}
   - component: {fileID: 8493293996653898774}
   - component: {fileID: 8493293996653898761}
-  - component: {fileID: 8493293996653898773}
   - component: {fileID: 8493293996653898770}
-  - component: {fileID: 8493293996653898771}
   - component: {fileID: 5167373237878247343}
-  m_Layer: 8
+  - component: {fileID: 7732927783850802301}
+  - component: {fileID: 3088497958481381700}
+  - component: {fileID: 1259014905}
+  m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 8493293996653898760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.689, y: -1.001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 8493293994997029730}
   - {fileID: 8493293995286146549}
@@ -250,10 +251,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -696949397
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 438363eaf0d8f2d4981f9c08c25ffa11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d3ebdd6043ed1d46bb1b5cfc704e03f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -298,24 +299,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03249675, y: -0.3131321}
-  m_Size: {x: 0.9406043, y: 1.3783873}
+  m_Offset: {x: -0.04, y: -0.180321}
+  m_Size: {x: 1.25, y: 1.7}
   m_Direction: 0
---- !u!114 &8493293996653898773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8493293996653898760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89c3bd599730c7848823de9151d66b0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1000
-  groundCheckRadius: 0.4
-  spriteRenderer: {fileID: 8493293996653898775}
 --- !u!95 &8493293996653898770
 Animator:
   serializedVersion: 3
@@ -335,23 +321,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8493293996653898771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8493293996653898760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe8ff0d6578bb7d4480dec94acc7c57b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gun: {fileID: 8493293995286146549}
-  bullet: {fileID: 583999589497873732, guid: 0dacc93a8e7e961429cd979adf730d34, type: 3}
-  bulletSpeed: 1200
-  shootPoint: {fileID: 8493293996038095743}
-  fireRate: 4
 --- !u!114 &5167373237878247343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,3 +333,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2505bd1c28faee4fb2dcb8f2d8c582e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minContamination: 0
+  currentContamination: 0
+  healthBar: {fileID: 0}
+--- !u!114 &7732927783850802301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293996653898760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa404b10a4645aa4393a5e303687039a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3088497958481381700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293996653898760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c3bd599730c7848823de9151d66b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5000
+  groundCheck: {fileID: 8493293994997029730}
+  groundCheckRadius: 0.5
+  animator: {fileID: 8493293996653898770}
+  spriteRenderer: {fileID: 8493293996653898775}
+--- !u!114 &1259014905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293996653898760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe8ff0d6578bb7d4480dec94acc7c57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 8493293995025520053}
+  bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
+  bulletSpeed: 1200
+  shootPoint: {fileID: 8493293996038095743}
+  fireRate: 0.5
