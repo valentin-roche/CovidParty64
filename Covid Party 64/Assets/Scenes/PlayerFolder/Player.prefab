@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 8493293996653898773}
   - component: {fileID: 8493293996653898770}
   - component: {fileID: 8493293996653898771}
+  - component: {fileID: 5167373237878247343}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -313,15 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1000
-  jumpForce: 300
-  isGrounded: 0
-  groundCheck: {fileID: 8493293994997029730}
   groundCheckRadius: 0.4
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  rb: {fileID: 8493293996653898774}
-  animator: {fileID: 8493293996653898770}
   spriteRenderer: {fileID: 8493293996653898775}
 --- !u!95 &8493293996653898770
 Animator:
@@ -359,3 +352,15 @@ MonoBehaviour:
   bulletSpeed: 1200
   shootPoint: {fileID: 8493293996038095743}
   fireRate: 4
+--- !u!114 &5167373237878247343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293996653898760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2505bd1c28faee4fb2dcb8f2d8c582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
