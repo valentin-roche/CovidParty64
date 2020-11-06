@@ -31,7 +31,6 @@ public class Shoot : MonoBehaviour
             if(Time.time > readyForNextShot)
             {
                 readyForNextShot = Time.time + fireRate;
-                isLeftClick = true;
                 shootHorizontal();
             }
             
@@ -39,9 +38,9 @@ public class Shoot : MonoBehaviour
         {
             if (Time.time > readyForNextShot)
             {
+                
                 readyForNextShot = Time.time + fireRate;
-                isLeftClick = false;
-                shootVertical();
+                shootVertical();            
             }
         }
     }
@@ -51,13 +50,14 @@ public class Shoot : MonoBehaviour
     void shootHorizontal()
     {
         Debug.Log("Horizontal shot");
-        Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        Instantiate(bullet, shootPoint.position, shootPoint.rotation);        
     }
 
     void shootVertical()
     {
         Debug.Log("Vertical shot");
-        Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        Quaternion verticalRotation = Quaternion.Euler(shootPoint.rotation.x, shootPoint.rotation.y, shootPoint.rotation.z + 90f);
+        Instantiate(bullet, shootPoint.position, verticalRotation);
     }
     
 }
