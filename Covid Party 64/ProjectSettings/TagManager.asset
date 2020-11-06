@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Player/GroundCheck
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX

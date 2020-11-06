@@ -13,7 +13,7 @@ public class GelBullet : MonoBehaviour
     {
         //this.transform.rotation = Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z - 90f);
         rb.velocity = transform.right * bulletSpeed;
-        
+        Destroy(gameObject, .5f);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
