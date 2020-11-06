@@ -10,6 +10,7 @@ public class Shoot : MonoBehaviour
 
     public GameObject bullet;
     public float bulletSpeed;
+   
 
     public Transform shootPoint;
 
@@ -40,6 +41,7 @@ public class Shoot : MonoBehaviour
                 shootVertical();
             }
         }
+
     }
 
     void shootHorizontal()
@@ -47,6 +49,7 @@ public class Shoot : MonoBehaviour
         Debug.Log("Horizontal shot");
         GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
+        BulletIns.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
         Destroy(BulletIns, 0.5f);
     }
 
@@ -57,4 +60,6 @@ public class Shoot : MonoBehaviour
         BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.up * bulletSpeed);
         Destroy(BulletIns, 0.5f);
     }
+
+
 }
