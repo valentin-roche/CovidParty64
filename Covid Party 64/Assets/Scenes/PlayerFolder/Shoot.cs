@@ -3,25 +3,27 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-
-    public Transform gun;
-
-    Vector2 direction;
-
     public GameObject bullet;
-    public float bulletSpeed;
 
     public Transform shootPoint;
 
     public float fireRate;
     float readyForNextShot;
-   
-    void Start()
+    public bool isLeftClick = false;
+
+    public static Shoot instance;
+
+    private void Awake()
     {
-        
+        if(instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de Shoot dans la scène.");
+        }
+        instance = this;
     }
 
-  
+
+
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -29,6 +31,7 @@ public class Shoot : MonoBehaviour
             if(Time.time > readyForNextShot)
             {
                 readyForNextShot = Time.time + fireRate;
+                isLeftClick = true;
                 shootHorizontal();
             }
             
@@ -37,24 +40,24 @@ public class Shoot : MonoBehaviour
             if (Time.time > readyForNextShot)
             {
                 readyForNextShot = Time.time + fireRate;
+                isLeftClick = false;
                 shootVertical();
             }
         }
     }
 
+    
+
     void shootHorizontal()
     {
         Debug.Log("Horizontal shot");
-        GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-        BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
-        Destroy(BulletIns, 2f);
+        Instantiate(bullet, shootPoint.position, shootPoint.rotation);
     }
 
     void shootVertical()
     {
         Debug.Log("Vertical shot");
-        GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-        BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.up * bulletSpeed);
-        Destroy(BulletIns, 2f);
+        Instantiate(bullet, shootPoint.position, shootPoint.rotation);
     }
+    
 }

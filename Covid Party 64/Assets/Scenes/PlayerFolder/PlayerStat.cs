@@ -10,6 +10,10 @@ public class PlayerStat : MonoBehaviour
         speed = 5000,
         armor = 0;
 
+    private int minContamination = 0;
+
+    public HealthBar healthBar;
+
     private static bool
        dodge = false,
        block = false,
@@ -17,6 +21,42 @@ public class PlayerStat : MonoBehaviour
        slow = false,
        fly = false,
        regen = false;
+
+    void Start()
+    {
+        contaminationRate = minContamination;
+        healthBar.SetContaminationInit(minContamination);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            GetContaminate(20);
+        }
+    }
+
+    void GetContaminate(int _contamination)
+    {
+        contaminationRate += _contamination;
+        healthBar.SetContamination(contaminationRate);
+        if (contaminationRate >= 100)
+        {
+            Die();
+            return;
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Le joueur a été contaminé ! GAME OVER");
+        //Bloquer mouvements du personnages
+        PlayerMovement.instance.enabled = false;
+        //Jouer animation de mort
+        PlayerMovement.instance.animator.SetTrigger("Death");
+        //Empêcher l'interaction avec le reste de la scène.
+
+    }
     public static int ContaminationRate { get => contaminationRate; set => contaminationRate = value; }
     public static int Speed { get => speed; set => speed = value; }
     public static int Armor { get => armor; set => armor = value; }
