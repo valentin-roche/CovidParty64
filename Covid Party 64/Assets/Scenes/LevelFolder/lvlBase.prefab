@@ -28,7 +28,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3084290560856861201}
-  - {fileID: 3084290558855515433}
   - {fileID: 3084290560818601185}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3084290558855515433}
   m_Layer: 0
-  m_Name: Player SpawnPoint
+  m_Name: Boss SpawnPoint
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,11 +56,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3084290558855515434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.4383526, y: -1.7708113, z: 55.28898}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3111379, y: 1.3111379, z: 0}
   m_Children: []
-  m_Father: {fileID: 1697620246821092306}
-  m_RootOrder: 1
+  m_Father: {fileID: 3084290560818601185}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3084290559095069657
 GameObject:
@@ -153,8 +152,9 @@ Transform:
   m_Children:
   - {fileID: 3084290559526686785}
   - {fileID: 3084290559095069656}
+  - {fileID: 3084290558855515433}
   m_Father: {fileID: 1697620246821092306}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3084290560818601184
 MonoBehaviour:
@@ -171,6 +171,8 @@ MonoBehaviour:
   prefabEnemySmall: {fileID: 0}
   prefabEnemyMedium: {fileID: 3718348178503878502, guid: 2386594b940799e47bee3734c8568d50, type: 3}
   prefabEnemyLarge: {fileID: 0}
+  prefabBoss: {fileID: 0}
+  LiveEn: []
 --- !u!1 &3084290560856861202
 GameObject:
   m_ObjectHideFlags: 0
