@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpForce = 300;
 
     private bool isJumping;
-    private bool isGrounded;
+    public bool isGrounded;
 
     public Transform groundCheck;
     public float groundCheckRadius;
