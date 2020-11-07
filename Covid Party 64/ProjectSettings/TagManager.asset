@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Player/GroundCheck
+  - PlayerSpawn
+  - GelBullet
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - 
   - 
   - Player
-  - 
-  - 
+  - Foundation
+  - GelBullet
   - 
   - 
   - 
@@ -40,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3630992225
+    locked: 0
+  - name: Foreground
+    uniqueID: 3598017899
     locked: 0
