@@ -258,7 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
   shootPoint: {fileID: 884157491410266257}
-  fireRate: 0.2
+  fireRate: 0.01
   isLeftClick: 0
 --- !u!1 &8493293994997029733
 GameObject:
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
   shootPoint: {fileID: 8493293996038095743}
-  fireRate: 0.5
+  fireRate: 0.3
   isLeftClick: 0
 --- !u!1 &8493293995286146548
 GameObject:

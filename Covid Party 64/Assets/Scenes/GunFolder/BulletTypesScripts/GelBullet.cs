@@ -11,18 +11,16 @@ public class GelBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //this.transform.rotation = Quaternion.Euler(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z - 90f);
         rb.velocity = transform.right * bulletSpeed;
-        Destroy(gameObject, .5f);
+        Destroy(gameObject, 2.5f);
+        Physics2D.IgnoreLayerCollision(8, 10);
+        Physics2D.IgnoreLayerCollision(10, 10);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
-    {       
-        if (collision != GameObject.FindWithTag("Player").GetComponent("CapsuleCollider2D"))
-        {
+    {
             Debug.Log(collision);        
             Destroy(gameObject);
-        }
     }
 
 }

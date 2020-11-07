@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2224618221459788935}
   - component: {fileID: 5081321009714650876}
   - component: {fileID: 7362284804565738363}
-  m_Layer: 0
-  m_Name: PissetteAmmo
+  m_Layer: 10
+  m_Name: GelBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -134,5 +134,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414faf15e68164e47bf00ab16924b9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 20
+  bulletSpeed: 40
   rb: {fileID: 5081321009714650876}
