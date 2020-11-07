@@ -41,6 +41,6 @@ public class EnemyMedium : MonoBehaviour
         if (rigidbodyComponent == null) rigidbodyComponent = GetComponent<Rigidbody2D>();
         
         // Apply movement to the rigidbody
-        rigidbodyComponent.velocity = EnemyStat.Speed * enemyDir;
+        rigidbodyComponent.velocity = speed * enemyDir;
     }
 }

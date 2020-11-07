@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7910891789751971411}
   - component: {fileID: 2224618221459788935}
   - component: {fileID: 5081321009714650876}
-  - component: {fileID: 7362284804565738363}
-  m_Layer: 10
-  m_Name: GelBullet
+  - component: {fileID: 754775781055207227}
+  m_Layer: 0
+  m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583999589497873732}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.011, y: -0.966, z: 0}
-  m_LocalScale: {x: 0.26616043, y: 0.2588975, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.70227665, w: 0.71190417}
+  m_LocalPosition: {x: -0.8114, y: -1.4211, z: 0}
+  m_LocalScale: {x: 0.033962216, y: 0.030872213, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.22}
 --- !u!212 &7910891789751971411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -696949397
   m_SortingLayer: 2
-  m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: e7c5dbd3f63c4c748b7850ddee2e0f23, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 3b9d2a401191cca498a9d32f9f3f28a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,12 +95,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.072886355, y: 0.030399583}
+  m_Offset: {x: 0.0008401267, y: 0.067875765}
   serializedVersion: 2
-  m_Radius: 1.6912625
+  m_Radius: 1.7423682
 --- !u!50 &5081321009714650876
 Rigidbody2D:
   serializedVersion: 4
@@ -113,16 +113,16 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 2
+  m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7362284804565738363
+--- !u!114 &754775781055207227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,8 +131,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 583999589497873732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414faf15e68164e47bf00ab16924b9bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c9a1ed3ec64e7c4091d016ac16c0b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 40
-  rb: {fileID: 5081321009714650876}

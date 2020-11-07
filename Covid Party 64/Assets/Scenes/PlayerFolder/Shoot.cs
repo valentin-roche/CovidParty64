@@ -4,6 +4,7 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     public GameObject bullet;
+    public float bulletSpeed;
 
     public Transform shootPoint;
 
@@ -43,6 +44,7 @@ public class Shoot : MonoBehaviour
                 shootVertical();            
             }
         }
+
     }
 
     
@@ -50,7 +52,11 @@ public class Shoot : MonoBehaviour
     void shootHorizontal()
     {
         Debug.Log("Horizontal shot");
-        Instantiate(bullet, shootPoint.position, shootPoint.rotation);        
+        Instantiate(bullet, shootPoint.position, shootPoint.rotation);     
+        GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
+        BulletIns.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+        Destroy(BulletIns, 0.5f);
     }
 
     void shootVertical()
@@ -59,5 +65,4 @@ public class Shoot : MonoBehaviour
         Quaternion verticalRotation = Quaternion.Euler(shootPoint.rotation.x, shootPoint.rotation.y, shootPoint.rotation.z + 90f);
         Instantiate(bullet, shootPoint.position, verticalRotation);
     }
-    
 }
