@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/LevelFolder/Hospital.unity
+- path: Assets/Scenes/LevelFolder/CoupleSelection.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
