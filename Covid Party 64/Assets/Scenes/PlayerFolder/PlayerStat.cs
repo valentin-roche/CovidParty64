@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
     // Start is called before the first frame update
     private static int
         contaminationRate = 0,
+        maxContamination = 100,
         speed = 5000,
         armor = 0;
 
@@ -15,6 +14,22 @@ public class PlayerStat : MonoBehaviour
     public HealthBar healthBar;
 
     private static bool
+       lowerContaminationArea = false,
+       slowerContamination = false,
+       biggerJump = false,
+       extendRange = false,
+       increasedDropRate = false,
+       increasedBossDamage = false,
+       slowEnnemy = false,
+       increasedSpeed = false, 
+       increasedAttackSpeed = false,
+       explosionAtTouch = false,
+       purifiantLaserPlus = false,
+       drainAtTouch = false,
+       drainAtProximity = false,
+       getBackBonusChance = false,
+       additionalVaccine = false,
+       stunCrit  = false, 
        dodge = false,
        block = false,
        critical = false,
@@ -49,15 +64,23 @@ public class PlayerStat : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Le joueur a été contaminé ! GAME OVER");
-        //Bloquer mouvements du personnages
-        PlayerMovement.instance.enabled = false;
-        //Jouer animation de mort
-        PlayerMovement.instance.animator.SetTrigger("Death");
-        //Empêcher l'interaction avec le reste de la scène.
+        if (false) //Test pour savoir si joueur peut revive
+        {
+            //Respawn();
+        }
+        else
+        {
+            Debug.Log("Le joueur a été contaminé ! GAME OVER");
+            //Bloquer mouvements du personnages
+            PlayerMovement.instance.enabled = false;
+            //Jouer animation de mort
+            PlayerMovement.instance.animator.SetTrigger("Death");
+            //Empêcher l'interaction avec le reste de la scène.
+        }
+        
 
     }
-    public static int ContaminationRate { get => contaminationRate; set => contaminationRate = value; }
+    public static int ContaminationRate { get => maxContamination; set => maxContamination = value; }
     public static int Speed { get => speed; set => speed = value; }
     public static int Armor { get => armor; set => armor = value; }
     public static bool Dodge { get => dodge; set => dodge = value; }
@@ -79,6 +102,90 @@ public class PlayerStat : MonoBehaviour
         Fly = false;
         Regen = false;
     }
+
+    public void addBonusEffect()
+    {
+        if (lowerContaminationArea)
+        {
+
+        }
+        else if (slowerContamination)
+        {
+
+        }
+        else if(biggerJump){
+     
+        }
+        else if (extendRange)
+        {
+
+        }
+        else if (increasedDropRate)
+        {
+
+        }
+        else if (increasedBossDamage)
+        {
+
+        }
+        else if (increasedAttackSpeed)
+        {
+
+        }
+        else if (slowEnnemy)
+        {
+
+        } 
+        else if (increasedSpeed)
+        {
+
+        }
+        else if (explosionAtTouch)
+        {
+
+        }
+        else if (purifiantLaserPlus)
+        {
+
+        }
+        else if (drainAtTouch)
+        {
+
+        }
+        else if (drainAtProximity)
+        {
+
+        }
+        else if (getBackBonusChance)
+        {
+
+        }
+        else if (additionalVaccine)
+        {
+
+        }
+        else if (stunCrit)
+        {
+
+        }
+        else if (dodge)
+        {
+
+        }
+        else if (block)
+        {
+
+        }
+        else if (critical)
+        {
+
+        }
+        else if (slow)
+        {
+
+        }
+    }
+    
 }
 
 
