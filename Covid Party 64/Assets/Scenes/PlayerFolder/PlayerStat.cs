@@ -11,7 +11,8 @@ namespace Stats
             contaminationRate = 0,
             maxContamination = 100,
             speed = 5000,
-            armor = 0;
+            armor = 0,
+            bulletDamage = 40;
 
         
 
@@ -21,7 +22,7 @@ namespace Stats
            biggerJump = false,
            extendRange = false,
            increasedDropRate = false,
-           increasedBossDamage = true,
+           increasedBossDamage = false,
            slowEnnemy = false,
            increasedSpeed = false,
            increasedAttackSpeed = false,
@@ -62,6 +63,7 @@ namespace Stats
                 Debug.Log("Le joueur a été contaminé ! GAME OVER");
                 //Bloquer mouvements du personnages
                 PlayerMovement.instance.enabled = false;
+                Shoot.instance.enabled = false;
                 //Jouer animation de mort
                 PlayerMovement.instance.animator.SetTrigger("Death");
                 //Empêcher l'interaction avec le reste de la scène.
@@ -79,6 +81,7 @@ namespace Stats
         public static bool Fly { get => fly; set => fly = value; }
         public static bool Regen { get => regen; set => regen = value; }
         public static bool IncreasedBossDamage { get => increasedBossDamage; set => increasedBossDamage = value; }
+        public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
 
         public static void ResetStat()
         {

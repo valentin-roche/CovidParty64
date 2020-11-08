@@ -42,18 +42,28 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update()
-    {
+    {   
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
+        
+        //if (rb.velocity.y > 0)
+        //{
+        //    animator.SetFloat("yVelocity", 1);
+        //}
+        //else if(rb.velocity.y < 0)
+        //{
+        //    animator.SetFloat("yVelocity", -1);
+        //}
 
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
+            animator.SetBool("Jump", true);
             isJumping = true;
         }
+        animator.SetBool("Jump", !isGrounded);
+        animator.SetFloat("yVelocity", rb.velocity.y);
 
-        
-        
     }
 
     private void FixedUpdate()

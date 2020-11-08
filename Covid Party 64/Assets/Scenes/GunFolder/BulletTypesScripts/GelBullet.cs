@@ -8,7 +8,7 @@ public class GelBullet : MonoBehaviour
 
     public float bulletSpeed;
     public Rigidbody2D rb;
-    int damage = 50;
+    int damage;
 
     
 
@@ -23,11 +23,8 @@ public class GelBullet : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (PlayerStat.IncreasedBossDamage)
-        {
-            damage = 100;
-        }
+    {        
+        damage = PlayerStat.BulletDamage;        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -9,6 +9,18 @@ public class Shoot : MonoBehaviour
 
     public float fireRate;
     float readyForNextShot;
+
+    public static Shoot instance;
+
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Debug.Log("Il y a plus d'une instance Shoot dans la scène.");
+        }
+        instance = this;
+    }
+
     void Update()
     {
         if (Input.GetMouseButton(0))
