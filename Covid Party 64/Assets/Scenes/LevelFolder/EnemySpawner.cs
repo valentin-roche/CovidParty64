@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
     public void MakeWave(int cred)
     {
 
-        Debug.Log("Spawning wave with " + cred + "cred");
+        //Debug.Log("Spawning wave with " + cred + "cred");
         GameObject SpawnPoint;
 
         if(SpawnSide%2==0)

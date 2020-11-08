@@ -26,7 +26,7 @@ public class LevelFlowManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(spawnerScript.LiveEn.Count() <=0 && !BossFight)
+        if(spawnerScript.LiveEn.Count() <= 0 && !BossFight)
         {
             spawnerScript.MakeWave(Waves[currentWave].Credit);
             currentWave++;
