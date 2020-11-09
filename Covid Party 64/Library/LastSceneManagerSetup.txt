@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/LevelFolder/LevelBase.unity
+- path: Assets/Scenes/LevelFolder/LVL_2_Egouts.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
