@@ -639,12 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48478a55f0d73f40ba620ac6d0aef8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5000
-  isGrounded: 0
-  groundCheck: {fileID: 8493293994997029730}
-  groundCheckRadius: 0.5
   animator: {fileID: 8493293996653898770}
-  spriteRenderer: {fileID: 8493293996653898775}
 --- !u!1 &8589271231988653556
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿
+using Stats;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +24,7 @@ public class HealthBar : MonoBehaviour
 
     public void SetContaminationInit(int _contamination)
     {
-        slider.maxValue = 100;
+        slider.maxValue = PlayerStat.MaxContamination;
         slider.value = _contamination;
 
         fill.color = gradient.Evaluate(1f);

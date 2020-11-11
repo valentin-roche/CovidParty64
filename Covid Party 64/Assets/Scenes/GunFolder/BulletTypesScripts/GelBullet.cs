@@ -16,7 +16,7 @@ public class GelBullet : MonoBehaviour
     void Start()
     {
         rb.velocity = transform.right * bulletSpeed;
-        Destroy(gameObject, 2.5f);
+        Destroy(gameObject, 1f);
         Physics2D.IgnoreLayerCollision(9, 10);
         Physics2D.IgnoreLayerCollision(10, 10);
         Physics2D.IgnoreLayerCollision(0, 10);

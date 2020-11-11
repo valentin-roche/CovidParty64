@@ -72,6 +72,7 @@ namespace Stats
 
         }
         public static int ContaminationRate { get => contaminationRate; set => contaminationRate= value; }
+        public static int MaxContamination { get => maxContamination; set => maxContamination = value; }
         public static int Speed { get => speed; set => speed = value; }
         public static int Armor { get => armor; set => armor = value; }
         public static bool Dodge { get => dodge; set => dodge = value; }
