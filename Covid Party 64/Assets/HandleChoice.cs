@@ -65,7 +65,24 @@ public class HandleChoice : MonoBehaviour
         }
         else
         {
-
+            if (power.Target == "player")
+            {
+                switch (power.AffectedStat)
+                {
+                    //TODO special powers handling
+                    default:
+                        break;
+                }
+            }
+            if (power.Target == "enemy")
+            {
+                switch (power.AffectedStat)
+                {
+                    //TODO special powers handling
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
