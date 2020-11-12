@@ -12,7 +12,7 @@ public class LevelFlowManager : MonoBehaviour
     private List<GameObject> liveEnemies;
     private EnemySpawner spawnerScript;
     private int currentWave = 0;
-    public bool BossFight = false;
+    private bool BossFight = false;
 
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class LevelFlowManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(spawnerScript.LiveEn.Count() <=0 && !BossFight)
+        if(spawnerScript.LiveEn.Count() <= 0 && !BossFight)
         {
             spawnerScript.MakeWave(Waves[currentWave].Credit);
             currentWave++;
@@ -38,8 +38,8 @@ public class LevelFlowManager : MonoBehaviour
         }
         if (spawnerScript.LiveEn.Count() <= 0 && BossFight)
         {
-            // End of the level as soon as the boss is defeated
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            // End of the level as soon as the boss is defeated and load couple selection
+            SceneManager.LoadScene("CoupleSelection");
         }
     }
 
