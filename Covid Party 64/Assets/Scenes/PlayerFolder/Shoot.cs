@@ -4,13 +4,11 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     public GameObject bullet;
-    public float bulletSpeed;
 
     public Transform shootPoint;
 
     public float fireRate;
     float readyForNextShot;
-    public bool isLeftClick = false;
 
     public static Shoot instance;
 
@@ -18,12 +16,10 @@ public class Shoot : MonoBehaviour
     {
         if(instance != null)
         {
-            Debug.LogWarning("Il y a plus d'une instance de Shoot dans la scène.");
+            Debug.Log("Il y a plus d'une instance Shoot dans la scène.");
         }
         instance = this;
     }
-
-
 
     void Update()
     {
@@ -52,11 +48,7 @@ public class Shoot : MonoBehaviour
     void shootHorizontal()
     {
         Debug.Log("Horizontal shot");
-        Instantiate(bullet, shootPoint.position, shootPoint.rotation);     
-        GameObject BulletIns = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-        BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
-        BulletIns.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
-        Destroy(BulletIns, 0.5f);
+        Instantiate(bullet, shootPoint.position, shootPoint.rotation);
     }
 
     void shootVertical()

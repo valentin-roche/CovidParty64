@@ -40,13 +40,13 @@ public class HandleChoice : MonoBehaviour
                 switch (power.AffectedStat)
                 {
                     case "speed":
-                        PlayerStat.Speed += modif;
+                        Stats.PlayerStat.Speed += modif;
                         break;
                     case "damage":
                         // TODO : Change projectile damage
                         break;
                     case "contaminationDist":
-                        PlayerStat.ContaminationRate += modif;
+                        Stats.PlayerStat.ContaminationRate += modif;
                         break;
                 }  
             }

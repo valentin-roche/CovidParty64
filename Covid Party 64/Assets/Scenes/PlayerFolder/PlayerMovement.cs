@@ -3,19 +3,21 @@
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float moveSpeed;
+    private float moveSpeed = 5000;
     private float jumpForce = 300;
 
     private bool isJumping;
     private bool isGrounded;
 
     public Transform groundCheck;
-    public float groundCheckRadius;
+
+
+    private float groundCheckRadius;
     private LayerMask collisionLayer;
 
     private Rigidbody2D rb;
     public Animator animator;
-    public SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
@@ -36,8 +38,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Start()
-    {           
-        rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        groundCheckRadius = .5f;
+        rb = GetComponent<Rigidbody2D>();
         collisionLayer = LayerMask.GetMask("Foundation");
     }
 
@@ -49,11 +54,12 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
+            animator.SetBool("Jump", true);
             isJumping = true;
         }
+        animator.SetBool("Jump", !isGrounded);
+        animator.SetFloat("yVelocity", rb.velocity.y);
 
-        
-        
     }
 
     private void FixedUpdate()
@@ -92,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnDrawGizmos()
-    {        
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);        
         
