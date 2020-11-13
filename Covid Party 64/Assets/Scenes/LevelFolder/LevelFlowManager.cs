@@ -18,7 +18,7 @@ public class LevelFlowManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject spawner = GameObject.Find("Enemy Spawner");
+        GameObject spawner = GameObject.Find("EnemySpawner");
         spawnerScript = spawner.GetComponent<EnemySpawner>();
 
     }

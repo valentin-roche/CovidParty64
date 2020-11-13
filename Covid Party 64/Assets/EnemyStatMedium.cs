@@ -7,7 +7,7 @@ public class EnemyStatMedium : MonoBehaviour
 
     private static int
         life = 100,
-        speed = 200,
+        speed = 250,
         range = 0,
         armor = 0,
         atkSpeed = 1;
@@ -36,7 +36,7 @@ public class EnemyStatMedium : MonoBehaviour
     public static void ResetStat()
     {
         Life = 100;
-        Speed = 200;
+        Speed = 250;
         Range = 0;
         Armor = 0;
         AtkSpeed = 1;
