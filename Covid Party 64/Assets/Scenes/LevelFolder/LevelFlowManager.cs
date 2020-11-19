@@ -26,8 +26,12 @@ public class LevelFlowManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Killed ennemies will still appear as null in the list so we have to manuallu erase them
+        RemoveNull();
+        Debug.Log("remaining ennemies " + spawnerScript.LiveEn.Count());
         if(spawnerScript.LiveEn.Count() <= 0 && !BossFight)
         {
+            Debug.Log("Spawning wave no " + currentWave);
             spawnerScript.MakeWave(Waves[currentWave].Credit);
             currentWave++;
         }
@@ -40,6 +44,17 @@ public class LevelFlowManager : MonoBehaviour
         {
             // End of the level as soon as the boss is defeated and load couple selection
             SceneManager.LoadScene("CoupleSelection");
+        }
+    }
+
+    private void RemoveNull()
+    {
+        for (int enIndex = 0; enIndex < spawnerScript.LiveEn.Count(); enIndex++)
+        {
+            if (spawnerScript.LiveEn[enIndex] == null)
+            {
+                spawnerScript.LiveEn.RemoveAt(enIndex);
+            }
         }
     }
 
