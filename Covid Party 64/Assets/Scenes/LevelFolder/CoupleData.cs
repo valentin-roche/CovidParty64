@@ -50,8 +50,103 @@ public class CoupleData : MonoBehaviour
         {
             Name = "closerstronger",
             DisplayName = "Distance de contamination réduite /\n Dégâts augmentés",
-            EnemyMod = new Power() { Target = "player", AffectedStat = "contaminationDist", EffectType = "modify", Value = -5 },
+            EnemyMod = new Power() { Target = "player", AffectedStat = "contaminationDist", EffectType = "modify", Value = -2 },
             PlayerMod = new Power() { Target = "player", AffectedStat = "damage", EffectType = "modify", Value = 5 }
+        },
+        new Couple()
+        {
+            Name = "fastercloser",
+            DisplayName = "Ennemis plus rapides /\n Distance de contamination plus faible",
+            EnemyMod = new Power() { Target = "enemy", AffectedStat = "speed", EffectType = "modify", Value = -5 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "contaminationDist", EffectType = "modify", Value = -2 },
+        },
+        new Couple()
+        {
+            Name = "toughercloser",
+            DisplayName = "Ennemis plus résistants aux dégâts /\n Contamination plus lente",
+            EnemyMod = new Power() { Target = "player", AffectedStat = "damage", EffectType = "modify", Value = -1 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "armor", EffectType = "modify", Value = 2 },
+        },
+        new Couple()
+        {
+            Name = "spitjump",
+            DisplayName = "Les ennemis peuvent cracher /\n Hauteur de saut plus élevée",
+            EnemyMod = new Power() { Target = "enemy", AffectedStat = "spit", EffectType = "enable", Value = 1 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "jump", EffectType = "modify", Value = 2 },
+        },
+        new Couple()
+        {
+            Name = "dodgerange",
+            DisplayName = "Les ennemis peuvent esquiver /\n Distance de tir plus élevée",
+            EnemyMod = new Power() { Target = "enemy", AffectedStat = "dodge", EffectType = "enable", Value = 1 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "projectileDistance", EffectType = "modify", Value = 2 },
+        },
+        new Couple()
+        {
+            Name = "strongerdrop",
+            DisplayName = "Les ennemis font plus de dégâts /\n Taux de chute d'objets plus élevé",
+            // If no enemy upgrade for damage change to weaken player armor
+            EnemyMod = new Power() { Target = "enemy", AffectedStat = "damage", EffectType = "modify", Value = 2 }, 
+            PlayerMod = new Power() { Target = "player", AffectedStat = "dropRate", EffectType = "modify", Value = 2 },
+        },
+        new Couple()
+        {
+            Name = "blockcrit",
+            DisplayName = "Les ennemis peuvent bloquer des dégâts /\n Chances d'effectuer un coup critique",
+            // Block = dodge so enable dodge
+            EnemyMod = new Power() { Target = "enemy", AffectedStat = "dodge", EffectType = "enable", Value = 1 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "critical", EffectType = "enable", Value = 2 },
+        },
+        new Couple()
+        {
+            Name = "critblock",
+            DisplayName = "Les ennemis peuvent infliger des dégâts critiques /\n Chances d'éviter des attaques",
+            EnemyMod = new Power() { Target = "enemy", AffectedStat = "critical", EffectType = "enable", Value = 1 },
+            // Block = dodge so enable dodge
+            PlayerMod = new Power() { Target = "player", AffectedStat = "dodge", EffectType = "enable", Value = 2 },
+        },
+        new Couple()
+        {
+            Name = "critblock",
+            DisplayName = "Les ennemis peuvent infliger des dégâts critiques /\n Chances d'éviter des attaques",
+            EnemyMod = new Power() { Target = "enemy", AffectedStat = "critical", EffectType = "enable", Value = 1 },
+            // Block = dodge so enable dodge
+            PlayerMod = new Power() { Target = "player", AffectedStat = "dodge", EffectType = "enable", Value = 2 },
+        },
+        new Couple()
+        {
+            Name = "slowregenvamp",
+            DisplayName = "Vitesse de décontamination réduite /\n Vol de vie avec les projectiles",
+            EnemyMod = new Power() { Target = "player", AffectedStat = "regen", EffectType = "modify", Value = -1 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "lifeSteal", EffectType = "enable", Value = 1 },
+        },
+        new Couple()
+        {
+            Name = "halflifedrain",
+            DisplayName = "Votre vie est réduite de 50% /\n Vol de vie sur les ennemis à proximité",
+            EnemyMod = new Power() { Target = "player", AffectedStat = "life", EffectType = "modify", Value = -Stats.PlayerStat.MaxContamination/2 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "lifestealzone", EffectType = "enable", Value = 1 },
+        },
+        new Couple()
+        {
+            Name = "slowerstronger",
+            DisplayName = "Votre vitesse est réduite /\n Dégâts de projectiles considérablement augmentés",
+            EnemyMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "modify", Value = -5 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "damage", EffectType = "enable", Value = Stats.PlayerStat.BulletDamage},
+        },
+        new Couple()
+        {
+            Name = "regenstun",
+            DisplayName = "Les ennemis se régénèrent /\n Les dégâts critiques étourdissent les ennemis ",
+            EnemyMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "modify", Value = -5 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "stun", EffectType = "enable", Value = 1},
+        },
+        new Couple()
+        {
+            Name = "bossdmg",
+            DisplayName = "Dégâts sur les boss augmentés/\n Dégâts des boss augmentés ",
+            EnemyMod = new Power() { Target = "player", AffectedStat = "IncreasedBossDamage", EffectType = "enable", Value = 1 },
+            PlayerMod = new Power() { Target = "boss", AffectedStat = "damage", EffectType ="modify", Value = 10},
         }
     };
 

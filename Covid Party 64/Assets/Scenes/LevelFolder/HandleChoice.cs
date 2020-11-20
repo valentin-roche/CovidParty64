@@ -70,12 +70,33 @@ public class HandleChoice : MonoBehaviour
                         Stats.PlayerStat.Speed += modif;
                         break;
                     case "damage":
-                        // TODO : Change projectile damage
+                        Stats.PlayerStat.BulletDamage += modif;
                         break;
                     case "contaminationDist":
                         Stats.PlayerStat.ContaminationRate += modif;
                         break;
-                }  
+                    case "armor":
+                        Stats.PlayerStat.Armor += modif;
+                        break;
+                    case "jump":
+                        //TODO uncomment when jump modifier added
+                        //Stats.PlayerStat.Jump += modif;
+                        break;
+                    case "projectileDistance":
+                        //TODO uncomment when projectile distance modifier added
+                        //Stats.PlayerStat.ProjetcileDistance += modif;
+                        break;
+                    case "dropRate":
+                        //TODO uncomment when droprate increase procedure defined
+                        break;
+                    case "regen":
+                        //TODO uncomment when regenrate implemented
+                        //Stats.PlayerStat.RegenRate += modif;
+                        break;
+                    case "life":
+                        Stats.PlayerStat.MaxContamination += modif;
+                        break;
+                }
             }
             if (power.Target == "enemy")
             {
@@ -87,9 +108,21 @@ public class HandleChoice : MonoBehaviour
                     case "health":
                         EnemyStatMedium.Life += modif;
                         break;
+                    case "damage":
+                        EnemyStatMedium.AtkSpeed += modif;
+                        break;
                 }
             }
-        }
+            if (power.Target == "boss")
+            {
+                switch (power.AffectedStat)
+                {
+                    case "damage":
+                        //TODO uncomment when boss stats handler is up
+                        //Stats.BossStats.Damage += modif;
+                        break;
+                }
+            }
         else
         {
             if (power.Target == "player")
@@ -97,6 +130,27 @@ public class HandleChoice : MonoBehaviour
                 switch (power.AffectedStat)
                 {
                     //TODO special powers handling
+                    case "critical":
+                        Stats.PlayerStat.Critical = true;
+                        break;
+                    case "dodge":
+                        Stats.PlayerStat.Dodge = true;
+                        break;
+                    case "lifeSteal":
+                        //TODO uncomment when lifesteal bullets implemented
+                        //Stats.PlayerStat.LifeSteal = true;
+                        break;
+                    case "lifeStealZone":
+                        //TODO uncomment when lifesteal zone implemented
+                        //Stats.PlayerStat.LifeStealZone = true;
+                        break;
+                    case "stun":
+                        //TODO uncomment when lifesteal zone implemented
+                        //Stats.PlayerStat.Stun = true;
+                        break;
+                    case "IncreasedBossDamage":
+                        Stats.PlayerStat.IncreasedBossDamage = true;
+                        break;
                     default:
                         break;
                 }
@@ -106,6 +160,18 @@ public class HandleChoice : MonoBehaviour
                 switch (power.AffectedStat)
                 {
                     //TODO special powers handling
+                    case "spit":
+                        Stats.EnemyStat.Spit = true;
+                        break;
+                    case "dodge" :
+                        Stats.EnemyStat.Dodge = true;
+                        break;
+                    case "critical":
+                        Stats.EnemyStat.Critical = true;
+                        break;
+                    case "regen":
+                        Stats.EnemyStat.Regen = true;
+                        break;
                     default:
                         break;
                 }
