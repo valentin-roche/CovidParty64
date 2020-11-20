@@ -13,6 +13,7 @@ public class LevelFlowManager : MonoBehaviour
     private EnemySpawner spawnerScript;
     private int currentWave = 0;
     private bool BossFight = false;
+    public bool NextUpgradeIsPlayerUpgrade = false;
 
 
     // Start is called before the first frame update
@@ -42,7 +43,16 @@ public class LevelFlowManager : MonoBehaviour
         }
         if (spawnerScript.LiveEn.Count() <= 0 && BossFight)
         {
-            // End of the level as soon as the boss is defeated and load couple selection
+            // End of the level as soon as the boss is defeated and load couple selection, set the param to decide wether 
+            // we display the play enhancement UI or the random feat 
+            if (NextUpgradeIsPlayerUpgrade)
+            {
+                TransitionInfos.LevelTransitionInfo.IsNextLevelPlayerUpgrade = true;
+            }
+            else
+            {
+                TransitionInfos.LevelTransitionInfo.IsNextLevelPlayerUpgrade = false;
+            }
             SceneManager.LoadScene("CoupleSelection");
         }
     }

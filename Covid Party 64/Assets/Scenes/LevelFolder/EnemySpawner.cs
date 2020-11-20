@@ -54,12 +54,13 @@ public class EnemySpawner : MonoBehaviour
         remainingCredit = remainingCredit - (nbBig * 2);
 
         //Calculate the number of small enemies
-        int nbSmall = (Random.Range(1, cred / 3)) * 2; // A small enemy is worth 0.5 credits and we want at most cred/3 small enemies (always spaw in pairs)
+        int nbSmall = (Random.Range(1, (int)cred / 3)) * 2; // A small enemy is worth 0.5 credits and we want at most cred/3 small enemies (always spaw in pairs)
         remainingCredit = remainingCredit - (nbSmall / 2);
 
         //What is left is the credit alloted for medium enemies
         int nbMed = remainingCredit;
 
+        //Hashtable counting the number of ennemies left to spawn for each category
         Hashtable remainingByCat = new Hashtable();
         remainingByCat.Add("small", nbSmall);
         remainingByCat.Add("medium", nbMed);
@@ -113,7 +114,16 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnBoss()
     {
-        GameObject enemy = Instantiate(prefabBoss, BossSpawn.transform);
-        LiveEn.Add(enemy);
+        // If the boss prefab is set there is a boss in the level and we make it spawn
+        if (prefabBoss)
+        {
+            GameObject enemy = Instantiate(prefabBoss, BossSpawn.transform);
+            LiveEn.Add(enemy);
+        }
+        // If there is no prefab set the boss will not spawn and we clear the LiveEn list to make sure the next step happens
+        else
+        {
+            LiveEn.Clear();
+        }
     }
 }
