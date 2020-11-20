@@ -153,12 +153,31 @@ public class CoupleData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("CustomButton").GetComponent<ButtonData>().LinkedCouple = CoupleList[0];
+        // Only display player upgrade buttons
+        if (TransitionInfos.LevelTransitionInfo.IsNextLevelPlayerUpgrade)
+        {
+            GameObject.Find("CustomButton (1)").gameObject.SetActive(false);
+            GameObject.Find("CustomButton (2)").gameObject.SetActive(false);
+            GameObject.Find("CustomButton").gameObject.SetActive(false);
+            GameObject.Find("weapon").gameObject.SetActive(true);
+            GameObject.Find("armor").gameObject.SetActive(true);
 
-        GameObject.Find("CustomButton (1)").GetComponent<ButtonData>().LinkedCouple = CoupleList[1];
+        }
+        // Display random couple buttons and pick couples
+        else
+        {
+            GameObject.Find("CustomButton (1)").gameObject.SetActive(true);
+            GameObject.Find("CustomButton (2)").gameObject.SetActive(true);
+            GameObject.Find("CustomButton").gameObject.SetActive(true);
+            GameObject.Find("weapon").gameObject.SetActive(false);
+            GameObject.Find("armor").gameObject.SetActive(false);
+            GameObject.Find("CustomButton").GetComponent<ButtonData>().LinkedCouple = CoupleList[Random.Range(0, CoupleList.Count)];
 
-        GameObject.Find("CustomButton (2)").GetComponent<ButtonData>().LinkedCouple = CoupleList[2];
-        Debug.Log(GameObject.Find("CustomButton (2)").GetComponent<ButtonData>().LinkedCouple.DisplayName);
+            GameObject.Find("CustomButton (1)").GetComponent<ButtonData>().LinkedCouple = CoupleList[Random.Range(0, CoupleList.Count)];
+
+            GameObject.Find("CustomButton (2)").GetComponent<ButtonData>().LinkedCouple = CoupleList[Random.Range(0, CoupleList.Count)];
+            Debug.Log(GameObject.Find("CustomButton (2)").GetComponent<ButtonData>().LinkedCouple.DisplayName);
+        }
     }
 
     // Update is called once per frame

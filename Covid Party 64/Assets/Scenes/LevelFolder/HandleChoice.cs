@@ -123,6 +123,7 @@ public class HandleChoice : MonoBehaviour
                         break;
                 }
             }
+        }
         else
         {
             if (power.Target == "player")
@@ -163,7 +164,7 @@ public class HandleChoice : MonoBehaviour
                     case "spit":
                         Stats.EnemyStat.Spit = true;
                         break;
-                    case "dodge" :
+                    case "dodge":
                         Stats.EnemyStat.Dodge = true;
                         break;
                     case "critical":
