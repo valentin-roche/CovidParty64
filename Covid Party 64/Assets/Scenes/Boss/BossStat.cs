@@ -6,9 +6,20 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Stats
-{
+{ 
     public static class BossStat
     {
+        private static int
+            baseLife = 100,
+            baseMaxHP = 100,
+            baseSpeed = 5,
+            baseRange = 0,
+            baseArmor = 0,
+            baseDamage = 2,
+            baseAtkSpeed = 1;
+        private static bool
+            baseDodge = false;
+
         private static int
             level = 1,
             life = 100,
@@ -30,15 +41,23 @@ namespace Stats
         public static int Level { get => level; set => level = value; }
         public static int Damage { get => damage; set => damage = value; }
         public static int MaxHP { get => maxHP; set => maxHP = value; }
+        public static int BaseLife { get => baseLife; set => baseLife = value; }
+        public static int BaseMaxHP { get => baseMaxHP; set => baseMaxHP = value; }
+        public static int BaseSpeed { get => baseSpeed; set => baseSpeed = value; }
+        public static int BaseRange { get => baseRange; set => baseRange = value; }
+        public static int BaseArmor { get => baseArmor; set => baseArmor = value; }
+        public static int BaseDamage { get => baseDamage; set => baseDamage = value; }
+        public static int BaseAtkSpeed { get => baseAtkSpeed; set => baseAtkSpeed = value; }
+        public static bool BaseDodge { get => baseDodge; set => baseDodge = value; }
 
         public static void ResetStat()
         {
-            Life = 100;
-            MaxHP = 100;
-            Speed = 5;
-            Range = 0;
-            Armor = 0;
-            AtkSpeed = 1;
+            Life = BaseLife;
+            MaxHP = BaseMaxHP;
+            Speed = BaseSpeed;
+            Range =BaseRange;
+            Armor =BaseArmor;
+            AtkSpeed = BaseAtkSpeed;
             Dodge = false;
         }
     }
