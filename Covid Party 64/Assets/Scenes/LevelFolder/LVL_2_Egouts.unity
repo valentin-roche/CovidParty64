@@ -5685,7 +5685,7 @@ PrefabInstance:
     - target: {fileID: 633885988499767045, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
       propertyPath: prefabBoss
       value: 
-      objectReference: {fileID: 2490580493259244409, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      objectReference: {fileID: 992959586915574011, guid: 519a1e3b7f11d6a4897367b4083adef7, type: 3}
     - target: {fileID: 633885988669258567, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.96
@@ -5717,6 +5717,14 @@ PrefabInstance:
     - target: {fileID: 633885989459774180, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
       propertyPath: Waves.Array.data[1].Credit
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 633885989459774180, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
+      propertyPath: NextUpgradeIsPlayerUpgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 633885989483345501, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
+      propertyPath: m_Name
+      value: Boss Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 5070969637226934996, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
       propertyPath: m_Tiles.Array.size
@@ -6426,7 +6434,8 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[21].second.m_AllTileFlags
       value: 1073741825
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4134631545897407249, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
 --- !u!1 &366051184 stripped
 GameObject:
