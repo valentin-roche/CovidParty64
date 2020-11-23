@@ -100,4 +100,18 @@ public class EnemyMedAI : MonoBehaviour
     {
         life -= damage;
     }
+
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        switch (col.tag)
+        {
+            case "Jump":
+                rb.AddForce(Vector2.up * 285f);
+                break;
+
+            case "JumpHole":
+                rb.AddForce(Vector2.up * 125f);
+                break;
+        }
+    }
 }
