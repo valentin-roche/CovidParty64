@@ -12,38 +12,14 @@ public class HandleChoice : MonoBehaviour
     public Button choice3;
     public Button weapon;
     public Button armor;
+    public GameObject LevelFlowManager;
     // Start is called before the first frame update
     void Start()
     {
-        if (TransitionInfos.LevelTransitionInfo.IsNextLevelPlayerUpgrade)
-        {
-            choice1.GetComponent<Button>().onClick.AddListener(() => handleClick(choice1.GetComponent<ButtonData>().LinkedCouple));
-            choice2.GetComponent<Button>().onClick.AddListener(() => handleClick(choice2.GetComponent<ButtonData>().LinkedCouple));
-            choice3.GetComponent<Button>().onClick.AddListener(() => handleClick(choice3.GetComponent<ButtonData>().LinkedCouple));
-        }
-        else
-        {
-            weapon.GetComponent<Button>().onClick.AddListener(() => handleWeaponUpgrade());
-            armor.GetComponent<Button>().onClick.AddListener(() => handleArmorUpgrade());
-        }
+
     }
 
-    private void handleArmorUpgrade()
-    {
-        // Increase player armor
-        Stats.PlayerStat.Armor = (int)(Stats.PlayerStat.Armor * 1.25);
-        // Increase armor level in level infos
-        TransitionInfos.LevelTransitionInfo.ArmorLevel++;
-    }
-
-    private void handleWeaponUpgrade()
-    {
-        // Increase bullet damage (for now)
-        Stats.PlayerStat.BulletDamage = (int)(Stats.PlayerStat.BulletDamage * 1.25);
-        // Change Weapon level in level infos (usefull for upgrade generation)
-        TransitionInfos.LevelTransitionInfo.GunLevel++;
-        // TODO : Handle Weapon change
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -51,13 +27,7 @@ public class HandleChoice : MonoBehaviour
         
     }
 
-    private void handleClick(Couple couple)
-    {
-        applyMod(couple.EnemyMod);
-        applyMod(couple.PlayerMod);
-    }
-
-    public void applyMod(Power power)
+    public static void applyMod(Power power)
     {
         if (power.EffectType == "modify")
         {

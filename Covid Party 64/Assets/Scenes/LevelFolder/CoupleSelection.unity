@@ -310,6 +310,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c37d372722c83b4985d8c03f2c88c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choice1: {fileID: 1999947186}
+  choice2: {fileID: 704563755}
+  choice3: {fileID: 820744467}
+  weapon: {fileID: 807244962}
+  armor: {fileID: 1768369404}
 --- !u!4 &378698525
 Transform:
   m_ObjectHideFlags: 0
@@ -409,7 +414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &704563751
 RectTransform:
   m_ObjectHideFlags: 0
@@ -542,7 +547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &807244960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -675,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &820744467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 884886563}
   - component: {fileID: 884886562}
+  - component: {fileID: 884886564}
   m_Layer: 0
   m_Name: ChoiceHandler
   m_TagString: Untagged
@@ -823,6 +829,7 @@ MonoBehaviour:
   choice3: {fileID: 820744467}
   weapon: {fileID: 807244962}
   armor: {fileID: 1768369404}
+  LevelFlowManager: {fileID: 0}
 --- !u!4 &884886563
 Transform:
   m_ObjectHideFlags: 0
@@ -837,6 +844,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &884886564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884886561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deebac28a18de334d85085fa8b90ac29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1081871663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1768369402
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1333,7 +1352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1999947185
 RectTransform:
   m_ObjectHideFlags: 0

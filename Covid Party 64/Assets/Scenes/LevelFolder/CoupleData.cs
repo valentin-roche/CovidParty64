@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public struct Power
 {
@@ -30,6 +31,12 @@ public struct Couple
 
 public class CoupleData : MonoBehaviour
 {
+    public Button choice1;
+    public Button choice2;
+    public Button choice3;
+    public Button weapon;
+    public Button armor;
+    public GameObject LevelsFlowHandler;
     public readonly List<Couple> CoupleList = new List<Couple>() 
     {
         new Couple()
@@ -156,27 +163,33 @@ public class CoupleData : MonoBehaviour
         // Only display player upgrade buttons
         if (TransitionInfos.LevelTransitionInfo.IsNextLevelPlayerUpgrade)
         {
-            GameObject.Find("CustomButton (1)").gameObject.SetActive(false);
-            GameObject.Find("CustomButton (2)").gameObject.SetActive(false);
-            GameObject.Find("CustomButton").gameObject.SetActive(false);
-            GameObject.Find("weapon").gameObject.SetActive(true);
-            GameObject.Find("armor").gameObject.SetActive(true);
+            choice1.gameObject.SetActive(false);
+            choice2.gameObject.SetActive(false);
+            choice3.gameObject.SetActive(false);
+            weapon.gameObject.SetActive(true);
+            armor.gameObject.SetActive(true);
+            weapon.GetComponent<Button>().onClick.AddListener(() => handleWeaponUpgrade());
+            armor.GetComponent<Button>().onClick.AddListener(() => handleArmorUpgrade());
 
         }
         // Display random couple buttons and pick couples
         else
         {
-            GameObject.Find("CustomButton (1)").gameObject.SetActive(true);
-            GameObject.Find("CustomButton (2)").gameObject.SetActive(true);
-            GameObject.Find("CustomButton").gameObject.SetActive(true);
-            GameObject.Find("weapon").gameObject.SetActive(false);
-            GameObject.Find("armor").gameObject.SetActive(false);
-            GameObject.Find("CustomButton").GetComponent<ButtonData>().LinkedCouple = CoupleList[Random.Range(0, CoupleList.Count)];
+            choice1.gameObject.SetActive(true);
+            choice2.gameObject.SetActive(true);
+            choice3.gameObject.SetActive(true);
+            weapon.gameObject.SetActive(false);
+            armor.gameObject.SetActive(false);
+            choice1.GetComponent<ButtonData>().LinkedCouple = CoupleList[Random.Range(0, CoupleList.Count)];
 
-            GameObject.Find("CustomButton (1)").GetComponent<ButtonData>().LinkedCouple = CoupleList[Random.Range(0, CoupleList.Count)];
+            choice2.GetComponent<ButtonData>().LinkedCouple = CoupleList[Random.Range(0, CoupleList.Count)];
 
-            GameObject.Find("CustomButton (2)").GetComponent<ButtonData>().LinkedCouple = CoupleList[Random.Range(0, CoupleList.Count)];
-            Debug.Log(GameObject.Find("CustomButton (2)").GetComponent<ButtonData>().LinkedCouple.DisplayName);
+            choice3.GetComponent<ButtonData>().LinkedCouple = CoupleList[Random.Range(0, CoupleList.Count)];
+            //Debug.Log(GameObject.Find("CustomButton (2)").GetComponent<ButtonData>().LinkedCouple.DisplayName);
+
+            choice1.GetComponent<Button>().onClick.AddListener(() => handleClick(choice1.GetComponent<ButtonData>().LinkedCouple));
+            choice2.GetComponent<Button>().onClick.AddListener(() => handleClick(choice2.GetComponent<ButtonData>().LinkedCouple));
+            choice3.GetComponent<Button>().onClick.AddListener(() => handleClick(choice3.GetComponent<ButtonData>().LinkedCouple));
         }
     }
 
@@ -184,5 +197,36 @@ public class CoupleData : MonoBehaviour
     void Update()
     {
         
+    }
+    public void handleArmorUpgrade()
+    {
+        // Increase player armor
+        Stats.PlayerStat.Armor = (int)(Stats.PlayerStat.Armor * 1.25);
+        // Increase armor level in level infos
+        TransitionInfos.LevelTransitionInfo.ArmorLevel++;
+
+        Debug.Log("Load next level");
+        LevelsData.LoadNextLevel();
+    }
+
+    public void handleWeaponUpgrade()
+    {
+        // Increase bullet damage (for now)
+        Stats.PlayerStat.BulletDamage = (int)(Stats.PlayerStat.BulletDamage * 1.25);
+        // Change Weapon level in level infos (usefull for upgrade generation)
+        TransitionInfos.LevelTransitionInfo.GunLevel++;
+        // TODO : Handle Weapon change
+
+        Debug.Log("Load next level");
+        LevelsData.LoadNextLevel();
+    }
+
+    public void handleClick(Couple couple)
+    {
+        HandleChoice.applyMod(couple.EnemyMod);
+        HandleChoice.applyMod(couple.PlayerMod);
+
+        Debug.Log("Load next level");
+        LevelsData.LoadNextLevel();
     }
 }

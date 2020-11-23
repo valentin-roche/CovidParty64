@@ -29,11 +29,19 @@ public class GelBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
+        Debug.Log(collision.gameObject.name);
 
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyMedAI>().TakeDamage(damage);
+        }
+        if (collision.gameObject.name == "BossPrefab(Clone)" || collision.gameObject.name == "BossSprite")
+        {
+            collision.gameObject.GetComponent<BossAI>().TakeDamage(damage);
+        }
+        if (collision.gameObject.tag == "Boss")
+        {
+            collision.gameObject.GetComponent<BossAI>().TakeDamage(damage);
         }
         Destroy(gameObject);
     }

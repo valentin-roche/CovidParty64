@@ -16,7 +16,6 @@ public class EnemySpawner : MonoBehaviour
     public GameObject prefabEnemyLarge;
     public GameObject prefabBoss;
     public List<GameObject> LiveEn;
-    //private Random random = new Random();
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +29,14 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        for (int enIndex = 0; enIndex < LiveEn.Count(); enIndex++)
+        {
+            if (LiveEn[enIndex] == null)
+            {
+                Debug.Log("rm ded enemy");
+                LiveEn.RemoveAt(enIndex);
+            }
+        }
     }
 
     public void MakeWave(int cred)
@@ -78,8 +84,8 @@ public class EnemySpawner : MonoBehaviour
                 case 0 :
                     GameObject enemySmall = Instantiate(prefabEnemySmall, SpawnPoint.transform);
                     LiveEn.Add(enemySmall);
-                    enemySmall = Instantiate(prefabEnemySmall, SpawnPoint.transform);
-                    LiveEn.Add(enemySmall);
+                    GameObject enemySmall2 = Instantiate(prefabEnemySmall, SpawnPoint.transform);
+                    LiveEn.Add(enemySmall2);
                     remainingByCat["small"] = (int)remainingByCat["small"] - 2;
                     if ((int)remainingByCat["small"] == 0)
                     {
@@ -117,8 +123,9 @@ public class EnemySpawner : MonoBehaviour
         // If the boss prefab is set there is a boss in the level and we make it spawn
         if (prefabBoss)
         {
-            GameObject enemy = Instantiate(prefabBoss, BossSpawn.transform);
-            LiveEn.Add(enemy);
+            LiveEn = new List<GameObject>();
+            GameObject boss = Instantiate(prefabBoss, BossSpawn.transform);
+            LiveEn.Add(boss);
         }
         // If there is no prefab set the boss will not spawn and we clear the LiveEn list to make sure the next step happens
         else

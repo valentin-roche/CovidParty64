@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
+
+    #region States
+    public NormalState normal = new NormalState();
+    public FasterState faster = new FasterState();
+    public StrongerState stronger = new StrongerState();
+    public BerzerkState berzerk = new BerzerkState();
+    public SecondPeriodState secondPeriod = new SecondPeriodState();
+    #endregion
+
+    private StateMachine.StateMachine stateMachine;
+    private bool hasRevived = false;
+    public int life;
+
     public Transform target;
 
     public int speed;
     public float nextWaypointDistance = 3f;
-    public int life;
 
     public Transform enemyGFX;
 
@@ -22,14 +34,32 @@ public class BossAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //speed = EnemyStatMedium.Speed;
+        normal = new NormalState();
+        faster = new FasterState();
+        stronger = new StrongerState();
+        berzerk = new BerzerkState();
+        secondPeriod = new SecondPeriodState();
+        speed = Stats.BossStat.Speed;
         target = GameObject.Find("Player").transform;
-        life = EnemyStatMedium.Life;
+        life = Stats.BossStat.MaxHP;
 
         seeker = GetComponent<Pathfinding.Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
+
+        // As the boss stats are updated widely during the fight we reset them at the begining
+        //Stats.BossStat.ResetStat();
+        // The first two bosses appear in their normal state
+        if (Stats.BossStat.Level < 2)
+        {
+            stateMachine.Initialize(normal);
+        }
+        // All the other bosses do more damage on start
+        else
+        {
+            stateMachine.Initialize(stronger);
+        }
     }
 
     void UpdatePath()
@@ -50,11 +80,40 @@ public class BossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         speed = Stats.BossStat.Speed;
 
         if (life <= 0)
         {
+            Debug.Log("ded");
             Destroy(gameObject);
+        }
+
+        // Call state special update
+        //stateMachine.CurrentState.Update();
+
+        // If level 2 boss and up and half HP => speedup
+        if (Stats.BossStat.Level >= 2 && life == Stats.BossStat.MaxHP / 2 && !hasRevived)
+        {
+            stateMachine.ChangeState(faster);
+        }
+
+        // If level 4 boss and 1/4 HP => dmg up
+        if (Stats.BossStat.Level >= 4 && life == Stats.BossStat.MaxHP / 4 && !hasRevived)
+        {
+            stateMachine.ChangeState(stronger);
+        }
+
+        // If level 8 boss and 1/8 HP => berzerk mode
+        if (Stats.BossStat.Level >= 8 && life == Stats.BossStat.MaxHP / 8 && !hasRevived)
+        {
+            stateMachine.ChangeState(berzerk);
+        }
+
+        // If level 10 boss and 1 hp =>  second period (revive) without applying the modifier twice
+        if (Stats.BossStat.Level == 10 && life == 1 && !hasRevived)
+        {
+            stateMachine.ChangeState(secondPeriod);
         }
     }
 
@@ -94,8 +153,11 @@ public class BossAI : MonoBehaviour
             enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
+
     public void TakeDamage(int damage)
     {
+
+        Debug.Log("Remaining HP : " + life);
         life -= damage;
     }
 }

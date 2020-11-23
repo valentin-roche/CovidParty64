@@ -10,6 +10,10 @@
     {
         base.Exit();
     }
+    public override void Update()
+    {
+        base.Update();
+    }
 
     public override void PhysicsUpdate()
     {

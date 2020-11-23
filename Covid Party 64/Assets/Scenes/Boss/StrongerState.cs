@@ -6,6 +6,10 @@
         base.Enter();
         Stats.BossStat.Damage = Stats.BossStat.Damage + (Stats.BossStat.Damage / 4);
     }
+    public override void Update()
+    {
+        base.Update();
+    }
 
     public override void Exit()
     {

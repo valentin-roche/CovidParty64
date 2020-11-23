@@ -7,6 +7,10 @@
         Stats.BossStat.Life = Stats.BossStat.MaxHP;
     }
 
+    public override void Update()
+    {
+        base.Update();
+    }
     public override void Exit()
     {
         base.Exit();
