@@ -5,6 +5,8 @@ public class Shoot : MonoBehaviour
 {
     public GameObject bullet;
 
+    public Animator animator;
+
     public Transform shootPoint;
 
     public float fireRate;
@@ -25,14 +27,18 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            animator.SetTrigger("Shoot");
             if(Time.time > readyForNextShot)
             {
                 readyForNextShot = Time.time + fireRate;
                 shootHorizontal();
             }
+
             
         } else if (Input.GetMouseButton(1))
         {
+            animator.SetTrigger("Shoot");
+
             if (Time.time > readyForNextShot)
             {
                 

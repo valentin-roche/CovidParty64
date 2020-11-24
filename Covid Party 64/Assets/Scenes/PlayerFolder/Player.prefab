@@ -127,10 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 0dacc93a8e7e961429cd979adf730d34, type: 3}
-  bulletSpeed: 0
   shootPoint: {fileID: 1717077278}
   fireRate: 0.2
-  isLeftClick: 0
 --- !u!1 &1390271736085252932
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,10 +256,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
-  bulletSpeed: 0
   shootPoint: {fileID: 884157491410266257}
   fireRate: 0.01
-  isLeftClick: 0
 --- !u!1 &8493293994997029733
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,10 +385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
-  bulletSpeed: 0
   shootPoint: {fileID: 8493293996038095743}
   fireRate: 0.3
-  isLeftClick: 0
 --- !u!1 &8493293995286146548
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,8 +481,8 @@ GameObject:
   - component: {fileID: 8493293996653898774}
   - component: {fileID: 8493293996653898761}
   - component: {fileID: 8493293996653898770}
-  - component: {fileID: 7732927783850802301}
   - component: {fileID: 3088497958481381700}
+  - component: {fileID: 8387024439724173439}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -619,19 +613,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7732927783850802301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8493293996653898760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa404b10a4645aa4393a5e303687039a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
 --- !u!114 &3088497958481381700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,8 +625,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48478a55f0d73f40ba620ac6d0aef8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 250
   groundCheck: {fileID: 8493293994997029730}
-  groundCheckRadius: 0
   animator: {fileID: 8493293996653898770}
-  spriteRenderer: {fileID: 8493293996653898775}
+--- !u!114 &8387024439724173439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293996653898760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2e24dd7083ee94a8523d045b306d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
