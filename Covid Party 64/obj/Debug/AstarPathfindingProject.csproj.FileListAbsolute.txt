@@ -261,3 +261,4 @@ C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\obj\Debug\AstarPathfindingPr
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\obj\Debug\AstarPathfindingProject.csproj.CopyComplete
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\obj\Debug\AstarPathfindingProject.dll
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\obj\Debug\AstarPathfindingProject.pdb
+C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\nunit.framework.dll

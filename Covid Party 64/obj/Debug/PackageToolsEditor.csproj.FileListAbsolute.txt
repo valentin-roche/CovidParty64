@@ -258,8 +258,6 @@ C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEngine.V
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEngine.WindModule.xml
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEngine.XRModule.xml
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEditor.xml
-C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\nunit.framework.pdb
-C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\nunit.framework.xml
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEditor.UI.pdb
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEngine.UI.pdb
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEditor.TestRunner.pdb

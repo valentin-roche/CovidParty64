@@ -315,5 +315,3 @@ C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\Unity.Interna
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEditor.UI.pdb
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEngine.TestRunner.pdb
 C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\UnityEditor.TestRunner.pdb
-C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\nunit.framework.pdb
-C:\Users\ARTHUR\Desktop\CovidParty64\Covid Party 64\Temp\Bin\Debug\nunit.framework.xml
