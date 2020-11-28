@@ -29,10 +29,10 @@ public class LevelFlowManager : MonoBehaviour
     {
         //Killed ennemies will still appear as null in the list so we have to manuallu erase them
         RemoveNull();
-        Debug.Log("remaining ennemies " + spawnerScript.LiveEn.Count());
+        //Debug.Log("remaining ennemies " + spawnerScript.LiveEn.Count());
         if(spawnerScript.LiveEn.Count() <= 0 && !BossFight)
         {
-            Debug.Log("Spawning wave no " + currentWave);
+            //Debug.Log("Spawning wave no " + currentWave);
             spawnerScript.MakeWave(Waves[currentWave].Credit);
             currentWave++;
         }
