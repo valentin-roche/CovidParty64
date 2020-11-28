@@ -26,10 +26,14 @@ public class LevelFlowManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(spawnerScript.LiveEn.Count() <= 0 && !BossFight && currentWave < Waves.Count() + 1)
+        //Killed ennemies will still appear as null in the list so we have to manuallu erase them
+        RemoveNull();
+        //Debug.Log("remaining ennemies " + spawnerScript.LiveEn.Count());
+        if(spawnerScript.LiveEn.Count() <= 0 && !BossFight)
         {
-            currentWave = currentWave + 1;
-            spawnerScript.MakeWave(Waves[currentWave-1].Credit);
+            //Debug.Log("Spawning wave no " + currentWave);
+            currentWave++;
+            spawnerScript.MakeWave(Waves[currentWave].Credit);
         }
         if(spawnerScript.LiveEn.Count() <= 0 && currentWave == Waves.Count()+1 && !BossFight)
         {
@@ -38,8 +42,8 @@ public class LevelFlowManager : MonoBehaviour
         }
         if (spawnerScript.LiveEn.Count() <= 0 && BossFight)
         {
-            // End of the level as soon as the boss is defeated and load couple selection, set the param to decide wether 
-            // we display the play enhancement UI or the random feat 
+            // End of the level as soon as the boss is defeated and load couple selection, set the param to decide wether
+            // we display the play enhancement UI or the random feat
             if (NextUpgradeIsPlayerUpgrade)
             {
                 TransitionInfos.LevelTransitionInfo.IsNextLevelPlayerUpgrade = true;

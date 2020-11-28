@@ -6,11 +6,12 @@ using UnityEngine;
 public class GelBullet : MonoBehaviour
 {
 
+    public Animator animator;
     public float bulletSpeed;
     public Rigidbody2D rb;
     int damage;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,17 +24,19 @@ public class GelBullet : MonoBehaviour
     }
 
     private void Update()
-    {        
-        damage = PlayerStat.BulletDamage;        
+    {
+        damage = PlayerStat.BulletDamage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
+        Debug.Log(collision);
+        animator.SetTrigger("Destruction");
 
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyMedAI>().TakeDamage(damage);
+
         }
         if (collision.gameObject.name == "BossPrefab(Clone)" || collision.gameObject.name == "BossSprite")
         {
@@ -43,7 +46,7 @@ public class GelBullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<BossAI>().TakeDamage(damage);
         }
-        Destroy(gameObject);
+       Destroy(gameObject, 1f);
     }
 
 

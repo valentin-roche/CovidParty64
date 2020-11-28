@@ -73,13 +73,13 @@ public class HandleChoice : MonoBehaviour
                 switch (power.AffectedStat)
                 {
                     case "speed":
-                        EnemyStatMedium.Speed += modif;
+                        Stats.EnemyStatMedium.Speed += modif;
                         break;
                     case "health":
-                        EnemyStatMedium.Life += modif;
+                        Stats.EnemyStatMedium.Life += modif;
                         break;
                     case "damage":
-                        EnemyStatMedium.AtkSpeed += modif;
+                        Stats.EnemyStatMedium.AtkSpeed += modif;
                         break;
                 }
             }
@@ -134,16 +134,16 @@ public class HandleChoice : MonoBehaviour
                 {
                     //TODO special powers handling
                     case "spit":
-                        Stats.EnemyStat.Spit = true;
+                        Stats.EnemyStatMedium.Spit = true;
                         break;
                     case "dodge":
-                        Stats.EnemyStat.Dodge = true;
+                        Stats.EnemyStatMedium.Dodge = true;
                         break;
                     case "critical":
-                        Stats.EnemyStat.Critical = true;
+                        Stats.EnemyStatMedium.Critical = true;
                         break;
                     case "regen":
-                        Stats.EnemyStat.Regen = true;
+                        Stats.EnemyStatMedium.Regen = true;
                         break;
                     default:
                         break;

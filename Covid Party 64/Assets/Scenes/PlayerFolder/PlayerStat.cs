@@ -184,8 +184,12 @@ namespace Stats
         public static int CalculateDamage()
         {
             int damage;
-            int _nbrEnemy;
-            _nbrEnemy = EnemyDetection.instance.nbrEnemy;
+            int _nbrEnemy = 0;
+            if (EnemyDetection.instance)
+            {
+                _nbrEnemy = EnemyDetection.instance.nbrEnemy;
+            }
+            
 
             damage = _nbrEnemy * 2; //Formule à modifier
             if (damage >= 20)//Saturation du nbr de degats pris
