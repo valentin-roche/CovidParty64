@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/LevelFolder/MainMenu.unity
+    guid: 8bf90907337e2d2449e4e89fabdca81d
+  - enabled: 1
+    path: Assets/Scenes/LevelFolder/Hospital.unity
+    guid: 63cf14c0a30eb9946bb6963f6d93487a
+  - enabled: 1
+    path: Assets/Scenes/LevelFolder/LVL_2_Egouts.unity
+    guid: eee8657a45480124d88be9d2779601b8
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

@@ -6,6 +6,7 @@ using UnityEngine;
 public class GelBullet : MonoBehaviour
 {
 
+    public Animator animator;
     public float bulletSpeed;
     public Rigidbody2D rb;
     int damage;
@@ -30,12 +31,15 @@ public class GelBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision);
+        animator.SetTrigger("Destruction");        
 
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyMedAI>().TakeDamage(damage);
+
         }
-        Destroy(gameObject);
+       
+       Destroy(gameObject, 1f);
     }
 
 
