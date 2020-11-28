@@ -160,7 +160,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -936221971
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -8951,7 +8951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5533891241159460140, guid: 3efc544233c623e4191d315cfd66247b, type: 3}
       propertyPath: m_Name
-      value: LVL_Base
+      value: LVL_Base 1
       objectReference: {fileID: 0}
     - target: {fileID: 5533891241159460141, guid: 3efc544233c623e4191d315cfd66247b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9005,6 +9005,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -55.82506
       objectReference: {fileID: 0}
+    - target: {fileID: 5533891242684958310, guid: 3efc544233c623e4191d315cfd66247b, type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 7787992178381785701, guid: 519a1e3b7f11d6a4897367b4083adef7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3efc544233c623e4191d315cfd66247b, type: 3}
 --- !u!4 &633885989278858768 stripped

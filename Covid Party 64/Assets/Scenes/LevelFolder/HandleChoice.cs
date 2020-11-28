@@ -118,8 +118,10 @@ public class HandleChoice : MonoBehaviour
                 switch (power.AffectedStat)
                 {
                     case "damage":
-                        //TODO uncomment when boss stats handler is up
-                        //Stats.BossStats.Damage += modif;
+                        Stats.BossStat.BaseDamage += modif;
+                        break;
+                    case "speed":
+                        Stats.BossStat.BaseSpeed+= modif;
                         break;
                 }
             }
@@ -172,6 +174,18 @@ public class HandleChoice : MonoBehaviour
                         break;
                     case "regen":
                         Stats.EnemyStatMedium.Regen = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (power.Target == "boss")
+            {
+                switch (power.AffectedStat)
+                {
+                    //TODO special powers handling
+                    case "dodge":
+                        Stats.BossStat.BaseDodge = true;
                         break;
                     default:
                         break;
