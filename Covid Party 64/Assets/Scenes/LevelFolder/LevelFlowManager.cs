@@ -26,8 +26,6 @@ public class LevelFlowManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Killed ennemies will still appear as null in the list so we have to manuallu erase them
-        RemoveNull();
         //Debug.Log("remaining ennemies " + spawnerScript.LiveEn.Count());
         if(spawnerScript.LiveEn.Count() <= 0 && !BossFight)
         {
