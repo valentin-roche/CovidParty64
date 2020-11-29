@@ -674,8 +674,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551210d9513edba42b3bf34b4ed0b49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: Hospital
-  level1: Hospital
+  levelToLoad: LVL_1_Hospital
+  level1: LVL_1_Hospital
   level2: LVL_2_Egouts
   levelsWindow: {fileID: 277239538}
 --- !u!1 &682619985
@@ -1229,7 +1229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

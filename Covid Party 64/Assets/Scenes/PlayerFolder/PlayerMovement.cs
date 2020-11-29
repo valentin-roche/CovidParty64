@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Stats;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -59,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
         }
         animator.SetBool("Jump", !isGrounded);
         animator.SetFloat("yVelocity", rb.velocity.y);
+
+       
 
     }
 

@@ -28,7 +28,8 @@ public class PlayerStatsHandler : MonoBehaviour
             PlayerStat.GetContaminate(PlayerStat.CalculateDamage());
             healthBar.SetContamination(PlayerStat.ContaminationRate);
         }
-    }
+
+    } 
 
     
 }

@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 2066218590}
   - component: {fileID: 2066218592}
   - component: {fileID: 2066218591}
+  - component: {fileID: 128437412}
   m_Layer: 0
   m_Name: PistoletAGel
   m_TagString: Untagged
@@ -126,9 +127,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8ff0d6578bb7d4480dec94acc7c57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 583999589497873732, guid: 0dacc93a8e7e961429cd979adf730d34, type: 3}
+  bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
+  animator: {fileID: 128437412}
   shootPoint: {fileID: 1717077278}
   fireRate: 0.2
+--- !u!95 &128437412
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066218589}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2f6d09f5a093007439445acd312d29e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1390271736085252932
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +191,7 @@ GameObject:
   - component: {fileID: 2870397886300840243}
   - component: {fileID: 5197264042643558285}
   - component: {fileID: 4894469383247668047}
+  - component: {fileID: 1391934472}
   m_Layer: 0
   m_Name: Gelball
   m_TagString: Untagged
@@ -256,8 +278,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
+  animator: {fileID: 1391934472}
   shootPoint: {fileID: 884157491410266257}
   fireRate: 0.01
+--- !u!95 &1391934472
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4777270573357088232}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a429ab5330d6fd043bdda24046c25c30, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8493293994997029733
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8493293994997029733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -0.821, z: 0}
+  m_LocalPosition: {x: -0.05, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8493293996653898772}
@@ -299,6 +341,7 @@ GameObject:
   - component: {fileID: 8493293995025520053}
   - component: {fileID: 8493293995025520050}
   - component: {fileID: 1402196476}
+  - component: {fileID: 2048650987}
   m_Layer: 0
   m_Name: PissetteGel
   m_TagString: Untagged
@@ -385,8 +428,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
+  animator: {fileID: 2048650987}
   shootPoint: {fileID: 8493293996038095743}
   fireRate: 0.3
+--- !u!95 &2048650987
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293995025520052}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 716d0b395bca61c42bbde44c9a2d87b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8493293995286146548
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +545,9 @@ GameObject:
   - component: {fileID: 8493293996653898761}
   - component: {fileID: 8493293996653898770}
   - component: {fileID: 3088497958481381700}
-  - component: {fileID: 8387024439724173439}
+  - component: {fileID: 1542616183}
+  - component: {fileID: 1542616175}
+  - component: {fileID: 1542616182}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -627,7 +692,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 8493293994997029730}
   animator: {fileID: 8493293996653898770}
---- !u!114 &8387024439724173439
+--- !u!58 &1542616183
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293996653898760}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.01
+--- !u!114 &1542616175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -640,3 +721,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+--- !u!114 &1542616182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293996653898760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9af6148321c5b74ba520dd97282da8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbrEnemy: 0
