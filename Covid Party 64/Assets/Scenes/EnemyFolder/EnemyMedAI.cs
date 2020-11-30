@@ -12,7 +12,7 @@ public class EnemyMedAI : MonoBehaviour
     public int life;
 
     public Transform enemyGFX;
-
+   
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
@@ -116,15 +116,8 @@ public class EnemyMedAI : MonoBehaviour
                 break;
 
             case "Enemy":
+                Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), col.GetComponent<BoxCollider2D>());
                 break;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if(col.tag=="Enemy")
-        {
-
         }
     }
 }
