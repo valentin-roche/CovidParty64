@@ -10,12 +10,15 @@ public class GelBullet : MonoBehaviour
     public float bulletSpeed;
     public Rigidbody2D rb;
     int damage;
+    float range = 1f;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        damage = PlayerStat.BulletDamage;
+        range = PlayerStat.ProjectileDistance;
         rb.velocity = transform.right * bulletSpeed;
         Destroy(gameObject, 1f);
         Physics2D.IgnoreLayerCollision(9, 10);
@@ -26,6 +29,7 @@ public class GelBullet : MonoBehaviour
     private void Update()
     {
         damage = PlayerStat.BulletDamage;
+        range = PlayerStat.ProjectileDistance;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,7 +37,7 @@ public class GelBullet : MonoBehaviour
         Debug.Log(collision);
         animator.SetTrigger("Destruction");
 
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "EnemySmall" || collision.gameObject.tag == "EnemyMedium" || collision.gameObject.tag == "EnemyBig")
         {
             collision.gameObject.GetComponent<EnemyMedAI>().TakeDamage(damage);
 
@@ -46,7 +50,7 @@ public class GelBullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<BossAI>().TakeDamage(damage);
         }
-       Destroy(gameObject, 1f);
+       Destroy(gameObject, range);
     }
 
 

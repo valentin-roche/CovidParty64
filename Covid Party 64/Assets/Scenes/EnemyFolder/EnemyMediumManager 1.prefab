@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1822236696186453845}
   m_Layer: 11
   m_Name: EnemyMediumManager 1
-  m_TagString: Enemy
+  m_TagString: EnemyMedium
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 2490580493787915153}
   m_Layer: 11
   m_Name: EnemyMediumSprite
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

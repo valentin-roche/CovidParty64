@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    private float moveSpeed = 5000;
-    private float jumpForce = 300;
+    private float moveSpeed = PlayerStat.Speed;
+    private float jumpForce = PlayerStat.Jump;
 
     private bool isJumping;
     private bool isGrounded;
@@ -59,14 +59,12 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
         animator.SetBool("Jump", !isGrounded);
-        animator.SetFloat("yVelocity", rb.velocity.y);
-
-       
-
+        animator.SetFloat("yVelocity", rb.velocity.y);     
     }
 
     private void FixedUpdate()
-    {
+    {   
+        UpdateBonusEffect();
         MovePlayer(horizontalMovement);
         float characterVeclocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", characterVeclocity);
@@ -107,4 +105,15 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    private void UpdateBonusEffect()
+    {
+        if (moveSpeed != PlayerStat.Speed)
+        {
+            moveSpeed = PlayerStat.Speed;
+        }
+        else if (jumpForce != PlayerStat.Jump)
+        {
+            jumpForce = PlayerStat.Jump;
+        }
+    }
 }
