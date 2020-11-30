@@ -3,10 +3,11 @@
 public class GameOverManager : MonoBehaviour
 {
     public GameObject gameOverUI;
+    public GameObject respawnUI;
 
     public static GameOverManager instance;
 
-    private void Awake()
+     private void Awake()
     {
         if (instance != null)
         {
@@ -20,5 +21,18 @@ public class GameOverManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
     }
+
+    public void OnPlayerRespawnActive()
+    {
+        respawnUI.SetActive(true);
+    }
+
+    public void OnPlayerRespawnNoActive()
+    {
+        respawnUI.SetActive(false);
+    }
+
+    
 }
