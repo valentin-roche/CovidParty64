@@ -15,7 +15,9 @@ public class EnemyMedAI : MonoBehaviour
     private float groundCheckRadius;
     private LayerMask collisionLayer;
     public Transform groundCheck;
-    public Transform enemyGFX;
+    Transform enemyGFX;
+
+    public Animator animator;
    
     Path path;
     int currentWaypoint = 0;
@@ -29,6 +31,7 @@ public class EnemyMedAI : MonoBehaviour
     {
         //speed = EnemyStatMedium.Speed;
         target = GameObject.Find("Player").transform;
+        enemyGFX = this.transform;
         life = Stats.EnemyStatMedium.Life;
 
         seeker = GetComponent<Seeker>();
@@ -36,7 +39,7 @@ public class EnemyMedAI : MonoBehaviour
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
 
-        groundCheckRadius = .5f;
+        groundCheckRadius = 0.25f;
         collisionLayer = LayerMask.GetMask("Plateform");
     }
 
@@ -69,6 +72,9 @@ public class EnemyMedAI : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
+
+        if(isGrounded == true)
+            animator.SetBool("isJumping", false);
 
         if (path == null)
             return;
@@ -116,17 +122,33 @@ public class EnemyMedAI : MonoBehaviour
         {
             case "Jump":
                 if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                {
                     rb.AddForce(Vector2.up * 285f);
+                    animator.SetBool("isJumping", true);
+                }                
                 break;
 
             case "JumpHole":
                 if(path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                {
                     rb.AddForce(Vector2.up * 150f);
+                    animator.SetBool("isJumping", true);
+                }             
                 break;
 
             case "Enemy":
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), col.GetComponent<BoxCollider2D>());
                 break;
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponent<BoxCollider2D>());
+            Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponentInChildren<CapsuleCollider2D>());
+            Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponent<CircleCollider2D>());
         }
     }
 }
