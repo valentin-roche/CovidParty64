@@ -1,6 +1,7 @@
 ﻿using Stats;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerStatsHandler : MonoBehaviour
@@ -70,26 +71,45 @@ public class PlayerStatsHandler : MonoBehaviour
 
     public static void Die()
     {
-        if (false) //Test pour savoir si joueur peut revive
+        if (true) //Test pour savoir si joueur peut revive
         {
-            //Respawn();
+            GameOverManager.instance.OnPlayerRespawnActive();
         }
         else
         {
-            Debug.Log("Le joueur a été contaminé ! GAME OVER");
-            //Bloquer mouvements du personnages
-
-            PlayerMovement.instance.enabled = false;
-            Shoot.instance.enabled = false;
-           
-            //Jouer animation de mort
-
-            PlayerMovement.instance.animator.SetTrigger("Death");
-
-            //Empêcher l'interaction avec le reste de la scène.
+            Kill();
         }
 
 
+    }
+
+    public static void Kill()
+    {
+        Debug.Log("Le joueur a été contaminé ! GAME OVER");
+        //Bloquer mouvements du personnages
+
+        PlayerMovement.instance.enabled = false;
+        Shoot.instance.enabled = false;
+
+        //Jouer animation de mort
+
+        PlayerMovement.instance.animator.SetTrigger("Death");
+
+        GameOverManager.instance.OnPlayerRespawnNoActive();
+        GameOverManager.instance.OnPlayerDeath();
+
+
+        
+        
+        
+
+        //Empêcher l'interaction avec le reste de la scène.
+    }
+
+    public static void Respawn()
+    {
+        GameOverManager.instance.OnPlayerRespawnNoActive();
+        PlayerStat.ContaminationRate = PlayerStat.MaxContamination / 2;
     }
 
 }
