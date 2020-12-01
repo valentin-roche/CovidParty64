@@ -5,6 +5,7 @@ using Pathfinding;
 
 public class EnemyMedAI : MonoBehaviour
 {
+    public SoundManagerScript SoundManager;
     public Transform target;
 
     public int speed;
@@ -98,6 +99,7 @@ public class EnemyMedAI : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        SoundManager.PlayHitSound();
         life -= damage;
     }
 
