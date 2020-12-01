@@ -16,6 +16,9 @@ TagManager:
   - EnemyMedium
   - EnemySmall
   - EnemyBig
+  - Mask
+  - Radio
+  - BottleGel
   layers:
   - Default
   - TransparentFX
@@ -30,7 +33,7 @@ TagManager:
   - GelBullet
   - Enemy
   - obstacles
-  - 
+  - Objets
   - 
   - 
   - 
