@@ -11,6 +11,10 @@ public class EnemyMedAI : MonoBehaviour
     public float nextWaypointDistance = 3f;
     public int life;
 
+    private bool isGrounded;
+    private float groundCheckRadius;
+    private LayerMask collisionLayer;
+    public Transform groundCheck;
     public Transform enemyGFX;
    
     Path path;
@@ -31,6 +35,9 @@ public class EnemyMedAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
+
+        groundCheckRadius = .5f;
+        collisionLayer = LayerMask.GetMask("Plateform");
     }
 
     void UpdatePath()
@@ -61,6 +68,8 @@ public class EnemyMedAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
+
         if (path == null)
             return;
 
@@ -106,13 +115,13 @@ public class EnemyMedAI : MonoBehaviour
         switch (col.tag)
         {
             case "Jump":
-                if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y)
+                if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
                     rb.AddForce(Vector2.up * 285f);
                 break;
 
             case "JumpHole":
-                if(path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y)
-                    rb.AddForce(Vector2.up * 125f);
+                if(path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                    rb.AddForce(Vector2.up * 150f);
                 break;
 
             case "Enemy":
