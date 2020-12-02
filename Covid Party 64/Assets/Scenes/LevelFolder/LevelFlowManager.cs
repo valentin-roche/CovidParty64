@@ -13,6 +13,7 @@ public class LevelFlowManager : MonoBehaviour
     private int currentWave = 0;
     private bool BossFight = false;
     public bool NextUpgradeIsPlayerUpgrade = false;
+    public LevelSoundManager SoundManager;
 
 
     // Start is called before the first frame update

@@ -22,11 +22,11 @@ TagManager:
   - UI
   - 
   - 
-  - Plateform
-  - 
-  - 
-  - 
-  - 
+  - Foundation
+  - Player
+  - GelBullet
+  - Enemy
+  - obstacle
   - 
   - 
   - 
