@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         groundCheckRadius = .5f;
         rb = GetComponent<Rigidbody2D>();
-        collisionLayer = LayerMask.GetMask("Plateform");
+        collisionLayer = LayerMask.GetMask("Foundation");
     }
 
     void Update()

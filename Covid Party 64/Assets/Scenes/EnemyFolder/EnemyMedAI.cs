@@ -41,7 +41,7 @@ public class EnemyMedAI : MonoBehaviour
         InvokeRepeating("UpdatePath", 0f, 0.5f);
 
         groundCheckRadius = 0.25f;
-        collisionLayer = LayerMask.GetMask("Plateform");
+        collisionLayer = LayerMask.GetMask("Foundation");
     }
 
     void UpdatePath()
@@ -125,7 +125,7 @@ public class EnemyMedAI : MonoBehaviour
             case "Jump":
                 if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
                 {
-                    rb.AddForce(Vector2.up * 285f);
+                    rb.AddForce(Vector2.up * 300f);
                     animator.SetBool("isJumping", true);
                 }                
                 break;
