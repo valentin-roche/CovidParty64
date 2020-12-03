@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 
@@ -15,6 +16,8 @@ namespace Stats
             bulletDamage = 40,
             jump = 500,
             weaponLevel = 1;
+
+        private static Dictionary<string, int> playerInventory = new Dictionary<string, int>();
 
         private static float
             projectileDistance = 1f;
@@ -47,7 +50,7 @@ namespace Stats
 
         public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
         public static int Jump { get => jump; set => jump = value; }
-        public static int ContaminationRate { get => contaminationRate; set => contaminationRate= value; }
+        public static int ContaminationRate { get => contaminationRate; set => contaminationRate = value; }
         public static int MaxContamination { get => maxContamination; set => maxContamination = value; }
         public static int Speed { get => speed; set => speed = value; }
         public static int Armor { get => armor; set => armor = value; }
@@ -65,6 +68,8 @@ namespace Stats
         public static bool IncreasedBossDamage { get => increasedBossDamage; set => increasedBossDamage = value; }
         public static bool IncreasedSpeed { get => increasedSpeed; set => increasedSpeed = value; }
         public static bool BiggerJump { get => biggerJump; set => biggerJump = value; }
+
+        public static Dictionary<string, int> PlayerInventory { get => playerInventory; set => playerInventory = value; }
 
         public static void ResetStat()
         {

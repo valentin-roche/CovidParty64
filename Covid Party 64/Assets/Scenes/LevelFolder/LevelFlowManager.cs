@@ -26,8 +26,19 @@ public class LevelFlowManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Stats.PlayerStat.PlayerInventory["BottleGel"] > 0)
+        {
+            PlayerStatsHandler.instance.useItem("BottleGel");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Stats.PlayerStat.PlayerInventory["Radio"] > 0)
+        {
+            PlayerStatsHandler.instance.useItem("Radio");
+            applyRadioEffect();
+        }
+
+
         //Debug.Log("remaining ennemies " + spawnerScript.LiveEn.Count());
-        if(spawnerScript.LiveEn.Count() <= 0 && !BossFight)
+        if (spawnerScript.LiveEn.Count() <= 0 && !BossFight)
         {
             //Debug.Log("Spawning wave no " + currentWave);
             currentWave++;
@@ -61,4 +72,31 @@ public class LevelFlowManager : MonoBehaviour
     {
         spawnerScript.SpawnBoss();
     }
+
+    private void applyRadioEffect()
+    {
+        //radioAnimation.Play();  A voir comment faire pour l'animation
+
+        foreach (GameObject enemy in spawnerScript.LiveEn)
+        {
+            if (enemy.tag == "EnemySmall")
+            {
+
+            }
+            else if (enemy.tag == "EnemyMedium")
+            {
+                enemy.GetComponent<EnemyMedAI>().TakeDamage(75);
+            }
+            else if (enemy.tag == "EnemyBig")
+            {
+
+            }
+            //Objet applicable sur Boss ?
+            //else if (enemy.tag == "Boss")
+            //{
+
+            //}
+        }
+    }
+
 }

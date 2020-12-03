@@ -116,4 +116,16 @@ public class PlayerMovement : MonoBehaviour
             jumpForce = PlayerStat.Jump;
         }
     }
+
+    public void PlayerMovementStop()
+    {
+        Debug.Log("PlayerMovementStopCalled");
+        if (!animator.GetBool("DeathPlayer")) 
+        { 
+            Debug.Log("Animation Death set");
+            animator.SetBool("DeathPlayer", true);
+            animator.SetTrigger("Death");
+        }
+        
+    }
 }

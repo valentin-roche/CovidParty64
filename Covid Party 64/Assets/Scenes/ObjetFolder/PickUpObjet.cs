@@ -10,9 +10,10 @@ public class PickUpObjet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Player")
         {
-            Inventory.instance.addObjet(gameObject);
+            PlayerStatsHandler.instance.addItem(gameObject);
             Destroy(gameObject);
         }
     }
