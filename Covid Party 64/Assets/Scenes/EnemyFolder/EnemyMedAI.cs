@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
 public class EnemyMedAI : MonoBehaviour
 {
@@ -114,8 +115,17 @@ public class EnemyMedAI : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        SoundManager.PlayHitSound();
         life -= damage;
+
+        try
+        {
+            SoundManager.PlayHitSound();
+        } 
+        catch(Exception e)
+        {
+            Debug.LogError(e.Message);
+
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D col)
