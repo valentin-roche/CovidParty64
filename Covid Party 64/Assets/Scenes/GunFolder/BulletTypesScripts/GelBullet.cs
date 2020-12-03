@@ -11,6 +11,8 @@ public class GelBullet : MonoBehaviour
     public Rigidbody2D rb;
     int damage;
     float range = 1f;
+    float animDestroyDuration = .5f;
+    bool collisionBool = false;
 
 
 
@@ -20,7 +22,7 @@ public class GelBullet : MonoBehaviour
         damage = PlayerStat.BulletDamage;
         range = PlayerStat.ProjectileDistance;
         rb.velocity = transform.right * bulletSpeed;
-        Destroy(gameObject, 1f);
+        Invoke("DestroyBullet", 1);
         Physics2D.IgnoreLayerCollision(9, 10);
         Physics2D.IgnoreLayerCollision(10, 10);
         Physics2D.IgnoreLayerCollision(0, 10);
@@ -30,17 +32,35 @@ public class GelBullet : MonoBehaviour
     {
         damage = PlayerStat.BulletDamage;
         range = PlayerStat.ProjectileDistance;
+        if (collisionBool)
+        {
+            CancelInvoke("DestroyBullet");
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        collisionBool = true;
+
         Debug.Log(collision);
+
         animator.SetTrigger("Destruction");
 
-        if (collision.gameObject.tag == "EnemySmall" || collision.gameObject.tag == "EnemyMedium" || collision.gameObject.tag == "EnemyBig")
+        Destroy(gameObject, animDestroyDuration);
+
+        if (collision.gameObject.tag == "EnemySmall")
+        {
+            //collision.gameObject.GetComponent<EnemySmallAI>().TakeDamage(damage);
+
+        }
+        if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyMedAI>().TakeDamage(damage);
-
+        }
+        if (collision.gameObject.tag == "EnemyBig")
+        {
+            //collision.gameObject.GetComponent<EnemyBigAI>().TakeDamage(damage);
         }
         if (collision.gameObject.name == "BossPrefab(Clone)" || collision.gameObject.name == "BossSprite")
         {
@@ -50,8 +70,13 @@ public class GelBullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<BossAI>().TakeDamage(damage);
         }
-       Destroy(gameObject, range);
     }
+
+    void DestroyBullet()
+    {
+        Destroy(gameObject);
+    }
+
 
 
 }

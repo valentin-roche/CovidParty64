@@ -72,13 +72,18 @@ public class EnemySpawner : MonoBehaviour
         remainingByCat.Add("medium", nbMed);
         remainingByCat.Add("big", nbBig);
 
+        // Radom category's index in the remaining categories list
         int rCat;
-        while (remainingByCat.Keys.Count > 0)
+
+        // Variable containing the valid category indexes
+        List<int> remainingCategories = new List<int>(new int[] { 0, 1, 2 });
+
+        while (remainingCategories.Count() > 0)
         {
             //Choose a random category based on the length of the hashtable
-            rCat = Random.Range(0, remainingByCat.Keys.Count);
+            rCat = Random.Range(0, remainingCategories.Count());
 
-            switch (rCat)
+            switch (remainingCategories[rCat])
             {
                 // Small enemy
                 case 0 :
@@ -89,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
                     remainingByCat["small"] = (int)remainingByCat["small"] - 2;
                     if ((int)remainingByCat["small"] == 0)
                     {
-                        remainingByCat.Remove("small");
+                        remainingCategories.Remove(0);
                     }
                     break;
                 // Medium enemy
@@ -99,7 +104,7 @@ public class EnemySpawner : MonoBehaviour
                     remainingByCat["medium"] = (int)remainingByCat["medium"] - 1;
                     if ((int)remainingByCat["medium"] == 0)
                     {
-                        remainingByCat.Remove("medium");
+                        remainingCategories.Remove(1);
                     }
                     break;
                 // Big enemy
@@ -109,7 +114,7 @@ public class EnemySpawner : MonoBehaviour
                     remainingByCat["big"] = (int)remainingByCat["big"] - 1;
                     if ((int)remainingByCat["big"] == 0)
                     {
-                        remainingByCat.Remove("big");
+                        remainingCategories.Remove(2);
                     }
                     break;
             }

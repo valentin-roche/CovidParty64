@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     public Animator animator;
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        //spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         groundCheckRadius = .5f;
         rb = GetComponent<Rigidbody2D>();
@@ -115,5 +115,17 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpForce = PlayerStat.Jump;
         }
+    }
+
+    public void PlayerMovementStop()
+    {
+        Debug.Log("PlayerMovementStopCalled");
+        if (!animator.GetBool("DeathPlayer")) 
+        { 
+            Debug.Log("Animation Death set");
+            animator.SetBool("DeathPlayer", true);
+            animator.SetTrigger("Death");
+        }
+        
     }
 }
