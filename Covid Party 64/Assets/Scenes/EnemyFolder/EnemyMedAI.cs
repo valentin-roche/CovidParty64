@@ -20,7 +20,7 @@ public class EnemyMedAI : MonoBehaviour
     Transform enemyGFX;
 
     public Animator animator;
-   
+
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
@@ -28,10 +28,9 @@ public class EnemyMedAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
-    // Start is called before the first frame update
+    // Initialisation des composants
     void Start()
     {
-        //speed = EnemyStatMedium.Speed;
         target = GameObject.Find("Player").transform;
         enemyGFX = this.transform;
         life = Stats.EnemyStatMedium.Life;
@@ -45,15 +44,17 @@ public class EnemyMedAI : MonoBehaviour
         collisionLayer = LayerMask.GetMask("Foundation");
     }
 
+    //Mise à jour du chemin
     void UpdatePath()
     {
-        if(seeker.IsDone())
+        if (seeker.IsDone())
             seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
+    //La fin du chemin est atteinte
     void OnPathComplete(Path p)
     {
-        if(!p.error)
+        if (!p.error)
         {
             path = p;
             currentWaypoint = 0;
@@ -64,24 +65,26 @@ public class EnemyMedAI : MonoBehaviour
     {
         speed = Stats.EnemyStatMedium.Speed;
 
-        if (life <= 0)
-        {
-            Destroy(gameObject);
-        }
+        death();
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
+        //Vérification de collision avec le sol
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
 
-        if(isGrounded == true)
+        if (isGrounded == true)
             animator.SetBool("isJumping", false);
 
+        //Empecher l'accéleration
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed, speed), Mathf.Clamp(rb.velocity.y, -speed, speed));
+
+        //Gestion de l'AI
         if (path == null)
             return;
 
-        if(currentWaypoint >= path.vectorPath.Count)
+        if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
@@ -98,11 +101,12 @@ public class EnemyMedAI : MonoBehaviour
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
-        if(distance < nextWaypointDistance)
+        if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
 
+        //Changement d'orientation du sprite
         if (rb.velocity.x >= 0.01f)
         {
             enemyGFX.localScale = new Vector3(1f, 1f, 1f);
@@ -113,21 +117,14 @@ public class EnemyMedAI : MonoBehaviour
         }
     }
 
+    //Fonction de dommages
     public void TakeDamage(int damage)
     {
+        SoundManager.PlayHitSound();
         life -= damage;
-
-        try
-        {
-            SoundManager.PlayHitSound();
-        } 
-        catch(Exception e)
-        {
-            Debug.LogError(e.Message);
-
-        }
     }
 
+    //Gestion des différentes collisions
     public void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.tag)
@@ -137,15 +134,15 @@ public class EnemyMedAI : MonoBehaviour
                 {
                     rb.AddForce(Vector2.up * 300f);
                     animator.SetBool("isJumping", true);
-                }                
+                }
                 break;
 
             case "JumpHole":
-                if(path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                if (path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
                 {
                     rb.AddForce(Vector2.up * 150f);
                     animator.SetBool("isJumping", true);
-                }             
+                }
                 break;
 
             case "Enemy":
@@ -161,6 +158,15 @@ public class EnemyMedAI : MonoBehaviour
             Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponent<BoxCollider2D>());
             Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponentInChildren<CapsuleCollider2D>());
             Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponent<CircleCollider2D>());
+        }
+    }
+
+    //Fonction de mort
+    private void death()
+    {
+        if (life <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

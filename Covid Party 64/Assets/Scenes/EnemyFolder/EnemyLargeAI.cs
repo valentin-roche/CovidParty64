@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class EnemySmallAI : MonoBehaviour
+public class EnemyLargeAI : MonoBehaviour
 {
     public SoundManagerScript SoundManager;
     public Transform target;
@@ -27,10 +27,9 @@ public class EnemySmallAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
-    // Start is called before the first frame update
+    // Initialisation des composants
     void Start()
     {
-        //speed = EnemyStatMedium.Speed;
         target = GameObject.Find("Player").transform;
         enemyGFX = this.transform;
         life = Stats.EnemyStatMedium.Life;
@@ -44,12 +43,14 @@ public class EnemySmallAI : MonoBehaviour
         collisionLayer = LayerMask.GetMask("Foundation");
     }
 
+    //Mise à jour du chemin
     void UpdatePath()
     {
         if (seeker.IsDone())
             seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
+    //La fin du chemin est atteinte
     void OnPathComplete(Path p)
     {
         if (!p.error)
@@ -61,22 +62,24 @@ public class EnemySmallAI : MonoBehaviour
 
     private void Update()
     {
-        speed = Stats.EnemyStatSmall.Speed;
+        speed = Stats.EnemyStatLarge.Speed;
 
-        if (life <= 0)
-        {
-            Destroy(gameObject);
-        }
+        death();
     }
 
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
+        //Vérification de collision avec le sol
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
 
         if (isGrounded == true)
             animator.SetBool("isJumping", false);
 
+        //Empecher l'accéleration
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed, speed), Mathf.Clamp(rb.velocity.y, -speed, speed));
+
+        //Gestion de l'AI
         if (path == null)
             return;
 
@@ -102,6 +105,7 @@ public class EnemySmallAI : MonoBehaviour
             currentWaypoint++;
         }
 
+        //Changement d'orientation du sprite
         if (rb.velocity.x >= 0.01f)
         {
             enemyGFX.localScale = new Vector3(1f, 1f, 1f);
@@ -112,12 +116,14 @@ public class EnemySmallAI : MonoBehaviour
         }
     }
 
+    //Fonction de dommages
     public void TakeDamage(int damage)
     {
         SoundManager.PlayHitSound();
         life -= damage;
     }
 
+    //Gestion des différentes collisions
     public void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.tag)
@@ -151,6 +157,15 @@ public class EnemySmallAI : MonoBehaviour
             Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponent<BoxCollider2D>());
             Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponentInChildren<CapsuleCollider2D>());
             Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponent<CircleCollider2D>());
+        }
+    }
+
+    //Fonction de mort
+    private void death()
+    {
+        if (life <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
