@@ -54,7 +54,7 @@ public class GelBullet : MonoBehaviour
             //collision.gameObject.GetComponent<EnemySmallAI>().TakeDamage(damage);
 
         }
-        if (collision.gameObject.tag == "EnemyMedium")
+        if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyMedAI>().TakeDamage(damage);
         }

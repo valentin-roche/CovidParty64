@@ -30,7 +30,7 @@ public class EnemyDetection : MonoBehaviour
             .Count(enemyObject => Vector3.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y)) 
         < gameObject.GetComponent<CircleCollider2D>().radius);
 
-        nbrEnemyMedium = GameObject.FindGameObjectsWithTag("EnemyMedium")
+        nbrEnemyMedium = GameObject.FindGameObjectsWithTag("Enemy")
             .Count(enemyObject => Vector3.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y))
         < gameObject.GetComponent<CircleCollider2D>().radius);
 
