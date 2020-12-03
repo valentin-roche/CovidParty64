@@ -27,17 +27,18 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            animator.SetTrigger("Shoot");
+            //animator.SetTrigger("Shoot");
             if(Time.time > readyForNextShot)
             {
                 readyForNextShot = Time.time + fireRate;
+                
                 shootHorizontal();
             }
 
             
         } else if (Input.GetMouseButton(1))
         {
-            animator.SetTrigger("Shoot");
+            //animator.SetTrigger("Shoot");
 
             if (Time.time > readyForNextShot)
             {
@@ -54,12 +55,15 @@ public class Shoot : MonoBehaviour
     void shootHorizontal()
     {
         Debug.Log("Horizontal shot");
+        animator.SetTrigger("Shoot");
         Instantiate(bullet, shootPoint.position, shootPoint.rotation);
     }
 
     void shootVertical()
     {
         Debug.Log("Vertical shot");
+        animator.SetTrigger("Shoot");
+
         Quaternion verticalRotation = Quaternion.Euler(shootPoint.rotation.x, shootPoint.rotation.y, shootPoint.rotation.z + 90f);
         Instantiate(bullet, shootPoint.position, verticalRotation);
     }

@@ -13,6 +13,12 @@ TagManager:
   - Boss
   - Jump
   - JumpHole
+  - EnemyMedium
+  - EnemySmall
+  - EnemyBig
+  - Mask
+  - Radio
+  - BottleGel
   layers:
   - Default
   - TransparentFX
@@ -27,7 +33,7 @@ TagManager:
   - GelBullet
   - Enemy
   - obstacle
-  - 
+  - Objets
   - 
   - 
   - 

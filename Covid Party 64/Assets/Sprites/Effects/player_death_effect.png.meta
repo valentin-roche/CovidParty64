@@ -1,40 +1,46 @@
 fileFormatVersion: 2
-guid: 251c9f31e264a6e4593713d503f6497d
+guid: 398efd198d341c7408f657656f954c0a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6300022427340494601
-    second: swoosh_0
+      213: -123862571659887415
+    second: player_death_effect_0
   - first:
-      213: -3061971124352811578
-    second: swoosh_1
+      213: -5528811804574461923
+    second: player_death_effect_1
   - first:
-      213: -6461697735168408586
-    second: swoosh_2
+      213: 2621317802833065319
+    second: player_death_effect_2
   - first:
-      213: -7469665939733911504
-    second: swoosh_3
+      213: -1736125779843131558
+    second: player_death_effect_3
   - first:
-      213: 2282075952242778004
-    second: swoosh_4
+      213: 7176624783569311078
+    second: player_death_effect_4
   - first:
-      213: 8484483526698262789
-    second: swoosh_5
+      213: 6889970967680179692
+    second: player_death_effect_5
   - first:
-      213: 3728692582901839640
-    second: swoosh_6
+      213: -8432029026594943603
+    second: player_death_effect_6
   - first:
-      213: -1300734086043759680
-    second: swoosh_7
+      213: 5579982066017808577
+    second: player_death_effect_7
   - first:
-      213: -7555185048011191578
-    second: swoosh_8
+      213: 6980290001692400167
+    second: player_death_effect_8
   - first:
-      213: -5891560952284502125
-    second: swoosh_9
+      213: 2844957705696547918
+    second: player_death_effect_9
   - first:
-      213: 2179428064084754177
-    second: swoosh_10
+      213: -5734070011875422515
+    second: player_death_effect_10
+  - first:
+      213: 7103960082623841202
+    second: player_death_effect_11
+  - first:
+      213: 991199807654553613
+    second: player_death_effect_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -79,7 +85,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -134,12 +140,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: swoosh_0
+      name: player_death_effect_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -148,19 +154,40 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f820653bf2d198a0800000000000000
-      internalID: -6300022427340494601
+      spriteID: 9ccfe37b5a3f74ef0800000000000000
+      internalID: -123862571659887415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: swoosh_1
+      name: player_death_effect_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d105a56e4f6b543b0800000000000000
+      internalID: -5528811804574461923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death_effect_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -169,19 +196,40 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cd72744c71b185d0800000000000000
-      internalID: -3061971124352811578
+      spriteID: 765b54147aac06420800000000000000
+      internalID: 2621317802833065319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: swoosh_2
+      name: player_death_effect_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a575d073dca08e7e0800000000000000
+      internalID: -1736125779843131558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death_effect_4
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -190,19 +238,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f3475935207356a0800000000000000
-      internalID: -6461697735168408586
+      spriteID: 665d9ee973e789360800000000000000
+      internalID: 7176624783569311078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: swoosh_3
+      name: player_death_effect_5
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -211,8 +259,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 038635f576a665890800000000000000
-      internalID: -7469665939733911504
+      spriteID: cedd45927181e9f50800000000000000
+      internalID: 6889970967680179692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death_effect_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8d860e664a6bfa80800000000000000
+      internalID: -8432029026594943603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death_effect_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c0ba020024107d40800000000000000
+      internalID: 5579982066017808577
       vertices: []
       indices: 
       edges: []
