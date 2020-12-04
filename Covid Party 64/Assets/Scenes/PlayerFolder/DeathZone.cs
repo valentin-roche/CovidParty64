@@ -11,11 +11,14 @@ public class DeathZone : MonoBehaviour
         playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn").transform;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player"))
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Player")
         {
-            collision.transform.position = playerSpawn.position;
+            PlayerStatsHandler.Kill();
         }
     }
+
+
 }

@@ -14,7 +14,7 @@ namespace Stats
             speed = 5000,
             armor = 0,
             bulletDamage = 40,
-            jump = 500,
+            jump = 700,
             weaponLevel = 1;
 
         private static Dictionary<string, int> playerInventory = new Dictionary<string, int>();
