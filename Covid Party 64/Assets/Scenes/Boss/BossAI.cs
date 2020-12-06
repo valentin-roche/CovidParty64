@@ -15,7 +15,7 @@ public class BossAI : MonoBehaviour
     #endregion
 
     // States variables
-    private StateMachine.StateMachine stateMachine;
+    private StateMachine.StateMachine stateMachine = new StateMachine.StateMachine();
     private bool hasRevived = false;
     
     // Stats variables
@@ -198,7 +198,7 @@ public class BossAI : MonoBehaviour
 
     //Gestion des différentes collisions
     // TODO unomment when boss animator is done
-    public void OnTriggerEnter2D(Collider2D col)
+    /*public void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.tag)
         {
@@ -218,5 +218,5 @@ public class BossAI : MonoBehaviour
                 }
                 break;
         }
-    }
+    }*/
 }

@@ -10,9 +10,9 @@ namespace Stats
     public static class BossStat
     {
         private static int
-            baseLife = 100,
+            baseLife = 1000,
             baseMaxHP = 100,
-            baseSpeed = 5,
+            baseSpeed = 300,
             baseRange = 0,
             baseArmor = 0,
             baseDamage = 2,
@@ -22,9 +22,9 @@ namespace Stats
 
         private static int
             level = 1,
-            life = 100,
+            life = 1000,
             maxHP = 100,
-            speed = 5,
+            speed = 300,
             range = 0,
             armor = 0,
             damage = 2,
