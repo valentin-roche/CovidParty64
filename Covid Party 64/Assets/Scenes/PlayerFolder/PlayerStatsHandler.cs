@@ -181,6 +181,7 @@ public class PlayerStatsHandler : MonoBehaviour
             case "Radio":
                 PlayerStat.PlayerInventory["Radio"]--;
                 radioCountText.text = PlayerStat.PlayerInventory["Radio"].ToString();
+                PlayFlashEffect.instance.FlashEffect();
                 break;
         }
     }

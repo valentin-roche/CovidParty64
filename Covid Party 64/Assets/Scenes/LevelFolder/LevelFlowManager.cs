@@ -84,7 +84,7 @@ public class LevelFlowManager : MonoBehaviour
             {
 
             }
-            else if (enemy.tag == "EnemyMedium")
+            else if (enemy.tag == "Enemy")
             {
                 enemy.GetComponent<EnemyMedAI>().TakeDamage(75);
             }
