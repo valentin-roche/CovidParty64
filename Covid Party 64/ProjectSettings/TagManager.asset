@@ -13,6 +13,9 @@ TagManager:
   - Boss
   - Jump
   - JumpHole
+  - EnemyS
+  - EnemyM
+  - EnemyL
   layers:
   - Default
   - TransparentFX

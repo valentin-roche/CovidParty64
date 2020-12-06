@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 904537518975277308}
   m_Layer: 11
   m_Name: EnemyMediumManager
-  m_TagString: Enemy
+  m_TagString: EnemyM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

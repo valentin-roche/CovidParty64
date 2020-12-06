@@ -96,6 +96,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6504210585279954911
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4730836298175855217}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0228a6e418135c478feea526cc98711, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &478880649001509083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +133,7 @@ MonoBehaviour:
   nextWaypointDistance: 3
   life: 0
   groundCheck: {fileID: 647650890497801490}
-  animator: {fileID: 3538462161901517208}
+  animator: {fileID: 6504210585279954911}
 --- !u!114 &6899366205759153697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +155,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1822236696186453845, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822236696186453845, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      propertyPath: m_Size.x
+      value: 1.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822236696186453845, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      propertyPath: m_Size.y
+      value: 1.52
+      objectReference: {fileID: 0}
     - target: {fileID: 2490580493259244402, guid: a0aad084843e05e469a87ad318485805, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -184,17 +215,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySmallManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2490580493259244409, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      propertyPath: m_TagString
+      value: EnemyS
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083942282327658342, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5747899445809798047, guid: a17b912bc5f646148ae4baa03cc69d4c, type: 3}
+    - target: {fileID: 7730248401690916815, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730248401690916815, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2490580493259244407, guid: a0aad084843e05e469a87ad318485805, type: 3}
+    - {fileID: 5921173416252752016, guid: a0aad084843e05e469a87ad318485805, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a0aad084843e05e469a87ad318485805, type: 3}
 --- !u!1 &4730836298175855217 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2490580493259244409, guid: a0aad084843e05e469a87ad318485805, type: 3}
-  m_PrefabInstance: {fileID: 7149217357678229768}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &3538462161901517208 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5921173416252752016, guid: a0aad084843e05e469a87ad318485805, type: 3}
   m_PrefabInstance: {fileID: 7149217357678229768}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &647650890497801490 stripped
