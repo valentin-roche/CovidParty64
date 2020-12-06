@@ -16,6 +16,8 @@ public class PlayerStatsHandler : MonoBehaviour
     public Text radioCountText;
     public Text bottleCountText;
 
+    public GameObject Particles;
+
     public static PlayerStatsHandler instance;
 
     private void Awake()
@@ -177,6 +179,9 @@ public class PlayerStatsHandler : MonoBehaviour
                     PlayerStat.ContaminationRate -= (int) (PlayerStat.MaxContamination * 0.6);
                 }                
                 bottleCountText.text = PlayerStat.PlayerInventory["BottleGel"].ToString();
+                Particles.SetActive(true);
+                LifeParticule.Instance.Life(gameObject.transform.position);
+
                 break;
             case "Radio":
                 PlayerStat.PlayerInventory["Radio"]--;

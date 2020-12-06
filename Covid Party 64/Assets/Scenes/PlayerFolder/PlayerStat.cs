@@ -15,7 +15,8 @@ namespace Stats
             armor = 0,
             bulletDamage = 40,
             jump = 700,
-            weaponLevel = 1;
+            weaponLevel = 1,
+            defenseLevel = 1;
 
         private static Dictionary<string, int> playerInventory = new Dictionary<string, int>();
 
@@ -55,6 +56,10 @@ namespace Stats
         public static int Speed { get => speed; set => speed = value; }
         public static int Armor { get => armor; set => armor = value; }
         public static int WeaponLevel { get => weaponLevel; set => weaponLevel = value; }
+
+        public static int DefenseLevel { get => defenseLevel; set => defenseLevel = value; }
+
+
 
         public static float ProjectileDistance { get => projectileDistance; set => projectileDistance = value; }
 
