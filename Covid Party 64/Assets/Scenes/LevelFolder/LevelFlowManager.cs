@@ -28,14 +28,15 @@ public class LevelFlowManager : MonoBehaviour
     void Update()
     {
         //Debug.Log("remaining ennemies " + spawnerScript.LiveEn.Count());
-        if(spawnerScript.LiveEn.Count() <= 0 && !BossFight)
+        if(spawnerScript.LiveEn.Count() <= 0 && !BossFight && currentWave < Waves.Count())
         {
-            //Debug.Log("Spawning wave no " + currentWave);
-            currentWave++;
+            Debug.Log("Spawning wave no " + currentWave);
             spawnerScript.MakeWave(Waves[currentWave].Credit);
+            currentWave++;
         }
-        if(spawnerScript.LiveEn.Count() <= 0 && currentWave == Waves.Count()+1 && !BossFight)
+        if(spawnerScript.LiveEn.Count() <= 0 && currentWave <= Waves.Count() && !BossFight)
         {
+            Debug.Log("Spawning boss");
             spawBoss();
             BossFight = true;
         }
