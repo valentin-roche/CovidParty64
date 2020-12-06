@@ -47,28 +47,28 @@ public class WeaponSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if(currentWeaponIndex < totalWeapons - 1)
-            {
-                guns[currentWeaponIndex].SetActive(false);
-                currentWeaponIndex += 1;
-                guns[currentWeaponIndex].SetActive(true);
-            }
-            else if(currentWeaponIndex == totalWeapons - 1)
-            {
-                guns[currentWeaponIndex].SetActive(false);
-                currentWeaponIndex = 0;
-                guns[currentWeaponIndex].SetActive(true);
-            }
-        }
-       //Test if current weapon is up to date and if max weapon level is reached
-        //if(currentWeaponIndex != Stats.PlayerStat.WeaponLevel - 1 && (Stats.PlayerStat.WeaponLevel < totalWeapons ))
+        //if (Input.GetKeyDown(KeyCode.E))
         //{
-        //    guns[currentWeaponIndex].SetActive(false);
-        //    currentWeaponIndex = Stats.PlayerStat.WeaponLevel - 1;
-        //    guns[currentWeaponIndex].SetActive(true);
+        //    if(currentWeaponIndex < totalWeapons - 1)
+        //    {
+        //        guns[currentWeaponIndex].SetActive(false);
+        //        currentWeaponIndex += 1;
+        //        guns[currentWeaponIndex].SetActive(true);
+        //    }
+        //    else if(currentWeaponIndex == totalWeapons - 1)
+        //    {
+        //        guns[currentWeaponIndex].SetActive(false);
+        //        currentWeaponIndex = 0;
+        //        guns[currentWeaponIndex].SetActive(true);
+        //    }
         //}
+        //Test if current weapon is up to date and if max weapon level is reached
+        if (currentWeaponIndex != Stats.PlayerStat.WeaponLevel - 1 && (Stats.PlayerStat.WeaponLevel < totalWeapons))
+        {
+            guns[currentWeaponIndex].SetActive(false);
+            currentWeaponIndex = Stats.PlayerStat.WeaponLevel - 1;
+            guns[currentWeaponIndex].SetActive(true);
+        }
     }
 
     public int TotalWeapon { get => totalWeapons; set => totalWeapons = value; }
