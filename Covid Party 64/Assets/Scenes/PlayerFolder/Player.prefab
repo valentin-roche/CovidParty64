@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe8ff0d6578bb7d4480dec94acc7c57b, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 0dacc93a8e7e961429cd979adf730d34, type: 3}
   animator: {fileID: 0}
   shootPoint: {fileID: 1717077278}
@@ -590,8 +590,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe8ff0d6578bb7d4480dec94acc7c57b, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
   animator: {fileID: 0}
   shootPoint: {fileID: 884157491410266257}
@@ -759,7 +759,6 @@ GameObject:
   - component: {fileID: 8493293995025520050}
   - component: {fileID: 1402196476}
   - component: {fileID: 7959662086365085050}
-  - component: {fileID: 703159349459751754}
   m_Layer: 0
   m_Name: PissetteGel
   m_TagString: Untagged
@@ -843,8 +842,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe8ff0d6578bb7d4480dec94acc7c57b, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
   animator: {fileID: 7959662086365085050}
   shootPoint: {fileID: 8493293996038095743}
@@ -864,7 +863,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -912,11 +911,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7731746017f66d3478fa4eef74288878, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  totalWeapons: 1
-  currentWeaponIndex: 0
-  guns: []
+  m_Name: 
+  m_EditorClassIdentifier: 
   weaponHolder: {fileID: 8493293995286146548}
 --- !u!1 &8493293996038095742
 GameObject:
@@ -964,7 +960,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -1115,7 +1111,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -1129,8 +1125,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e48478a55f0d73f40ba620ac6d0aef8e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   groundCheck: {fileID: 8493293994997029730}
   animator: {fileID: 8493293996653898770}
 --- !u!58 &1542616183
@@ -1420,6 +1416,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2355801888323584725, guid: 2d2a6db6090aa43499bac502281f5c04, type: 3}
   m_PrefabInstance: {fileID: 1008720390}
   m_PrefabAsset: {fileID: 0}
-  m_Name:
-  m_EditorClassIdentifier:
-  healthBar: {fileID: 0}
