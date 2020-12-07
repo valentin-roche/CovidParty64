@@ -68,6 +68,7 @@ public class GelBullet : MonoBehaviour
         }
         if (collision.gameObject.tag == "Boss")
         {
+            Debug.Log("Boss hit");
             collision.gameObject.GetComponent<BossAI>().TakeDamage(damage);
         }
     }
