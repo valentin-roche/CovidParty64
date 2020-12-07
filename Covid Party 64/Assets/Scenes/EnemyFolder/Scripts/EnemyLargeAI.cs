@@ -11,6 +11,17 @@ public class EnemyLargeAI : MonoBehaviour
     public int speed;
     public float nextWaypointDistance = 3f;
     public int life;
+    public int armor;
+    private int maxLife;
+
+    private bool
+       spit,
+       dodge,
+       block,
+       critical,
+       slow,
+       fly,
+       regen;
 
     private bool isGrounded;
     private float groundCheckRadius;
@@ -32,7 +43,16 @@ public class EnemyLargeAI : MonoBehaviour
     {
         target = GameObject.Find("Player").transform;
         enemyGFX = this.transform;
-        life = Stats.EnemyStatMedium.Life;
+        armor = Stats.EnemyStatLarge.Armor;
+        spit = Stats.EnemyStatLarge.Spit;
+        dodge = Stats.EnemyStatLarge.Dodge;
+        block = Stats.EnemyStatLarge.Block;
+        critical = Stats.EnemyStatLarge.Critical;
+        slow = Stats.EnemyStatLarge.Slow;
+        fly = Stats.EnemyStatLarge.Fly;
+        regen = Stats.EnemyStatLarge.Regen;
+        maxLife = Stats.EnemyStatLarge.Life;
+        life = maxLife;
 
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
@@ -41,6 +61,12 @@ public class EnemyLargeAI : MonoBehaviour
 
         groundCheckRadius = 0.25f;
         collisionLayer = LayerMask.GetMask("Foundation");
+
+        //Régénération
+        if (regen == true)
+        {
+            InvokeRepeating("Regen", 1.0f, 1.0f);
+        }
     }
 
     //Mise à jour du chemin
@@ -121,8 +147,39 @@ public class EnemyLargeAI : MonoBehaviour
     //Fonction de dommages
     public void TakeDamage(int damage)
     {
+        //L'ennemi à 1/4 chance de bloquer
+        if (block == true)
+        {
+            int rand1 = Random.Range(0, 5);
+            if (rand1 == 1)
+            {
+                damage = damage / 2;
+            }
+        }
+
+        //L'ennemi à 1/6 chance d'esquiver
+        if (dodge == true)
+        {
+            int rand2 = Random.Range(0, 7);
+            if (rand2 == 1)
+            {
+                damage = 0;
+            }
+        }
+
         SoundManager.PlayHitSound();
-        life -= damage;
+        life = life - (damage * 100) / armor;
+    }
+
+    //Régénération
+    private void Regen()
+    {
+        //L'ennemi régénère 10 PV par secondes
+        if (life <= (maxLife - 10) && life > 0)
+        {
+            life += 10;
+
+        }
     }
 
     //Gestion des différentes collisions
