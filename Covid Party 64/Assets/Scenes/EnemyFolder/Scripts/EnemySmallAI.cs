@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
+using Random = UnityEngine.Random;
 
 public class EnemySmallAI : MonoBehaviour
 {
@@ -142,6 +144,9 @@ public class EnemySmallAI : MonoBehaviour
         {
             enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
         }
+
+        //Changement de couleur en fonction des hp
+        changeColor();
     }
 
     //Fonction de dommages
@@ -166,9 +171,10 @@ public class EnemySmallAI : MonoBehaviour
                 damage = 0;
             }
         }
-
+      
         SoundManager.PlayHitSound();
         life = life - (damage * 100) / armor;
+        Debug.Log("Vie : " + damage);
     }
 
     //Régénération
@@ -236,11 +242,38 @@ public class EnemySmallAI : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "EnemyS" || collision.gameObject.tag == "EnemyM" || collision.gameObject.tag == "EnemyL")
         {
             Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponent<BoxCollider2D>());
             Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponentInChildren<CapsuleCollider2D>());
             Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), collision.gameObject.GetComponent<CircleCollider2D>());
+        }
+    }
+
+    //Changement de couleur en fonction de la vie
+    private void changeColor()
+    {
+        Renderer rend = GetComponent<Renderer>(); ;
+
+        // Changer la couleur en fonction des hp
+        if (life <= maxLife && life > (maxLife * 0.75))
+        {
+
+        }
+
+        if (life <= (maxLife * 0.75) && life > (maxLife * 0.5))
+        {
+            rend.material.color = new Color((243f / 255f), (173f / 255f), (173f / 255f), (255f / 255f));
+        }
+
+        if (life <= (maxLife * 0.5) && life > (maxLife * 0.25))
+        {
+            rend.material.color = new Color((250f / 255f), (102f / 255f), (102f / 255f), (255f / 255f));
+        }
+
+        if (life <= (maxLife * 0.25) && life > 0)
+        {
+            rend.material.color = new Color((250f / 255f), (48f / 255f), (48f / 255f), (255f / 255f));
         }
     }
 

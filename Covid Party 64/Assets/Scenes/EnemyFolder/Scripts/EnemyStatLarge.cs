@@ -10,7 +10,7 @@ namespace Stats
             life = 200,
             speed = 200,
             range = 0,
-            armor = 0,
+            armor = 100,
             atkSpeed = 1;
         private static bool
             spit = false,
@@ -39,7 +39,7 @@ namespace Stats
             Life = 200;
             Speed = 200;
             Range = 0;
-            Armor = 0;
+            Armor = 100;
             AtkSpeed = 1;
             Spit = false;
             Dodge = false;
