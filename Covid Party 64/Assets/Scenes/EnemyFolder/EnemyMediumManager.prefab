@@ -138,6 +138,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!58 &7690210407446689356
 CircleCollider2D:
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

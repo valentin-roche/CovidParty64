@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using Stats;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
 
-    private float moveSpeed = 5000;
-    private float jumpForce = 600;
 
+    private float moveSpeed = PlayerStat.Speed;
+    private float jumpForce = PlayerStat.Jump;
     private bool isJumping;
     private bool isGrounded;
 
@@ -14,10 +15,11 @@ public class PlayerMovement : MonoBehaviour
 
     private float groundCheckRadius;
     private LayerMask collisionLayer;
+    private LayerMask collisionEnemy;
 
     private Rigidbody2D rb;
     public Animator animator;
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
@@ -39,16 +41,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        //spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         groundCheckRadius = .5f;
         rb = GetComponent<Rigidbody2D>();
         collisionLayer = LayerMask.GetMask("Foundation");
+        collisionEnemy = LayerMask.GetMask("Enemy");
     }
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer) || Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionEnemy);
 
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
@@ -58,12 +61,12 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
         animator.SetBool("Jump", !isGrounded);
-        animator.SetFloat("yVelocity", rb.velocity.y);
-
+        animator.SetFloat("yVelocity", rb.velocity.y);     
     }
 
     private void FixedUpdate()
-    {
+    {   
+        UpdateBonusEffect();
         MovePlayer(horizontalMovement);
         float characterVeclocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", characterVeclocity);
@@ -104,4 +107,27 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    private void UpdateBonusEffect()
+    {
+        if (moveSpeed != PlayerStat.Speed)
+        {
+            moveSpeed = PlayerStat.Speed;
+        }
+        else if (jumpForce != PlayerStat.Jump)
+        {
+            jumpForce = PlayerStat.Jump;
+        }
+    }
+
+    public void PlayerMovementStop()
+    {
+        Debug.Log("PlayerMovementStopCalled");
+        if (!animator.GetBool("DeathPlayer")) 
+        { 
+            Debug.Log("Animation Death set");
+            animator.SetBool("DeathPlayer", true);
+            animator.SetTrigger("Death");
+        }
+        
+    }
 }

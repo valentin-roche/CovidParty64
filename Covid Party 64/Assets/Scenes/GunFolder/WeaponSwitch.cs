@@ -5,48 +5,63 @@ using UnityEngine;
 public class WeaponSwitch : MonoBehaviour 
 {
     
-    public int totalWeapons = 1;
-    public int currentWeaponIndex;
+    private int totalWeapons = 1;
+    private int currentWeaponIndex;
 
-    public GameObject[] guns;
+    private GameObject[] guns;
     public GameObject weaponHolder;
-    public GameObject currentWeapon;
+    private GameObject currentWeapon;
+
+    public static WeaponSwitch instance;
+
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Debug.Log("Il y a plus d'une instance de WeaponSwitch dans la scene!");
+            return;
+        }
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         totalWeapons = weaponHolder.transform.childCount;
         guns = new GameObject[totalWeapons];
-
+        Debug.Log("Nombre d'armes détectées : "+totalWeapons);
         for(int i = 0; i < totalWeapons; i++)
         {
             guns[i] = weaponHolder.transform.GetChild(i).gameObject;
             guns[i].SetActive(false);
         }
 
-        guns[0].SetActive(true);
-        currentWeapon = guns[0];
-        currentWeaponIndex= 0;
+       // currentWeaponIndex = Stats.PlayerStat.WeaponLevel-1;
+        currentWeaponIndex = 1;
+
+        guns[currentWeaponIndex].SetActive(true);
+        currentWeapon = guns[currentWeaponIndex];
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        //Code de test pour switch weapon
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //        Stats.PlayerStat.WeaponLevel++;
+            
+            
+        //}
+        //Test if current weapon is up to date and if max weapon level is reached
+        if (currentWeaponIndex != Stats.PlayerStat.WeaponLevel - 1 && (Stats.PlayerStat.WeaponLevel <= totalWeapons))
         {
-            if(currentWeaponIndex < totalWeapons - 1)
-            {
-                guns[currentWeaponIndex].SetActive(false);
-                currentWeaponIndex += 1;
-                guns[currentWeaponIndex].SetActive(true);
-            }
-            else if(currentWeaponIndex == totalWeapons - 1)
-            {
-                guns[currentWeaponIndex].SetActive(false);
-                currentWeaponIndex = 0;
-                guns[currentWeaponIndex].SetActive(true);
-            }
+            guns[currentWeaponIndex].SetActive(false);
+            currentWeaponIndex = Stats.PlayerStat.WeaponLevel - 1;
+            guns[currentWeaponIndex].SetActive(true);
         }
     }
+
+    public int TotalWeapon { get => totalWeapons; set => totalWeapons = value; }
 }
