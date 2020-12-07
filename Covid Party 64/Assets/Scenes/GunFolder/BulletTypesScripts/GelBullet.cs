@@ -49,18 +49,18 @@ public class GelBullet : MonoBehaviour
 
         Destroy(gameObject, animDestroyDuration);
 
-        if (collision.gameObject.tag == "EnemySmall")
+        if (collision.gameObject.tag == "EnemyS")
         {
-            //collision.gameObject.GetComponent<EnemySmallAI>().TakeDamage(damage);
+            collision.gameObject.GetComponent<EnemySmallAI>().TakeDamage(damage);
 
         }
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "EnemyM")
         {
             collision.gameObject.GetComponent<EnemyMedAI>().TakeDamage(damage);
         }
-        if (collision.gameObject.tag == "EnemyBig")
+        if (collision.gameObject.tag == "EnemyL")
         {
-            //collision.gameObject.GetComponent<EnemyBigAI>().TakeDamage(damage);
+            collision.gameObject.GetComponent<EnemyLargeAI>().TakeDamage(damage);
         }
         if (collision.gameObject.name == "BossPrefab(Clone)" || collision.gameObject.name == "BossSprite")
         {

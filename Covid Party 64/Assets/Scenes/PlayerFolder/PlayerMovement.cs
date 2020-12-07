@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float groundCheckRadius;
     private LayerMask collisionLayer;
+    private LayerMask collisionEnemy;
 
     private Rigidbody2D rb;
     public Animator animator;
@@ -45,11 +46,12 @@ public class PlayerMovement : MonoBehaviour
         groundCheckRadius = .5f;
         rb = GetComponent<Rigidbody2D>();
         collisionLayer = LayerMask.GetMask("Foundation");
+        collisionEnemy = LayerMask.GetMask("Enemy");
     }
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer) || Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionEnemy);
 
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 

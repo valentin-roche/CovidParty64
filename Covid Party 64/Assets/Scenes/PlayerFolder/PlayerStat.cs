@@ -72,7 +72,6 @@ namespace Stats
         public static bool Fly { get => fly; set => fly = value; }
         public static bool Regen { get => regen; set => regen = value; }
         public static bool IncreasedBossDamage { get => increasedBossDamage; set => increasedBossDamage = value; }
-        public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
         public static List<Couple> ChosenCouples { get => chosenCouples; set => chosenCouples = value; }
         public static bool IncreasedSpeed { get => increasedSpeed; set => increasedSpeed = value; }
         public static bool BiggerJump { get => biggerJump; set => biggerJump = value; }

@@ -26,16 +26,16 @@ public class EnemyDetection : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        nbrEnemySmall = GameObject.FindGameObjectsWithTag("EnemySmall")
-            .Count(enemyObject => Vector3.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y)) 
+        nbrEnemySmall = GameObject.FindGameObjectsWithTag("EnemyS")
+            .Count(enemyObject => Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y)) 
         < gameObject.GetComponent<CircleCollider2D>().radius);
 
-        nbrEnemyMedium = GameObject.FindGameObjectsWithTag("Enemy")
-            .Count(enemyObject => Vector3.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y))
+        nbrEnemyMedium = GameObject.FindGameObjectsWithTag("EnemyM")
+            .Count(enemyObject => Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y))
         < gameObject.GetComponent<CircleCollider2D>().radius);
 
-        nbrEnemyBig = GameObject.FindGameObjectsWithTag("EnemyBig")
-            .Count(enemyObject => Vector3.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y))
+        nbrEnemyBig = GameObject.FindGameObjectsWithTag("EnemyL")
+            .Count(enemyObject => Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y))
         < gameObject.GetComponent<CircleCollider2D>().radius);
     }
 
