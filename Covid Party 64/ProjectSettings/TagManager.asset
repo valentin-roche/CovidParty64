@@ -16,6 +16,9 @@ TagManager:
   - EnemyS
   - EnemyM
   - EnemyL
+  - JumpLittle
+  - JumpHigh
+  - JumpDown
   layers:
   - Default
   - TransparentFX

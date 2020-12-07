@@ -132,11 +132,23 @@ public class EnemyMedAI : MonoBehaviour
         switch (col.tag)
         {
             case "Jump":
-                if(currentWaypoint + 1 <= path.vectorPath.Count)
+                if (currentWaypoint + 1 <= path.vectorPath.Count)
                 {
+                    Debug.Log("gros chien 3 ground : "+isGrounded);
+                    Debug.Log("gros chien 3 y : " + path.vectorPath[currentWaypoint].y);
+                    Debug.Log("gros chien 3 y+1 : " + path.vectorPath[currentWaypoint + 1].y);
+                    Debug.Log("gros chien 3 velocity : " + rb.velocity);
                     if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
                     {
-                        rb.AddForce(Vector2.up * 300f);
+                        Debug.Log("gros chien 4");
+                        if(rb.velocity.x < 3)
+                        {
+                            rb.AddForce(Vector2.up * 400f);
+                        }
+                        else
+                        {
+                            rb.AddForce(Vector2.up * 300f);
+                        }
                         animator.SetBool("isJumping", true);
                     }
                 } 
@@ -148,6 +160,36 @@ public class EnemyMedAI : MonoBehaviour
                     if (path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
                     {
                         rb.AddForce(Vector2.up * 150f);
+                        if (rb.velocity.x >= 0.01f)
+                        {
+                            rb.AddForce(Vector2.right * 5f);
+                        }
+                        else if (rb.velocity.x <= -0.01f)
+                        {
+                            rb.AddForce(Vector2.left * 5f);
+                        }
+                        animator.SetBool("isJumping", true);
+                    }
+                }
+                break;
+
+            case "JumpHigh":
+                if (currentWaypoint + 1 <= path.vectorPath.Count)
+                {
+                    if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                    {
+                        rb.AddForce(Vector2.up * 500f);
+                        animator.SetBool("isJumping", true);
+                    }
+                }
+                break;
+     
+            case "JumpDown":
+                if (currentWaypoint + 1 <= path.vectorPath.Count)
+                {
+                    if (path.vectorPath[currentWaypoint].y > path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                    {
+                        rb.AddForce(Vector2.up * 100f);
                         animator.SetBool("isJumping", true);
                     }
                 }

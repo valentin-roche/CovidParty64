@@ -131,18 +131,35 @@ public class EnemySmallAI : MonoBehaviour
         switch (col.tag)
         {
             case "Jump":
-                if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                if (currentWaypoint + 1 <= path.vectorPath.Count)
                 {
-                    rb.AddForce(Vector2.up * 300f);
-                    animator.SetBool("isJumping", true);
+                    if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                    {
+                        rb.AddForce(Vector2.up * 300f);
+                        animator.SetBool("isJumping", true);
+                    }
                 }
                 break;
 
             case "JumpHole":
-                if (path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                if (currentWaypoint + 1 <= path.vectorPath.Count)
                 {
-                    rb.AddForce(Vector2.up * 175f);
-                    animator.SetBool("isJumping", true);
+                    if (path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                    {
+                        rb.AddForce(Vector2.up * 150f);
+                        animator.SetBool("isJumping", true);
+                    }
+                }
+                break;
+
+            case "JumpHigh":
+                if (currentWaypoint + 1 <= path.vectorPath.Count)
+                {
+                    if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                    {
+                        rb.AddForce(Vector2.up * 500f);
+                        animator.SetBool("isJumping", true);
+                    }
                 }
                 break;
 
