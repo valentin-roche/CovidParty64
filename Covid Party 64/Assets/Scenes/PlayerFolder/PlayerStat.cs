@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 
@@ -6,6 +7,7 @@ namespace Stats
 {
     public static class PlayerStat
     {
+        private static List<Couple> chosenCouples;
 
         private static int
             contaminationRate = 0,
@@ -83,6 +85,7 @@ namespace Stats
         public static bool Regen { get => regen; set => regen = value; }
         public static bool IncreasedBossDamage { get => increasedBossDamage; set => increasedBossDamage = value; }
         public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
+        public static List<Couple> ChosenCouples { get => chosenCouples; set => chosenCouples = value; }
 
         public static void ResetStat()
         {
