@@ -20,7 +20,31 @@ public static class LevelsData
         },
         new Level()
         {
-            SceneName = "LVL_2_Egouts"
+            SceneName = "LVL_2_Sewers"
+        },
+        new Level()
+        {
+            SceneName = "LVL_3_Street"
+        },
+        new Level()
+        {
+            SceneName = "LVL_4_Forest"
+        },
+        new Level()
+        {
+            SceneName = "LVL_5_Mountain"
+        },
+        new Level()
+        {
+            SceneName = "LVL_6_Fire Forest"
+        },
+        new Level()
+        {
+            SceneName = "LVL_7_Beach"
+        },
+        new Level()
+        {
+            SceneName = "LVL_8_Ship"
         }
     };
     private static int currentLevel = 0;
