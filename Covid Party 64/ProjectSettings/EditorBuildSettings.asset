@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelFolder/Levels/LVL_8_Ship.unity
     guid: 65c77a0fc18be624ab85fc727f34f78a
+  - enabled: 1
+    path: Assets/Scenes/LevelFolder/CoupleSelection.unity
+    guid: 0394d6616356cee4691404944ef62499
   m_configObjects: {}
