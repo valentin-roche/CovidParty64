@@ -9,15 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelFolder/MainMenu.unity
     guid: 8bf90907337e2d2449e4e89fabdca81d
   - enabled: 1
-    path: Assets/Scenes/LevelFolder/Hospital.unity
-    guid: 63cf14c0a30eb9946bb6963f6d93487a
+    path: Assets/Scenes/LevelFolder/Levels/LVL_1_Hospital.unity
+    guid: 03c79d20cd9c6ae408a61689eb0b999f
   - enabled: 1
     path: Assets/Scenes/LevelFolder/Levels/LVL_2_Sewers.unity
     guid: eee8657a45480124d88be9d2779601b8
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/LevelFolder/Levels/LVL_3_Street.unity
+    guid: 3b3111052c55ea9439bea52aca9e1b6f
   - enabled: 1
-    path: Assets/Scenes/LevelFolder/Levels/LVL_1_Hospital.unity
-    guid: 03c79d20cd9c6ae408a61689eb0b999f
+    path: Assets/Scenes/LevelFolder/Levels/LVL_4_Forest.unity
+    guid: b3b524c170dbd4545ab408f6d5d9b1ac
+  - enabled: 1
+    path: Assets/Scenes/LevelFolder/Levels/LVL_5_Mountain.unity
+    guid: 66993d40526e07d46afc88c647410b19
+  - enabled: 1
+    path: Assets/Scenes/LevelFolder/Levels/LVL_6_FireForest.unity
+    guid: 59b96876294ef6049b635bf17108f41f
+  - enabled: 1
+    path: Assets/Scenes/LevelFolder/Levels/LVL_7_Beach.unity
+    guid: 9f0ca002905d3974cb3d9b6a67a1bb58
+  - enabled: 1
+    path: Assets/Scenes/LevelFolder/Levels/LVL_8_Ship.unity
+    guid: 65c77a0fc18be624ab85fc727f34f78a
   m_configObjects: {}

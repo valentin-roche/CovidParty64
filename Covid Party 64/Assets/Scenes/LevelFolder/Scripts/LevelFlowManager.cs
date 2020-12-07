@@ -21,6 +21,7 @@ public class LevelFlowManager : MonoBehaviour
     {
         GameObject spawner = GameObject.Find("EnemySpawner");
         spawnerScript = spawner.GetComponent<EnemySpawner>();
+        SoundManager.PlayRegular();
 
     }
 
@@ -62,5 +63,6 @@ public class LevelFlowManager : MonoBehaviour
     private void spawBoss()
     {
         spawnerScript.SpawnBoss();
+        SoundManager.PlayBoss();
     }
 }

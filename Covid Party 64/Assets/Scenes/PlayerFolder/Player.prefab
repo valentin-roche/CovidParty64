@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 0dacc93a8e7e961429cd979adf730d34, type: 3}
+  animator: {fileID: 0}
   shootPoint: {fileID: 1717077278}
   fireRate: 0.2
 --- !u!1 &1390271736085252932
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
+  animator: {fileID: 0}
   shootPoint: {fileID: 884157491410266257}
   fireRate: 0.01
 --- !u!1 &8493293994997029733
@@ -299,6 +301,7 @@ GameObject:
   - component: {fileID: 8493293995025520053}
   - component: {fileID: 8493293995025520050}
   - component: {fileID: 1402196476}
+  - component: {fileID: 7959662086365085050}
   m_Layer: 0
   m_Name: PissetteGel
   m_TagString: Untagged
@@ -385,8 +388,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 583999589497873732, guid: 5f44543963756414d9b4339eb378a6f1, type: 3}
+  animator: {fileID: 7959662086365085050}
   shootPoint: {fileID: 8493293996038095743}
   fireRate: 0.3
+--- !u!95 &7959662086365085050
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293995025520052}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 716d0b395bca61c42bbde44c9a2d87b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8493293995286146548
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8493293996038095743}
+  - component: {fileID: 5020096208405002231}
   m_Layer: 0
   m_Name: ShootPoint
   m_TagString: Untagged
@@ -468,6 +492,25 @@ Transform:
   m_Father: {fileID: 8493293995025520053}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5020096208405002231
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493293996038095742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 716d0b395bca61c42bbde44c9a2d87b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8493293996653898760
 GameObject:
   m_ObjectHideFlags: 0
