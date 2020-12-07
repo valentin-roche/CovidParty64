@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private float moveSpeed = 5000;
-    private float jumpForce = 300;
+    private float jumpForce = 600;
 
     private bool isJumping;
     private bool isGrounded;
