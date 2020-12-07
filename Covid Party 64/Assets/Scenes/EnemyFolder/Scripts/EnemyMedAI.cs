@@ -51,7 +51,8 @@ public class EnemyMedAI : MonoBehaviour
         block = Stats.EnemyStatMedium.Block;
         critical = Stats.EnemyStatMedium.Critical;
         slow = Stats.EnemyStatMedium.Slow;
-        fly = Stats.EnemyStatMedium.Fly;
+        //fly = Stats.EnemyStatMedium.Fly;
+        fly = true;
         regen = Stats.EnemyStatMedium.Regen;
         maxLife = Stats.EnemyStatMedium.Life;
         life = maxLife;
@@ -68,6 +69,14 @@ public class EnemyMedAI : MonoBehaviour
         if (regen == true)
         {
             InvokeRepeating("Regen", 1.0f, 1.0f);
+        }
+
+        //Vol
+        if(fly == true)
+        {
+            rb.angularDrag = 1;
+            rb.gravityScale = 0;
+            rb.drag = 2;
         }
     }
 

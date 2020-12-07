@@ -107,6 +107,7 @@ MonoBehaviour:
   speed: 5
   nextWaypointDistance: 3
   life: 0
+  armor: 0
   groundCheck: {fileID: 7767570549603140634}
   animator: {fileID: 5921173416252752016}
 --- !u!61 &1822236696186453845
