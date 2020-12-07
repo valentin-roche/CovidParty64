@@ -315,6 +315,7 @@ MonoBehaviour:
   choice3: {fileID: 820744467}
   weapon: {fileID: 807244962}
   armor: {fileID: 1768369404}
+  LevelsFlowHandler: {fileID: 0}
 --- !u!4 &378698525
 Transform:
   m_ObjectHideFlags: 0
@@ -804,7 +805,6 @@ GameObject:
   m_Component:
   - component: {fileID: 884886563}
   - component: {fileID: 884886562}
-  - component: {fileID: 884886564}
   m_Layer: 0
   m_Name: ChoiceHandler
   m_TagString: Untagged
@@ -844,18 +844,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &884886564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884886561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deebac28a18de334d85085fa8b90ac29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1081871663
 GameObject:
   m_ObjectHideFlags: 0
