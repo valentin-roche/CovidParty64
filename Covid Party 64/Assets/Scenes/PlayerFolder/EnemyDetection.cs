@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyDetection : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public int nbrEnemy = 0;
+    public int nbrEnemySmall = 0;
+    public int nbrEnemyMedium = 0;
+    public int nbrEnemyBig = 0;
 
     public static EnemyDetection instance;
 
@@ -17,16 +19,24 @@ public class EnemyDetection : MonoBehaviour
             Debug.LogWarning("Il y a plus d'une instance de EnemyDetection dans la scène.");
             return;
         }
-
         instance = this;
     }
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        nbrEnemy = GameObject.FindGameObjectsWithTag("Enemy")
-            .Count(enemyObject => Vector3.Distance(gameObject.transform.position, enemyObject.transform.position) < gameObject.GetComponent<CircleCollider2D>().radius);
+        nbrEnemySmall = GameObject.FindGameObjectsWithTag("EnemySmall")
+            .Count(enemyObject => Vector3.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y)) 
+        < gameObject.GetComponent<CircleCollider2D>().radius);
+
+        nbrEnemyMedium = GameObject.FindGameObjectsWithTag("Enemy")
+            .Count(enemyObject => Vector3.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y))
+        < gameObject.GetComponent<CircleCollider2D>().radius);
+
+        nbrEnemyBig = GameObject.FindGameObjectsWithTag("EnemyBig")
+            .Count(enemyObject => Vector3.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y))
+        < gameObject.GetComponent<CircleCollider2D>().radius);
     }
 
 }

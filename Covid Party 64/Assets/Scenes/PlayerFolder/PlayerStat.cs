@@ -14,9 +14,17 @@ namespace Stats
             maxContamination = 100,
             speed = 5000,
             armor = 0,
-            bulletDamage = 40;
+            bulletDamage = 40,
+            jump = 700,
+            weaponLevel = 1,
+            defenseLevel = 1;
 
-        
+        private static Dictionary<string, int> playerInventory = new Dictionary<string, int>();
+
+        private static float
+            projectileDistance = 1f;
+
+
 
         private static bool
            lowerContaminationArea = false,
@@ -42,41 +50,21 @@ namespace Stats
            fly = false,
            regen = false;
 
-
-        public static void GetContaminate(int _contamination)
-        {
-            contaminationRate += _contamination;
-            
-            if (contaminationRate >= 100)
-            {
-                Die();
-                return;
-            }
-        }
-
-        public static void Die()
-        {
-            if (false) //Test pour savoir si joueur peut revive
-            {
-                //Respawn();
-            }
-            else
-            {
-                Debug.Log("Le joueur a été contaminé ! GAME OVER");
-                //Bloquer mouvements du personnages
-                PlayerMovement.instance.enabled = false;
-                Shoot.instance.enabled = false;
-                //Jouer animation de mort
-                PlayerMovement.instance.animator.SetTrigger("Death");
-                //Empêcher l'interaction avec le reste de la scène.
-            }
-
-
-        }
-        public static int ContaminationRate { get => contaminationRate; set => contaminationRate= value; }
+        public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
+        public static int Jump { get => jump; set => jump = value; }
+        public static int ContaminationRate { get => contaminationRate; set => contaminationRate = value; }
         public static int MaxContamination { get => maxContamination; set => maxContamination = value; }
         public static int Speed { get => speed; set => speed = value; }
         public static int Armor { get => armor; set => armor = value; }
+        public static int WeaponLevel { get => weaponLevel; set => weaponLevel = value; }
+
+        public static int DefenseLevel { get => defenseLevel; set => defenseLevel = value; }
+
+
+
+        public static float ProjectileDistance { get => projectileDistance; set => projectileDistance = value; }
+
+
         public static bool Dodge { get => dodge; set => dodge = value; }
         public static bool Block { get => block; set => block = value; }
         public static bool Critical { get => critical; set => critical = value; }
@@ -86,11 +74,16 @@ namespace Stats
         public static bool IncreasedBossDamage { get => increasedBossDamage; set => increasedBossDamage = value; }
         public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
         public static List<Couple> ChosenCouples { get => chosenCouples; set => chosenCouples = value; }
+        public static bool IncreasedSpeed { get => increasedSpeed; set => increasedSpeed = value; }
+        public static bool BiggerJump { get => biggerJump; set => biggerJump = value; }
+
+        public static Dictionary<string, int> PlayerInventory { get => playerInventory; set => playerInventory = value; }
 
         public static void ResetStat()
         {
             contaminationRate = 0;
-            Speed = 5000;
+            speed = 5000;
+            jump = 500;
             Armor = 0;
             Dodge = false;
             Block = false;
@@ -112,7 +105,7 @@ namespace Stats
             }
             else if (biggerJump)
             {
-
+               
             }
             else if (extendRange)
             {
@@ -183,26 +176,6 @@ namespace Stats
 
             }
         }
-
-        public static int CalculateDamage()
-        {
-            int damage;
-            int _nbrEnemy = 0;
-            if (EnemyDetection.instance)
-            {
-                _nbrEnemy = EnemyDetection.instance.nbrEnemy;
-            }
-            
-
-            damage = _nbrEnemy * 2; //Formule à modifier
-            if (damage >= 20)//Saturation du nbr de degats pris
-            {
-                damage = 20;
-            }
-
-            return damage;
-        }
-
     }
 }
 

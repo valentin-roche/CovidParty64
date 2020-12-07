@@ -19,6 +19,10 @@ TagManager:
   - JumpLittle
   - JumpHigh
   - JumpDown
+  - Mask
+  - Radio
+  - BottleGel
+  
   layers:
   - Default
   - TransparentFX
@@ -33,7 +37,7 @@ TagManager:
   - GelBullet
   - Enemy
   - obstacle
-  - 
+  - Objets
   - 
   - 
   - 
