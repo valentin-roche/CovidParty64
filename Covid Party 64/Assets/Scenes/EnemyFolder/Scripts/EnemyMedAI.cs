@@ -286,25 +286,25 @@ public class EnemyMedAI : MonoBehaviour
         Renderer rend = GetComponent<Renderer>(); ;
 
         // Changer la couleur en fonction des hp
-        if (life <= maxLife && life > (maxLife*0.75))
+        if (life <= maxLife && life > (maxLife * 0.75))
         {
-            
+            rend.material.color = new Color((255f / 255f), (255f / 255f), (255f / 255f), (255f / 255f));
         }
 
         if (life <= (maxLife * 0.75) && life > (maxLife * 0.5))
         {
-            rend.material.color = new Color((243f / 255f), (173f / 255f), (173f / 255f), (255f / 255f));
+            rend.material.color = new Color((255f / 255f), (213f / 255f), (213f / 255f), (255f / 255f));
         }
 
         if (life <= (maxLife * 0.5) && life > (maxLife * 0.25))
         {
-            rend.material.color = new Color((250f / 255f), (102f / 255f), (102f / 255f), (255f / 255f));
+            rend.material.color = new Color((255f / 255f), (191f / 255f), (191f / 255f), (255f / 255f));
         }
 
         if (life <= (maxLife * 0.25) && life > 0)
         {
-            rend.material.color = new Color((250f / 255f), (48f / 255f), (48f / 255f), (255f / 255f));
-        }      
+            rend.material.color = new Color((255f / 255f), (173f / 255f), (173f / 255f), (255f / 255f));
+        }
     }
 
     //Fonction de mort
