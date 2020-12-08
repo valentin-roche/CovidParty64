@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerStatsHandler : MonoBehaviour
 {
@@ -71,6 +72,34 @@ public class PlayerStatsHandler : MonoBehaviour
         int _nbrEnemySmall = 0;
         int _nbrEnemyMedium = 0;
         int _nbrEnemyBig = 0;
+        int dmgSmall = Stats.EnemyStatSmall.Damage;
+        int dmgMed = Stats.EnemyStatMedium.Damage;
+        int dmgLarge = Stats.EnemyStatLarge.Damage;
+        int rand = Random.Range(0, 5);
+
+        if (Stats.EnemyStatSmall.Critical == true)
+        {
+            if(rand == 1)
+            {
+                dmgSmall = dmgSmall * 2;
+            }
+        }
+
+        if (Stats.EnemyStatMedium.Critical == true)
+        {
+            if (rand == 1)
+            {
+                dmgMed = dmgMed * 2;
+            }
+        }
+
+        if (Stats.EnemyStatLarge.Critical == true)
+        {
+            if (rand == 1)
+            {
+                dmgLarge = dmgLarge * 2;
+            }
+        }
 
         if (EnemyDetection.instance)
         {
@@ -79,7 +108,7 @@ public class PlayerStatsHandler : MonoBehaviour
             _nbrEnemyBig = EnemyDetection.instance.nbrEnemyBig;
         }
 
-        damage = _nbrEnemySmall*1 + _nbrEnemyMedium*2 + _nbrEnemyBig*3; //Formule à modifier
+        damage = _nbrEnemySmall * dmgSmall + _nbrEnemyMedium * dmgMed + _nbrEnemyBig* dmgLarge; //Formule à modifier
         
         if (damage >= 25)//Saturation du nbr de degats pris
         {

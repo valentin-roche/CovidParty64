@@ -20,7 +20,6 @@ public class EnemyMedAI : MonoBehaviour
        spit,
        dodge,
        block,
-       critical,
        slow,
        fly,
        regen;
@@ -49,10 +48,8 @@ public class EnemyMedAI : MonoBehaviour
         spit = Stats.EnemyStatMedium.Spit;
         dodge = Stats.EnemyStatMedium.Dodge;
         block = Stats.EnemyStatMedium.Block;
-        critical = Stats.EnemyStatMedium.Critical;
         slow = Stats.EnemyStatMedium.Slow;
-        //fly = Stats.EnemyStatMedium.Fly;
-        fly = true;
+        fly = Stats.EnemyStatMedium.Fly;
         regen = Stats.EnemyStatMedium.Regen;
         maxLife = Stats.EnemyStatMedium.Life;
         life = maxLife;

@@ -70,6 +70,19 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer(horizontalMovement);
         float characterVeclocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", characterVeclocity);
+
+        if(Stats.EnemyStatSmall.Slow == true || Stats.EnemyStatMedium.Slow == true || Stats.EnemyStatLarge.Slow == true)
+        {
+            if(EnemyDetection.instance.nbrEnemySmall+ EnemyDetection.instance.nbrEnemyMedium+ EnemyDetection.instance.nbrEnemyBig > 0)
+            {
+                moveSpeed = moveSpeed * 0.75f;
+            }
+            else
+            {
+                moveSpeed = PlayerStat.Speed;
+            }
+        }
+        
     }
 
     void MovePlayer(float _horizontalMovement)

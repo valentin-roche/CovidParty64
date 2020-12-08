@@ -13,7 +13,8 @@ namespace Stats
             speed = 250,
             range = 0,
             armor = 100,
-            atkSpeed = 1;
+            atkSpeed = 1,
+            damage = 2;
         private static bool
             spit = false,
             dodge = false,
@@ -28,6 +29,7 @@ namespace Stats
         public static int Range { get => range; set => range = value; }
         public static int Armor { get => armor; set => armor = value; }
         public static int AtkSpeed { get => atkSpeed; set => atkSpeed = value; }
+        public static int Damage { get => damage; set => damage = value; }
         public static bool Spit { get => spit; set => spit = value; }
         public static bool Dodge { get => dodge; set => dodge = value; }
         public static bool Block { get => block; set => block = value; }
@@ -43,6 +45,7 @@ namespace Stats
             Range = 0;
             Armor = 100;
             AtkSpeed = 1;
+            Damage = 2;
             Spit = false;
             Dodge = false;
             Block = false;
