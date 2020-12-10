@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         //spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         groundCheckRadius = .5f;

@@ -235,14 +235,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377399982, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 377399982, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 377399982, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.014491081
+      objectReference: {fileID: 0}
+    - target: {fileID: 377399982, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 377399982, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1542616175, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
       propertyPath: Particles
       value: 
       objectReference: {fileID: 247485732}
-    - target: {fileID: 2355801887233690638, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8493293996653898760, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
       propertyPath: m_Name
       value: Player
