@@ -238,6 +238,18 @@ public class EnemyMedAI : MonoBehaviour
                         animator.SetBool("isJumping", true);
                     }
                 }
+                else if(transform.position.x >= target.transform.position.x && rb.velocity.x >= 0.01f)
+                {
+                    rb.AddForce(Vector2.up * 150f);
+                    rb.AddForce(Vector2.right * 5f);
+
+                }
+                else if (transform.position.x <= target.transform.position.x  && rb.velocity.x <= -0.01f)
+                {
+                    rb.AddForce(Vector2.up * 150f);
+                    rb.AddForce(Vector2.left * 5f);
+                }
+                animator.SetBool("isJumping", true);
                 break;
 
             case "JumpHigh":
