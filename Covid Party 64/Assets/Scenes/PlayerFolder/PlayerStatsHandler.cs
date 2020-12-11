@@ -75,7 +75,7 @@ public class PlayerStatsHandler : MonoBehaviour
         int dmgSmall = Stats.EnemyStatSmall.Damage;
         int dmgMed = Stats.EnemyStatMedium.Damage;
         int dmgLarge = Stats.EnemyStatLarge.Damage;
-        int rand = Random.Range(0, 5);
+        int rand = Random.Range(1, 5);
 
         if (Stats.EnemyStatSmall.Critical == true)
         {

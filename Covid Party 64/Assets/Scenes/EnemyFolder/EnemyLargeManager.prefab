@@ -132,8 +132,12 @@ MonoBehaviour:
   speed: 0
   nextWaypointDistance: 3
   life: 0
+  armor: 0
   groundCheck: {fileID: 5437176506922113606}
   animator: {fileID: 4568927250254289566}
+  gelBottle: {fileID: 6530810667752542985, guid: 7b8f1580acec6704db817df4a454e6a8, type: 3}
+  mask: {fileID: 4201832822436023167, guid: 78e277f3a809fd24986b635aee5e9618, type: 3}
+  radio: {fileID: 6890519981299190983, guid: fcaa6ea811fc4bc408addf12de2d283b, type: 3}
 --- !u!114 &3239606240748002698
 MonoBehaviour:
   m_ObjectHideFlags: 0

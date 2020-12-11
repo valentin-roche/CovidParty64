@@ -13,6 +13,7 @@ public class EnemyLargeAI : MonoBehaviour
     public int life;
     public int armor;
     private int maxLife;
+    private int dropChance;
 
     private bool
        spit,
@@ -38,6 +39,10 @@ public class EnemyLargeAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    public GameObject gelBottle;
+    public GameObject mask;
+    public GameObject radio;
+
     // Initialisation des composants
     void Start()
     {
@@ -52,6 +57,7 @@ public class EnemyLargeAI : MonoBehaviour
         fly = Stats.EnemyStatLarge.Fly;
         regen = Stats.EnemyStatLarge.Regen;
         maxLife = Stats.EnemyStatLarge.Life;
+        dropChance = Stats.EnemyStatMedium.DropChance;
         life = maxLife;
 
         seeker = GetComponent<Seeker>();
@@ -277,6 +283,28 @@ public class EnemyLargeAI : MonoBehaviour
     //Fonction de mort
     public void death()
     {
+        int chance = Random.Range(1, 101);
+        int choice;
+
         Destroy(gameObject);
+
+        if (chance <= dropChance)
+        {
+            choice = Random.Range(1, 4);
+            switch (choice)
+            {
+                case 1:
+                    Instantiate(gelBottle, transform.position, transform.rotation);
+                    break;
+
+                case 2:
+                    Instantiate(mask, transform.position, transform.rotation);
+                    break;
+
+                case 3:
+                    Instantiate(radio, transform.position, transform.rotation);
+                    break;
+            }
+        }
     }
 }

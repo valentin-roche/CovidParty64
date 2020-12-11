@@ -12,7 +12,8 @@ namespace Stats
             range = 0,
             armor = 100,
             atkSpeed = 1,
-            damage = 3;
+            damage = 3,
+            dropChance = 2;
         private static bool
             spit = false,
             dodge = false,
@@ -28,6 +29,7 @@ namespace Stats
         public static int Armor { get => armor; set => armor = value; }
         public static int AtkSpeed { get => atkSpeed; set => atkSpeed = value; }
         public static int Damage { get => damage; set => damage = value; }
+        public static int DropChance { get => dropChance; set => dropChance = value; }
         public static bool Spit { get => spit; set => spit = value; }
         public static bool Dodge { get => dodge; set => dodge = value; }
         public static bool Block { get => block; set => block = value; }
@@ -44,6 +46,7 @@ namespace Stats
             Armor = 100;
             AtkSpeed = 1;
             Damage = 3;
+            DropChance = 2;
             Spit = false;
             Dodge = false;
             Block = false;
@@ -52,17 +55,5 @@ namespace Stats
             Fly = false;
             Regen = false;
         }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
     }
-
 }

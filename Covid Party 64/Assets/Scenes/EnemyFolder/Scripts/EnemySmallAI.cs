@@ -15,6 +15,7 @@ public class EnemySmallAI : MonoBehaviour
     public int life;
     public int armor;
     private int maxLife;
+    private int dropChance;
 
     private bool
        spit,
@@ -40,6 +41,10 @@ public class EnemySmallAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    public GameObject gelBottle;
+    public GameObject mask;
+    public GameObject radio;
+
     // Initialisation des composants
     void Start()
     {
@@ -54,6 +59,7 @@ public class EnemySmallAI : MonoBehaviour
         fly = Stats.EnemyStatSmall.Fly;
         regen = Stats.EnemyStatSmall.Regen;
         maxLife = Stats.EnemyStatSmall.Life;
+        dropChance = Stats.EnemyStatMedium.DropChance;
         life = maxLife;
 
         seeker = GetComponent<Seeker>();
@@ -280,6 +286,28 @@ public class EnemySmallAI : MonoBehaviour
     //Fonction de mort
     public void death()
     {
+        int chance = Random.Range(1, 101);
+        int choice;
+
         Destroy(gameObject);
+
+        if (chance <= dropChance)
+        {
+            choice = Random.Range(1, 4);
+            switch (choice)
+            {
+                case 1:
+                    Instantiate(gelBottle, transform.position, transform.rotation);
+                    break;
+
+                case 2:
+                    Instantiate(mask, transform.position, transform.rotation);
+                    break;
+
+                case 3:
+                    Instantiate(radio, transform.position, transform.rotation);
+                    break;
+            }
+        }
     }
 }

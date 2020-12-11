@@ -15,6 +15,8 @@ public class EnemyMedAI : MonoBehaviour
     public int life;
     public int armor;
     private int maxLife;
+    private int range;
+    private int dropChance;
 
     private bool
        spit,
@@ -39,20 +41,32 @@ public class EnemyMedAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    private bool facingRight = true;
+    public Transform spitPoint;
+    public GameObject spitBullet;
+
+    public GameObject gelBottle;
+    public GameObject mask;
+    public GameObject radio;
+
     // Initialisation des composants
     void Start()
     {
         target = GameObject.Find("Player").transform;
         enemyGFX = this.transform;
         armor = Stats.EnemyStatMedium.Armor;
-        spit = Stats.EnemyStatMedium.Spit;
+        //spit = Stats.EnemyStatMedium.Spit;
+        spit = false;
         dodge = Stats.EnemyStatMedium.Dodge;
         block = Stats.EnemyStatMedium.Block;
         slow = Stats.EnemyStatMedium.Slow;
         fly = Stats.EnemyStatMedium.Fly;
         regen = Stats.EnemyStatMedium.Regen;
         maxLife = Stats.EnemyStatMedium.Life;
+        dropChance = Stats.EnemyStatMedium.DropChance;
         life = maxLife;
+        //range = Stats.EnemyStatMedium.Range;
+        range = 10;
 
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
@@ -74,6 +88,12 @@ public class EnemyMedAI : MonoBehaviour
             rb.angularDrag = 1;
             rb.gravityScale = 0;
             rb.drag = 2;
+        }
+
+        //Attaques à distance
+        if(spit == true)
+        {
+            InvokeRepeating("Spit", 2.0f, 2.0f);
         }
     }
 
@@ -142,13 +162,16 @@ public class EnemyMedAI : MonoBehaviour
         }
 
         //Changement d'orientation du sprite
-        if (rb.velocity.x >= 0.01f)
+        if (rb.velocity.x >= 0.01f && !facingRight)
         {
-            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+            facingRight = !facingRight;
+            transform.Rotate(0f, 180f, 0f);
+
         }
-        else if (rb.velocity.x <= -0.01f)
+        else if (rb.velocity.x <= -0.01f && facingRight)
         {
-            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+            facingRight = !facingRight;
+            transform.Rotate(0f, 180f, 0f);
         }
 
         //Changement de couleur en fonction des hp
@@ -161,7 +184,7 @@ public class EnemyMedAI : MonoBehaviour
         //L'ennemi à 1/4 chance de bloquer
         if(block == true)
         {
-            int rand1 = Random.Range(0, 5);
+            int rand1 = Random.Range(1, 5);
             if(rand1 == 1)
             {
                 damage = damage / 2;
@@ -171,7 +194,7 @@ public class EnemyMedAI : MonoBehaviour
         //L'ennemi à 1/6 chance d'esquiver
         if (dodge == true)
         {
-            int rand2 = Random.Range(0, 7);
+            int rand2 = Random.Range(1, 7);
             if (rand2 == 1)
             {
                 damage = 0;
@@ -325,9 +348,39 @@ public class EnemyMedAI : MonoBehaviour
         }
     }
 
+    private void Spit()
+    {
+        if (Vector2.Distance(transform.position, target.transform.position) <= range)
+        {
+            Instantiate(spitBullet, spitPoint.position, spitPoint.rotation);
+        }
+    }
+
     //Fonction de mort
     public void death()
     {
-            Destroy(gameObject);
+        int chance = Random.Range(1, 101);
+        int choice;
+
+        Destroy(gameObject);
+
+        if(chance <= dropChance)
+        {
+            choice = Random.Range(1, 4);
+            switch (choice)
+            {
+                case 1:
+                    Instantiate(gelBottle, transform.position, transform.rotation);
+                    break;
+
+                case 2:
+                    Instantiate(mask, transform.position, transform.rotation);
+                    break;
+
+                case 3:
+                    Instantiate(radio, transform.position, transform.rotation);
+                    break;
+            }
+        }
     }
 }
