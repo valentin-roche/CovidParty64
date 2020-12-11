@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 2D_LaserTut_Lit
-  m_Shader: {fileID: -6465566751694194690, guid: d73b29f0e47b16a4abaef414f0054243, type: 3}
-  m_ShaderKeywords: 
+  m_Name: Dissolve
+  m_Shader: {fileID: -6465566751694194690, guid: 75e44fe8c8174b641970578e148065c1, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -18,12 +18,14 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2372E9C8: 14.31
-    - Vector1_A9D3F8DD: 5
-    - Vector1_D2390E42: 30
+    - _Fade: 1
+    - _Scale: 40
     m_Colors:
-    - Color_902A81DD: {r: 1.2741214, g: 8.511131, b: 9.734288, a: 0.3921569}
-    - Vector2_E60A749F: {r: -1, g: 0, b: 0, a: 0}
+    - Color_D9761387: {r: 0.2901961, g: 1.254902, b: 1.3647059, a: 0}
   m_BuildTextureStacks: []
