@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!19719996 &762199909313210963
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633885988005845948}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0.00001
 --- !u!1 &1528057213614769356
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +131,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!19719996 &762199909313210963
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633885988005845948}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &5070969637226934825
 GameObject:
   m_ObjectHideFlags: 0
@@ -10179,6 +10179,10 @@ PrefabInstance:
       propertyPath: prefabBoss
       value: 
       objectReference: {fileID: 992959586915574011, guid: 519a1e3b7f11d6a4897367b4083adef7, type: 3}
+    - target: {fileID: 5533891241455465351, guid: 3efc544233c623e4191d315cfd66247b, type: 3}
+      propertyPath: SpawnRate
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5533891241600221181, guid: 3efc544233c623e4191d315cfd66247b, type: 3}
       propertyPath: data.dataString
       value: UEsDBBQAAAgIAAAIIexxZjS7TwIAAPUEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1T2zAQ/SsZnQtjQ0Kgt9YJoQcIQ9rh4ossrW1NZMkjyeSDyX/vSrZjNx1OUd57u3r7IX8SoWwNzGmzMoI/aw7k+4T4M/k2Gcgn2NNCq404Qq95F9yVXkSD5o06oRGPfZjVFTgj2A9VSC+OEGyUyLWplryARFtnEc6ptICU0c5HK4Q+J2SPP1cPPuSAp5u5Px3x9BBNTnhkoByYQdoLe1mrahSTtKqBe8uDeD7r086CTGExnSK69hzTUgrbeSHuUIdaN3UJBnyxXFAsLdwfXT8gUIIoSuczjqPXeW7Bda4MPSyEwR61aclP3TauonbbWvugsoHg6i7YapM+/8dfxYHOja6e+nvjyN/hSsG2b/TAqHWjzo7hxWA9Dh3aUbmlmYT3EtSLXhndKI6kM40PbSzcLIa/59KSEth2wFurF2BTfz0fX8MpVL9PpKiy0MlpC2ykDg0P0weDw/mFhsNu2C4Fot7FHwu/aTFeoo54FMY6pLoqlbeX6cZ4KXnEg+88a1yijQIzTlCDotIdXjGNuxzhBfd11CP1z6W7vOP6V3AREuBBH0UX1KvenYdlS717BluuGyeFgqHTnnjBPiVaqXbDxiX1YZvG5JSNwopG8H9Xi9zfQkzvb6bz+ynPpjN2lWVzNmVAZxmPb1l+R8LuCYV1UvnaGu3ag1NTQ3KFe9Z/RSYrQ+uw7dzQ3UocK20HpVC53jADoNZthrNxMHgJPky+5AIbtAHnhArzJp8pkZptgafnRGmodLl3hqZDlpTU4kM7j6QkCZ+NlJzI6S9QSwMEFAAACAgAAAgh7Ntu/t1tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTVUVBKL0osyCgGihiCOKWZKSB2tJKFcaphooWRibmFSUqSiWmyblKSebJJcmqiaVKKoXFymplSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7HFmNLtPAgAA9QQAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7Ntu/t1tAAAAeAAAAAkAJAAAAAAAAAAAAAAAnAIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABUAwAAAAA=
