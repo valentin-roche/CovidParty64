@@ -375,6 +375,14 @@ PrefabInstance:
       propertyPath: Particles
       value: 
       objectReference: {fileID: 145790605}
+    - target: {fileID: 1742465541, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355801887233690638, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8387024439724173439, guid: feb0013ec20fdd143aba675e8fb0e2d6, type: 3}
       propertyPath: healthBar
       value: 

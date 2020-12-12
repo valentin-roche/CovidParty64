@@ -26,6 +26,9 @@ public class EnemyDetection : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //compte le nombre d'ennemi present dans le circle collider du joueur
+        //on fait 3 tests pour identifier si c'est un ennemi Small, Medium ou Large
+
         nbrEnemySmall = GameObject.FindGameObjectsWithTag("EnemyS")
             .Count(enemyObject => Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y)) 
         < gameObject.GetComponent<CircleCollider2D>().radius);

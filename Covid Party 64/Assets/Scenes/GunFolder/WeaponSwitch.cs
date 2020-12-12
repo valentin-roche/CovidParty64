@@ -27,15 +27,18 @@ public class WeaponSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        totalWeapons = weaponHolder.transform.childCount;
-        guns = new GameObject[totalWeapons];
+        totalWeapons = weaponHolder.transform.childCount;  //compte le nombre d'arme disponible
+        guns = new GameObject[totalWeapons];                
         Debug.Log("Nombre d'armes détectées : "+totalWeapons);
+
+        //création d'un tableau contenant toutes les armes
         for(int i = 0; i < totalWeapons; i++)
         {
             guns[i] = weaponHolder.transform.GetChild(i).gameObject;
             guns[i].SetActive(false);
         }
-
+        
+        //initialisation de l'arme de niveau 1
        //currentWeaponIndex = Stats.PlayerStat.WeaponLevel-1;
        currentWeaponIndex = 0;
 

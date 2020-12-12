@@ -25,6 +25,8 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
+
+        //tire horizontal
         if (Input.GetMouseButton(0))
         {
             //animator.SetTrigger("Shoot");
@@ -51,7 +53,8 @@ public class Shoot : MonoBehaviour
     }
 
     
-
+    //tire horizontal
+    //activation de l'animation associée
     void shootHorizontal()
     {
         Debug.Log("Horizontal shot");

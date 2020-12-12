@@ -22,18 +22,20 @@ public class HealthBar : MonoBehaviour
         instance = this;
     }
 
+    //initialisaiton de la barre de vie
     public void SetContaminationInit(int _contamination)
     {
-        slider.maxValue = PlayerStat.MaxContamination;
-        slider.value = _contamination;
+        slider.maxValue = PlayerStat.MaxContamination; //initialisation de la valeur max du slider
+        slider.value = _contamination;                 //mise à jour de la vie 
 
-        fill.color = gradient.Evaluate(1f);
+        fill.color = gradient.Evaluate(1f);            //associe la couleur en fonction du taux de contamination 
     }
 
+    //mise à jour de la barre de vie
     public void SetContamination(int _contamination)
     {
         slider.value = _contamination;
 
-        fill.color = gradient.Evaluate(slider.normalizedValue);
+        fill.color = gradient.Evaluate(slider.normalizedValue); //associe la couleur en fonction du taux de contamination 
     }
 }
