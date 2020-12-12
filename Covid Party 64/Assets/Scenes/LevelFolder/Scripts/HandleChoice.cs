@@ -19,8 +19,6 @@ public class HandleChoice : MonoBehaviour
 
     }
 
-    
-
     // Update is called once per frame
     void Update()
     {
@@ -73,13 +71,19 @@ public class HandleChoice : MonoBehaviour
                 switch (power.AffectedStat)
                 {
                     case "speed":
+                        Stats.EnemyStatSmall.Speed += modif;
                         Stats.EnemyStatMedium.Speed += modif;
+                        Stats.EnemyStatLarge.Speed += modif;
                         break;
                     case "health":
+                        Stats.EnemyStatSmall.Life += modif;
                         Stats.EnemyStatMedium.Life += modif;
+                        Stats.EnemyStatLarge.Life += modif;
                         break;
                     case "damage":
+                        Stats.EnemyStatSmall.AtkSpeed += modif;
                         Stats.EnemyStatMedium.AtkSpeed += modif;
+                        Stats.EnemyStatLarge.AtkSpeed += modif;
                         break;
                 }
             }
@@ -118,7 +122,7 @@ public class HandleChoice : MonoBehaviour
                         //Stats.PlayerStat.LifeStealZone = true;
                         break;
                     case "stun":
-                        //TODO uncomment when lifesteal zone implemented
+                        //TODO uncomment when stun feature is implemented
                         //Stats.PlayerStat.Stun = true;
                         break;
                     case "IncreasedBossDamage":
@@ -134,16 +138,24 @@ public class HandleChoice : MonoBehaviour
                 {
                     //TODO special powers handling
                     case "spit":
+                        Stats.EnemyStatSmall.Spit = true;
                         Stats.EnemyStatMedium.Spit = true;
+                        Stats.EnemyStatLarge.Spit = true;
                         break;
                     case "dodge":
+                        Stats.EnemyStatSmall.Dodge = true;
                         Stats.EnemyStatMedium.Dodge = true;
+                        Stats.EnemyStatLarge.Dodge = true;
                         break;
                     case "critical":
+                        Stats.EnemyStatSmall.Critical = true;
                         Stats.EnemyStatMedium.Critical = true;
+                        Stats.EnemyStatLarge.Critical = true;
                         break;
                     case "regen":
+                        Stats.EnemyStatSmall.Regen = true;
                         Stats.EnemyStatMedium.Regen = true;
+                        Stats.EnemyStatLarge.Regen = true;
                         break;
                     default:
                         break;
