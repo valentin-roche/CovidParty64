@@ -48,9 +48,9 @@ public class LevelFlowManager : MonoBehaviour
         }
         if(spawnerScript.LiveEn.Count() <= 0 && currentWave <= Waves.Count() && !BossFight)
         {
+            BossFight = true;
             Debug.Log("Spawning boss");
             spawBoss();
-            BossFight = true;
         }
         if (spawnerScript.LiveEn.Count() <= 0 && BossFight)
         {

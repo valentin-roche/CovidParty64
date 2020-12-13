@@ -173,6 +173,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3132500987995086877, guid: 566dbdc6ebd6ce346b7f52c2b19cd858, type: 3}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 247485733}
     - target: {fileID: 5070969638683570044, guid: 566dbdc6ebd6ce346b7f52c2b19cd858, type: 3}
       propertyPath: m_Name
       value: LVL_Base
@@ -226,6 +230,11 @@ PrefabInstance:
 --- !u!1 &247485732 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5735208574801772008, guid: 566dbdc6ebd6ce346b7f52c2b19cd858, type: 3}
+  m_PrefabInstance: {fileID: 247485731}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &247485733 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6915064365704716353, guid: 566dbdc6ebd6ce346b7f52c2b19cd858, type: 3}
   m_PrefabInstance: {fileID: 247485731}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &326297166

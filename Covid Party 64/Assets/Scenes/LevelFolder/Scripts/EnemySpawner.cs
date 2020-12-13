@@ -22,10 +22,6 @@ public class EnemySpawner : MonoBehaviour
     // List of alive enemies
     public List<GameObject> LiveEn;
 
-    // Spawner interval values
-    public float SpawnRate;
-    private float readyForNextMob = 0;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -86,60 +82,61 @@ public class EnemySpawner : MonoBehaviour
         // Variable containing the valid category indexes
         List<int> remainingCategories = new List<int>(new int[] { 0, 1, 2 });
 
+        // Offset value for mob spawning to avoid packing
+        float x_offset = 0f;
+
         // While there still are valid categories (i.e : the index of the cat is still in the list)
         while (remainingCategories.Count() > 0)
         {
-            // If we can't spawn an enemy now, do nothing (does not decrease the remaining enemies count)
-            if (Time.time < readyForNextMob)
-            {
-            }
-            else
-            {
-                //Choose a random category based on the length of the hashtable
-                rCat = Random.Range(0, remainingCategories.Count());
+            //Choose a random category's index based on the length of the remaining types list
+            rCat = Random.Range(0, remainingCategories.Count());
+            Transform modified_pos = SpawnPoint.transform;
+            modified_pos.position += new Vector3(x_offset, 0, 0);
 
-                // Switch based on the index of the random category 
-                switch (remainingCategories[rCat])
-                {
-                    // Small enemy
-                    case 0:
-                        GameObject enemySmall = Instantiate(prefabEnemySmall, SpawnPoint.transform);
-                        LiveEn.Add(enemySmall);
-                        GameObject enemySmall2 = Instantiate(prefabEnemySmall, SpawnPoint.transform);
-                        LiveEn.Add(enemySmall2);
-                        remainingByCat["small"] = (int)remainingByCat["small"] - 2;
-                        if ((int)remainingByCat["small"] == 0)
-                        {
-                            int indexToDelete = remainingCategories.FindIndex(index => index == 0);
-                            remainingCategories.RemoveAt(indexToDelete);
-                        }
-                        break;
-                    // Medium enemy
-                    case 1:
-                        GameObject enemyMed = Instantiate(prefabEnemyMedium, SpawnPoint.transform);
-                        LiveEn.Add(enemyMed);
-                        remainingByCat["medium"] = (int)remainingByCat["medium"] - 1;
-                        if ((int)remainingByCat["medium"] == 0)
-                        {
-                            int indexToDelete = remainingCategories.FindIndex(index => index == 1);
-                            remainingCategories.RemoveAt(indexToDelete);
-                        }
-                        break;
-                    // Big enemy
-                    case 2:
-                        GameObject enemyBig = Instantiate(prefabEnemyLarge, SpawnPoint.transform);
-                        LiveEn.Add(enemyBig);
-                        remainingByCat["big"] = (int)remainingByCat["big"] - 1;
-                        if ((int)remainingByCat["big"] == 0)
-                        {
-                            int indexToDelete = remainingCategories.FindIndex(index => index == 2);
-                            remainingCategories.RemoveAt(indexToDelete);
-                        }
-                        break;
-                }
-
-                readyForNextMob = Time.time + SpawnRate;
+            // Switch based on the index of the random category 
+            switch (remainingCategories[rCat])
+            {
+                // Small enemy
+                case 0:
+                    GameObject enemySmall = Instantiate(prefabEnemySmall, modified_pos);
+                    LiveEn.Add(enemySmall);
+                    GameObject enemySmall2 = Instantiate(prefabEnemySmall, modified_pos);
+                    LiveEn.Add(enemySmall2);
+                    remainingByCat["small"] = (int)remainingByCat["small"] - 2;
+                    if ((int)remainingByCat["small"] == 0)
+                    {
+                        int indexToDelete = remainingCategories.FindIndex(index => index == 0);
+                        remainingCategories.RemoveAt(indexToDelete);
+                        Debug.Log(remainingCategories);
+                    }
+                    break;
+                // Medium enemy
+                case 1:
+                    GameObject enemyMed = Instantiate(prefabEnemyMedium, modified_pos);
+                    LiveEn.Add(enemyMed);
+                    remainingByCat["medium"] = (int)remainingByCat["medium"] - 1;
+                    if ((int)remainingByCat["medium"] == 0)
+                    {
+                        int indexToDelete = remainingCategories.FindIndex(index => index == 1);
+                        remainingCategories.RemoveAt(indexToDelete);
+                        Debug.Log(remainingCategories);
+                    }
+                    break;
+                // Big enemy
+                case 2:
+                    GameObject enemyBig = Instantiate(prefabEnemyLarge, modified_pos);
+                    LiveEn.Add(enemyBig);
+                    remainingByCat["big"] = (int)remainingByCat["big"] - 1;
+                    if ((int)remainingByCat["big"] == 0)
+                    {
+                        int indexToDelete = remainingCategories.FindIndex(index => index == 2);
+                        remainingCategories.RemoveAt(indexToDelete);
+                        Debug.Log(remainingCategories);
+                    }
+                    break;
             }
+
+            x_offset += 1f;
         }
 
         SpawnSide += 1;

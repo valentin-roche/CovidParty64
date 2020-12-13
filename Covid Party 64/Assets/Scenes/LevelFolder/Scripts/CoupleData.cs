@@ -225,7 +225,7 @@ public class CoupleData : MonoBehaviour
     {
         HandleChoice.applyMod(couple.EnemyMod);
         HandleChoice.applyMod(couple.PlayerMod);
-        Stats.PlayerStat.ChosenCouples.Add(couple);
+        // Stats.PlayerStat.ChosenCouples.Add(couple);
 
         Debug.Log("Load next level");
         LevelsData.LoadNextLevel();
