@@ -20,8 +20,6 @@ public class spitBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-
-        //if(hitInfo.tag.Equals("EnemyS") == false || hitInfo.tag.Equals("EnemyM") == false || hitInfo.tag.Equals("EnemyL") == false || hitInfo.tag.Equals("SpitBullet") == false)
         switch (hitInfo.tag)
         {
             case "EnemyS":
@@ -44,7 +42,7 @@ public class spitBullet : MonoBehaviour
                     Destroy(gameObject);
                 }
                 break;
-            case "Untagged":
+            case "Wall":
                 Destroy(gameObject);
                 break;
         }           
