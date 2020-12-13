@@ -65,7 +65,6 @@ public class EnemyLargeAI : MonoBehaviour
         dropChance = Stats.EnemyStatMedium.DropChance;
         life = maxLife;
         range = Stats.EnemyStatMedium.Range;
-        spit = true; range = 10;
 
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
