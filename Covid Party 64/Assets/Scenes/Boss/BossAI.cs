@@ -28,7 +28,7 @@ public class BossAI : MonoBehaviour
     // AI variables
     public Transform target;
     public float nextWaypointDistance = 3f;
-    public Transform enemyGFX;
+    private Transform enemyGFX;
     private bool isGrounded;
     private float groundCheckRadius;
     Pathfinding.Path path;
@@ -40,7 +40,7 @@ public class BossAI : MonoBehaviour
     public Transform groundCheck;
 
     // Animator variable
-    //public Animator animator;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -145,9 +145,8 @@ public class BossAI : MonoBehaviour
         //Vérification de collision avec le sol
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
 
-        /*if (isGrounded == true)
+        if (isGrounded == true)
             animator.SetBool("isJumping", false);
-        */
         
         //Empecher l'accéleration
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed, speed), Mathf.Clamp(rb.velocity.y, -speed, speed));
@@ -198,7 +197,7 @@ public class BossAI : MonoBehaviour
 
     //Gestion des différentes collisions
     // TODO unomment when boss animator is done
-    /*public void OnTriggerEnter2D(Collider2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.tag)
         {
@@ -206,7 +205,7 @@ public class BossAI : MonoBehaviour
                 if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
                 {
                     rb.AddForce(Vector2.up * 300f);
-                    // animator.SetBool("isJumping", true);
+                    animator.SetBool("isJumping", true);
                 }
                 break;
 
@@ -214,9 +213,9 @@ public class BossAI : MonoBehaviour
                 if (path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
                 {
                     rb.AddForce(Vector2.up * 150f);
-                    // animator.SetBool("isJumping", true);
+                    animator.SetBool("isJumping", true);
                 }
                 break;
         }
-    }*/
+    }
 }
