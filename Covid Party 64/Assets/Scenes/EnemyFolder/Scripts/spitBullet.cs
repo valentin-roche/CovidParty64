@@ -44,7 +44,7 @@ public class spitBullet : MonoBehaviour
                     Destroy(gameObject);
                 }
                 break;
-            case "Untagged":
+            case "Wall":
                 Destroy(gameObject);
                 break;
         }           
