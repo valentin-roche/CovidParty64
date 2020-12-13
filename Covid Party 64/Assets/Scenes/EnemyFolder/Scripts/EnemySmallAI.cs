@@ -17,6 +17,7 @@ public class EnemySmallAI : MonoBehaviour
     private int maxLife;
 
     private bool
+        updateSpeed,
        spit,
        dodge,
        block,
@@ -55,7 +56,7 @@ public class EnemySmallAI : MonoBehaviour
         regen = Stats.EnemyStatSmall.Regen;
         maxLife = Stats.EnemyStatSmall.Life;
         life = maxLife;
-
+        updateSpeed = true;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -90,7 +91,12 @@ public class EnemySmallAI : MonoBehaviour
 
     private void Update()
     {
-        speed = Stats.EnemyStatSmall.Speed;
+        Debug.Log("Update : " + updateSpeed);
+        if (updateSpeed)
+        {
+            Debug.Log("Updating speed");
+            speed = Stats.EnemyStatSmall.Speed;
+        }        
         if (life <= 0)
         {
             death();
@@ -175,6 +181,26 @@ public class EnemySmallAI : MonoBehaviour
         SoundManager.PlayHitSound();
         life = life - (damage * 100) / armor;
         Debug.Log("Vie : " + damage);
+    }
+
+    //Start locally the coroutine to apply stun effect
+    public void  StunFromPlayer()
+    {
+        StartCoroutine(Stun());
+    }
+    //Local coroutine to stun enemy
+    private IEnumerator Stun()
+    {
+        Debug.Log("Before set false : " + updateSpeed);
+        this.updateSpeed = false;
+        Debug.Log("After set false : " + updateSpeed);
+        int speedTemp = speed;
+        speed = 0;
+        Debug.Log("Before wait");
+        yield return new WaitForSecondsRealtime(2);
+        Debug.Log("After wait");
+        speed = speedTemp;
+        updateSpeed = true;
     }
 
     //Régénération

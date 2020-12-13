@@ -49,14 +49,16 @@ public class GelBullet : MonoBehaviour
 
         Destroy(gameObject, animDestroyDuration);
 
+        
+        //Regen Player if DrainAtTouch bonus is active
         if (Stats.PlayerStat.DrainAtTouch)
         {
             PlayerStatsHandler.instance.Drain();
         }
-
+        //Chance to double damage if Critical bonus is active
         if (Stats.PlayerStat.Critical)
         {
-            int rand = Random.Range(0, 5); // Genere un nombre aleatoire entre 0 et 4
+            int rand = Random.Range(0, 5); // Generate a random number between 0 and 4
 
             if (rand == 1)
             {
@@ -68,15 +70,31 @@ public class GelBullet : MonoBehaviour
         if (collision.gameObject.tag == "EnemyS")
         {
             collision.gameObject.GetComponent<EnemySmallAI>().TakeDamage(damage);
+            //Apply stun effect to enemy
+            if (Stats.PlayerStat.Stun)
+            {
+                Debug.Log("Stun method call");
+                collision.gameObject.GetComponent<EnemySmallAI>().StunFromPlayer();
+            }
 
         }
         if (collision.gameObject.tag == "EnemyM")
         {
             collision.gameObject.GetComponent<EnemyMedAI>().TakeDamage(damage);
+            //Apply stun effect to enemy
+            if (Stats.PlayerStat.Stun)
+            {
+                collision.gameObject.GetComponent<EnemyMedAI>().StunFromPlayer();
+            }
         }
         if (collision.gameObject.tag == "EnemyL")
         {
             collision.gameObject.GetComponent<EnemyLargeAI>().TakeDamage(damage);
+            //Apply stun effect to enemy
+            if (Stats.PlayerStat.Stun)
+            {
+                collision.gameObject.GetComponent<EnemyLargeAI>().StunFromPlayer();
+            }
         }
         if (collision.gameObject.name == "BossPrefab(Clone)" || collision.gameObject.name == "BossSprite")
         {

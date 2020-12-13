@@ -17,6 +17,7 @@ public class EnemyMedAI : MonoBehaviour
     private int maxLife;
 
     private bool
+        updateSpeed,
        spit,
        dodge,
        block,
@@ -53,7 +54,7 @@ public class EnemyMedAI : MonoBehaviour
         regen = Stats.EnemyStatMedium.Regen;
         maxLife = Stats.EnemyStatMedium.Life;
         life = maxLife;
-
+        updateSpeed = true;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -96,7 +97,11 @@ public class EnemyMedAI : MonoBehaviour
 
     private void Update()
     {
-        speed = Stats.EnemyStatMedium.Speed;
+        if (updateSpeed)
+        {
+            speed = Stats.EnemyStatMedium.Speed;
+        }
+        
         if (life <= 0)
         {
             death();
@@ -181,6 +186,25 @@ public class EnemyMedAI : MonoBehaviour
         SoundManager.PlayHitSound();
         life = life - (damage * 100) / armor;
     }
+    //Start locally the coroutine to apply stun effect
+    public void StunFromPlayer()
+    {
+        StartCoroutine(Stun());
+    }
+    //Local coroutine to stun enemy
+    private IEnumerator Stun()
+    {
+        Debug.Log("Before set false : " + updateSpeed);
+        this.updateSpeed = false;
+        Debug.Log("After set false : " + updateSpeed);
+        int speedTemp = speed;
+        speed = 0;
+        Debug.Log("Before wait");
+        yield return new WaitForSecondsRealtime(2);
+        Debug.Log("After wait");
+        speed = speedTemp;
+        updateSpeed = true;
+    }
 
     //Régénération
     private void Regen()
@@ -201,10 +225,10 @@ public class EnemyMedAI : MonoBehaviour
             case "Jump":
                 if (currentWaypoint + 1 <= path.vectorPath.Count)
                 {
-                    Debug.Log("gros chien 3 ground : "+isGrounded);
-                    Debug.Log("gros chien 3 y : " + path.vectorPath[currentWaypoint].y);
-                    Debug.Log("gros chien 3 y+1 : " + path.vectorPath[currentWaypoint + 1].y);
-                    Debug.Log("gros chien 3 velocity : " + rb.velocity);
+                    //Debug.Log("gros chien 3 ground : "+isGrounded);
+                    //Debug.Log("gros chien 3 y : " + path.vectorPath[currentWaypoint].y);
+                    //Debug.Log("gros chien 3 y+1 : " + path.vectorPath[currentWaypoint + 1].y);
+                    //Debug.Log("gros chien 3 velocity : " + rb.velocity);
                     if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
                     {
                         Debug.Log("gros chien 4");

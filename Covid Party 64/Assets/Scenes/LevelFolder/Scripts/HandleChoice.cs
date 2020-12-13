@@ -132,7 +132,7 @@ public class HandleChoice : MonoBehaviour
                         break;
                     case "stun":
                         //TODO uncomment when stun zone implemented
-                        //Stats.PlayerStat.Stun = true;
+                        Stats.PlayerStat.Stun = true;
                         break;
                     case "IncreasedBossDamage":
                         Stats.PlayerStat.IncreasedBossDamage = true;

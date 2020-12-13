@@ -15,6 +15,7 @@ public class EnemyLargeAI : MonoBehaviour
     private int maxLife;
 
     private bool
+        updateSpeed,
        spit,
        dodge,
        block,
@@ -53,7 +54,7 @@ public class EnemyLargeAI : MonoBehaviour
         regen = Stats.EnemyStatLarge.Regen;
         maxLife = Stats.EnemyStatLarge.Life;
         life = maxLife;
-
+        updateSpeed = true;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -88,7 +89,10 @@ public class EnemyLargeAI : MonoBehaviour
 
     private void Update()
     {
-        speed = Stats.EnemyStatLarge.Speed;
+        if (updateSpeed)
+        {
+            speed = Stats.EnemyStatLarge.Speed;
+        }        
         if (life <= 0)
         {
             death();
@@ -183,6 +187,26 @@ public class EnemyLargeAI : MonoBehaviour
         {
             life += 10;
         }
+    }
+    //Apply stun effect
+    //Start locally the coroutine to apply stun effect
+    public void StunFromPlayer()
+    {
+        StartCoroutine(Stun());
+    }
+    //Local coroutine to stun enemy
+    private IEnumerator Stun()
+    {
+        Debug.Log("Before set false : " + updateSpeed);
+        this.updateSpeed = false;
+        Debug.Log("After set false : " + updateSpeed);
+        int speedTemp = speed;
+        speed = 0;
+        Debug.Log("Before wait");
+        yield return new WaitForSecondsRealtime(2);
+        Debug.Log("After wait");
+        speed = speedTemp;
+        updateSpeed = true;
     }
 
     //Gestion des différentes collisions

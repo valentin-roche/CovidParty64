@@ -51,9 +51,9 @@ public class WeaponSwitch : MonoBehaviour
     void Update()
     {
        // Code de test pour switch weapon
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Stats.PlayerStat.WeaponLevel++;
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    Stats.PlayerStat.WeaponLevel++;
             //if(currentWeaponIndex == totalWeapons)
             //{
             //    guns[currentWeaponIndex].SetActive(false);
@@ -68,7 +68,7 @@ public class WeaponSwitch : MonoBehaviour
             //}
 
 
-        }
+        //}
         //Test if current weapon is up to date and if max weapon level is reached
         if (currentWeaponIndex != Stats.PlayerStat.WeaponLevel - 1 && (Stats.PlayerStat.WeaponLevel <= totalWeapons))
         {
@@ -78,5 +78,4 @@ public class WeaponSwitch : MonoBehaviour
         }
     }
 
-    public int TotalWeapon { get => totalWeapons; set => totalWeapons = value; }
 }

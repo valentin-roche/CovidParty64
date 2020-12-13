@@ -30,6 +30,7 @@ namespace Stats
 
         private static bool
             lowerSpeed = false,
+            stun = false,
            lowerContaminationArea = false,
            slowerContamination = false,
            biggerJump = false,
@@ -50,7 +51,6 @@ namespace Stats
            block = false,
            critical = false,
            slow = false,
-           fly = false,
            regen = false;
 
         public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
@@ -73,7 +73,6 @@ namespace Stats
         public static bool Block { get => block; set => block = value; }
         public static bool Critical { get => critical; set => critical = value; }
         public static bool Slow { get => slow; set => slow = value; }
-        public static bool Fly { get => fly; set => fly = value; }
         public static bool Regen { get => regen; set => regen = value; }
         public static bool IncreasedBossDamage { get => increasedBossDamage; set => increasedBossDamage = value; }
         public static bool IncreasedSpeed { get => increasedSpeed; set => increasedSpeed = value; }
@@ -81,6 +80,7 @@ namespace Stats
         public static bool BiggerJump { get => biggerJump; set => biggerJump = value; }
         public static bool LowerContaminationArea { get => lowerContaminationArea; set => lowerContaminationArea = value; }
         public static bool DrainAtTouch { get => drainAtTouch; set => drainAtTouch = value; }
+        public static bool Stun { get => stun; set => stun = value; }
 
         public static Dictionary<string, int> PlayerInventory { get => playerInventory; set => playerInventory = value; }
         
@@ -112,79 +112,6 @@ namespace Stats
             {
                 Speed = (int)Math.Truncate(Speed * 0.95);
             }         
-            else if (slowerContamination)
-            {
-
-            }
-            else if (biggerJump)
-            {
-               
-            }
-            else if (extendRange)
-            {
-
-            }
-            else if (increasedDropRate)
-            {
-
-            }
-            
-            else if (increasedAttackSpeed)
-            {
-
-            }
-            else if (slowEnnemy)
-            {
-
-            }
-            else if (increasedSpeed)
-            {
-
-            }
-            else if (explosionAtTouch)
-            {
-
-            }
-            else if (purifiantLaserPlus)
-            {
-
-            }
-            else if (drainAtTouch)
-            {
-
-            }
-            else if (drainAtProximity)
-            {
-
-            }
-            else if (getBackBonusChance)
-            {
-
-            }
-            else if (additionalVaccine)
-            {
-
-            }
-            else if (stunCrit)
-            {
-
-            }
-            else if (dodge)
-            {
-
-            }
-            else if (block)
-            {
-
-            }
-            else if (critical)
-            {
-
-            }
-            else if (slow)
-            {
-
-            }
         }
     }
 }

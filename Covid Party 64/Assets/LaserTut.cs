@@ -131,15 +131,30 @@ public class LaserTut : MonoBehaviour
             if (target.transform.tag == "EnemyS")
             {
                 target.transform.GetComponent<EnemySmallAI>().TakeDamage(DPS);
+                //Apply stun effect to enemy
+                if (Stats.PlayerStat.Stun)
+                {
+                    target.transform.GetComponent<EnemySmallAI>().StunFromPlayer();
+                }
 
             }
             if (target.transform.tag == "EnemyM")
             {
                 target.transform.GetComponent<EnemyMedAI>().TakeDamage(DPS);
+                //Apply stun effect to enemy
+                if (Stats.PlayerStat.Stun)
+                {
+                    target.transform.GetComponent<EnemyMedAI>().StunFromPlayer();
+                }
             }
             if (target.transform.tag == "EnemyL")
             {
                 target.transform.GetComponent<EnemyLargeAI>().TakeDamage(DPS);
+                //Apply stun effect to enemy
+                if (Stats.PlayerStat.Stun)
+                {
+                    target.transform.GetComponent<EnemyLargeAI>().StunFromPlayer();
+                }
             }
             if (target.transform.name == "BossPrefab(Clone)" || target.transform.name == "BossSprite")
             {
