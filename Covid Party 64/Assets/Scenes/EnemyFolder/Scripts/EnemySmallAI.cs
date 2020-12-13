@@ -15,13 +15,13 @@ public class EnemySmallAI : MonoBehaviour
     public int life;
     public int armor;
     private int maxLife;
+    private int range;
     private int dropChance;
 
     private bool
        spit,
        dodge,
        block,
-       critical,
        slow,
        fly,
        regen;
@@ -41,6 +41,10 @@ public class EnemySmallAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    private bool facingRight = true;
+    public Transform spitPoint;
+    public GameObject spitBullet;
+
     public GameObject gelBottle;
     public GameObject mask;
     public GameObject radio;
@@ -54,13 +58,14 @@ public class EnemySmallAI : MonoBehaviour
         spit = Stats.EnemyStatSmall.Spit;
         dodge = Stats.EnemyStatSmall.Dodge;
         block = Stats.EnemyStatSmall.Block;
-        critical = Stats.EnemyStatSmall.Critical;
         slow = Stats.EnemyStatSmall.Slow;
         fly = Stats.EnemyStatSmall.Fly;
         regen = Stats.EnemyStatSmall.Regen;
         maxLife = Stats.EnemyStatSmall.Life;
         dropChance = Stats.EnemyStatMedium.DropChance;
         life = maxLife;
+        range = Stats.EnemyStatMedium.Range;
+        spit = true; range = 10;
 
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
@@ -74,6 +79,20 @@ public class EnemySmallAI : MonoBehaviour
         if (regen == true)
         {
             InvokeRepeating("Regen", 1.0f, 1.0f);
+        }
+
+        //Vol
+        if (fly == true)
+        {
+            rb.angularDrag = 1;
+            rb.gravityScale = 0;
+            rb.drag = 2;
+        }
+
+        //Attaques à distance
+        if (spit == true)
+        {
+            InvokeRepeating("Spit", 2.0f, 2.0f);
         }
     }
 
@@ -142,13 +161,16 @@ public class EnemySmallAI : MonoBehaviour
         }
 
         //Changement d'orientation du sprite
-        if (rb.velocity.x >= 0.01f)
+        if (rb.velocity.x >= 0.01f && !facingRight)
         {
-            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+            facingRight = !facingRight;
+            transform.Rotate(0f, 180f, 0f);
+
         }
-        else if (rb.velocity.x <= -0.01f)
+        else if (rb.velocity.x <= -0.01f && facingRight)
         {
-            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+            facingRight = !facingRight;
+            transform.Rotate(0f, 180f, 0f);
         }
 
         //Changement de couleur en fonction des hp
@@ -180,7 +202,6 @@ public class EnemySmallAI : MonoBehaviour
       
         SoundManager.PlayHitSound();
         life = life - (damage * 100) / armor;
-        Debug.Log("Vie : " + damage);
     }
 
     //Régénération
@@ -204,7 +225,15 @@ public class EnemySmallAI : MonoBehaviour
                 {
                     if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
                     {
-                        rb.AddForce(Vector2.up * 300f);
+                        Debug.Log("gros chien 4");
+                        if (rb.velocity.x < 3)
+                        {
+                            rb.AddForce(Vector2.up * 400f);
+                        }
+                        else
+                        {
+                            rb.AddForce(Vector2.up * 300f);
+                        }
                         animator.SetBool("isJumping", true);
                     }
                 }
@@ -216,9 +245,29 @@ public class EnemySmallAI : MonoBehaviour
                     if (path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
                     {
                         rb.AddForce(Vector2.up * 150f);
+                        if (rb.velocity.x >= 0.01f)
+                        {
+                            rb.AddForce(Vector2.right * 5f);
+                        }
+                        else if (rb.velocity.x <= -0.01f)
+                        {
+                            rb.AddForce(Vector2.left * 5f);
+                        }
                         animator.SetBool("isJumping", true);
                     }
                 }
+                else if (transform.position.x >= target.transform.position.x && rb.velocity.x >= 0.01f)
+                {
+                    rb.AddForce(Vector2.up * 150f);
+                    rb.AddForce(Vector2.right * 5f);
+
+                }
+                else if (transform.position.x <= target.transform.position.x && rb.velocity.x <= -0.01f)
+                {
+                    rb.AddForce(Vector2.up * 150f);
+                    rb.AddForce(Vector2.left * 5f);
+                }
+                animator.SetBool("isJumping", true);
                 break;
 
             case "JumpHigh":
@@ -227,6 +276,17 @@ public class EnemySmallAI : MonoBehaviour
                     if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
                     {
                         rb.AddForce(Vector2.up * 500f);
+                        animator.SetBool("isJumping", true);
+                    }
+                }
+                break;
+
+            case "JumpDown":
+                if (currentWaypoint + 1 <= path.vectorPath.Count)
+                {
+                    if (path.vectorPath[currentWaypoint].y > path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                    {
+                        rb.AddForce(Vector2.up * 100f);
                         animator.SetBool("isJumping", true);
                     }
                 }
@@ -280,6 +340,15 @@ public class EnemySmallAI : MonoBehaviour
         if (life <= (maxLife * 0.25) && life > 0)
         {
             rend.material.color = new Color((255f / 255f), (173f / 255f), (173f / 255f), (255f / 255f));
+        }
+    }
+
+    //Attaques à distance
+    private void Spit()
+    {
+        if (Vector2.Distance(transform.position, target.transform.position) <= range)
+        {
+            Instantiate(spitBullet, spitPoint.position, spitPoint.rotation);
         }
     }
 

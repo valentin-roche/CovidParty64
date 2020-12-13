@@ -55,7 +55,7 @@ public class PlayerStatsHandler : MonoBehaviour
 
     }
 
-    public static void GetContaminate(int _contamination)
+    public void GetContaminate(int _contamination)
     {
         PlayerStat.ContaminationRate += _contamination;
 
@@ -75,11 +75,13 @@ public class PlayerStatsHandler : MonoBehaviour
         int dmgSmall = Stats.EnemyStatSmall.Damage;
         int dmgMed = Stats.EnemyStatMedium.Damage;
         int dmgLarge = Stats.EnemyStatLarge.Damage;
-        int rand = Random.Range(1, 5);
+        int rand;
 
         if (Stats.EnemyStatSmall.Critical == true)
         {
-            if(rand == 1)
+            rand = Random.Range(1, 5);
+
+            if (rand == 1)
             {
                 dmgSmall = dmgSmall * 2;
             }
@@ -87,6 +89,8 @@ public class PlayerStatsHandler : MonoBehaviour
 
         if (Stats.EnemyStatMedium.Critical == true)
         {
+            rand = Random.Range(1, 5);
+
             if (rand == 1)
             {
                 dmgMed = dmgMed * 2;
@@ -95,6 +99,8 @@ public class PlayerStatsHandler : MonoBehaviour
 
         if (Stats.EnemyStatLarge.Critical == true)
         {
+            rand = Random.Range(1, 5);
+
             if (rand == 1)
             {
                 dmgLarge = dmgLarge * 2;

@@ -23,6 +23,7 @@ TagManager:
   - Radio
   - BottleGel
   - SpitBullet
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -180,3 +180,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rb: {fileID: 421388669141920903}
+  animator: {fileID: 7500803854432849101}

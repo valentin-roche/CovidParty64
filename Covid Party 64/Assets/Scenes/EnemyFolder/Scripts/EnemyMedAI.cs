@@ -55,8 +55,7 @@ public class EnemyMedAI : MonoBehaviour
         target = GameObject.Find("Player").transform;
         enemyGFX = this.transform;
         armor = Stats.EnemyStatMedium.Armor;
-        //spit = Stats.EnemyStatMedium.Spit;
-        spit = false;
+        spit = Stats.EnemyStatMedium.Spit;
         dodge = Stats.EnemyStatMedium.Dodge;
         block = Stats.EnemyStatMedium.Block;
         slow = Stats.EnemyStatMedium.Slow;
@@ -65,8 +64,7 @@ public class EnemyMedAI : MonoBehaviour
         maxLife = Stats.EnemyStatMedium.Life;
         dropChance = Stats.EnemyStatMedium.DropChance;
         life = maxLife;
-        //range = Stats.EnemyStatMedium.Range;
-        range = 10;
+        range = Stats.EnemyStatMedium.Range;
 
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
@@ -83,7 +81,7 @@ public class EnemyMedAI : MonoBehaviour
         }
 
         //Vol
-        if(fly == true)
+        if (fly == true)
         {
             rb.angularDrag = 1;
             rb.gravityScale = 0;
@@ -91,7 +89,7 @@ public class EnemyMedAI : MonoBehaviour
         }
 
         //Attaques à distance
-        if(spit == true)
+        if (spit == true)
         {
             InvokeRepeating("Spit", 2.0f, 2.0f);
         }
@@ -224,10 +222,6 @@ public class EnemyMedAI : MonoBehaviour
             case "Jump":
                 if (currentWaypoint + 1 <= path.vectorPath.Count)
                 {
-                    Debug.Log("gros chien 3 ground : "+isGrounded);
-                    Debug.Log("gros chien 3 y : " + path.vectorPath[currentWaypoint].y);
-                    Debug.Log("gros chien 3 y+1 : " + path.vectorPath[currentWaypoint + 1].y);
-                    Debug.Log("gros chien 3 velocity : " + rb.velocity);
                     if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
                     {
                         Debug.Log("gros chien 4");
@@ -348,6 +342,7 @@ public class EnemyMedAI : MonoBehaviour
         }
     }
 
+    //Attaques à distance
     private void Spit()
     {
         if (Vector2.Distance(transform.position, target.transform.position) <= range)

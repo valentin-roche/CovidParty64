@@ -8,7 +8,7 @@ namespace Stats
     {
         private static int
             life = 200,
-            speed = 200,
+            speed = 210,
             range = 0,
             armor = 100,
             atkSpeed = 1,
