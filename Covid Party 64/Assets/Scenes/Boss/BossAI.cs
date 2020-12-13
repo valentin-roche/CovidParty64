@@ -124,7 +124,9 @@ public class BossAI : MonoBehaviour
                 particleRevive.Play();
                 stateMachine.ChangeState(secondPeriod);
                 life = Stats.BossStat.MaxHP;
-            }else
+                hasRevived = true;
+            }
+            else
             {
                 Destroy(gameObject);
             }
