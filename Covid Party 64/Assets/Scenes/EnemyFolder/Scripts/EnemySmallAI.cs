@@ -221,21 +221,17 @@ public class EnemySmallAI : MonoBehaviour
         switch (col.tag)
         {
             case "Jump":
-                if (currentWaypoint + 1 <= path.vectorPath.Count)
+                if (path.vectorPath[currentWaypoint].y < target.transform.position.y && isGrounded)
                 {
-                    if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                    if (rb.velocity.x < 3)
                     {
-                        Debug.Log("gros chien 4");
-                        if (rb.velocity.x < 3)
-                        {
-                            rb.AddForce(Vector2.up * 400f);
-                        }
-                        else
-                        {
-                            rb.AddForce(Vector2.up * 300f);
-                        }
-                        animator.SetBool("isJumping", true);
+                        rb.AddForce(Vector2.up * 400f);
                     }
+                    else
+                    {
+                        rb.AddForce(Vector2.up * 300f);
+                    }
+                    animator.SetBool("isJumping", true);
                 }
                 break;
 
@@ -244,7 +240,7 @@ public class EnemySmallAI : MonoBehaviour
                 {
                     if (path.vectorPath[currentWaypoint].y == path.vectorPath[currentWaypoint + 1].y && isGrounded)
                     {
-                        rb.AddForce(Vector2.up * 150f);
+                        rb.AddForce(Vector2.up * 175f);
                         if (rb.velocity.x >= 0.01f)
                         {
                             rb.AddForce(Vector2.right * 5f);
@@ -256,15 +252,15 @@ public class EnemySmallAI : MonoBehaviour
                         animator.SetBool("isJumping", true);
                     }
                 }
-                else if (transform.position.x >= target.transform.position.x && rb.velocity.x >= 0.01f)
+                else if (transform.position.x >= target.transform.position.x && rb.velocity.x >= 0.01f && isGrounded)
                 {
-                    rb.AddForce(Vector2.up * 150f);
+                    rb.AddForce(Vector2.up * 175f);
                     rb.AddForce(Vector2.right * 5f);
 
                 }
-                else if (transform.position.x <= target.transform.position.x && rb.velocity.x <= -0.01f)
+                else if (transform.position.x <= target.transform.position.x && rb.velocity.x <= -0.01f && isGrounded)
                 {
-                    rb.AddForce(Vector2.up * 150f);
+                    rb.AddForce(Vector2.up * 175f);
                     rb.AddForce(Vector2.left * 5f);
                 }
                 animator.SetBool("isJumping", true);
@@ -281,16 +277,6 @@ public class EnemySmallAI : MonoBehaviour
                 }
                 break;
 
-            case "JumpDown":
-                if (currentWaypoint + 1 <= path.vectorPath.Count)
-                {
-                    if (path.vectorPath[currentWaypoint].y > path.vectorPath[currentWaypoint + 1].y && isGrounded)
-                    {
-                        rb.AddForce(Vector2.up * 100f);
-                        animator.SetBool("isJumping", true);
-                    }
-                }
-                break;
 
             case "EnemyS":
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), col.GetComponent<BoxCollider2D>());

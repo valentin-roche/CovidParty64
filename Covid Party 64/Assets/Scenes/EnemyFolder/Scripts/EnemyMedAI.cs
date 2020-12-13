@@ -220,11 +220,10 @@ public class EnemyMedAI : MonoBehaviour
         switch (col.tag)
         {
             case "Jump":
-                if (currentWaypoint + 1 <= path.vectorPath.Count)
+                /*if (currentWaypoint + 1 <= path.vectorPath.Count)
                 {
-                    if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
+                    if ((path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y || path.vectorPath[currentWaypoint].y < target.transform.position.y) && isGrounded)
                     {
-                        Debug.Log("gros chien 4");
                         if(rb.velocity.x < 3)
                         {
                             rb.AddForce(Vector2.up * 400f);
@@ -235,7 +234,30 @@ public class EnemyMedAI : MonoBehaviour
                         }
                         animator.SetBool("isJumping", true);
                     }
-                } 
+                } else if((transform.position.y < (target.transform.position.y+1)) && isGrounded)
+                {
+                    if (rb.velocity.x < 3)
+                    {
+                        rb.AddForce(Vector2.up * 400f);
+                    }
+                    else
+                    {
+                        rb.AddForce(Vector2.up * 300f);
+                    }
+                    animator.SetBool("isJumping", true);
+                }*/
+                if (path.vectorPath[currentWaypoint].y < target.transform.position.y && isGrounded)
+                {
+                    if (rb.velocity.x < 3)
+                    {
+                        rb.AddForce(Vector2.up * 400f);
+                    }
+                    else
+                    {
+                        rb.AddForce(Vector2.up * 300f);
+                    }
+                    animator.SetBool("isJumping", true);
+                }
                 break;
 
             case "JumpHole":
@@ -255,13 +277,13 @@ public class EnemyMedAI : MonoBehaviour
                         animator.SetBool("isJumping", true);
                     }
                 }
-                else if(transform.position.x >= target.transform.position.x && rb.velocity.x >= 0.01f)
+                else if(transform.position.x >= target.transform.position.x && rb.velocity.x >= 0.01f && isGrounded)
                 {
                     rb.AddForce(Vector2.up * 150f);
                     rb.AddForce(Vector2.right * 5f);
 
                 }
-                else if (transform.position.x <= target.transform.position.x  && rb.velocity.x <= -0.01f)
+                else if (transform.position.x <= target.transform.position.x  && rb.velocity.x <= -0.01f && isGrounded)
                 {
                     rb.AddForce(Vector2.up * 150f);
                     rb.AddForce(Vector2.left * 5f);
