@@ -358,6 +358,8 @@ public class EnemyLargeAI : MonoBehaviour
         int choice;
 
         Destroy(gameObject);
+        EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
+        spawner.CleanList();
 
         if (chance <= dropChance)
         {

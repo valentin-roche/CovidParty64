@@ -358,8 +358,10 @@ public class EnemyMedAI : MonoBehaviour
         int choice;
 
         Destroy(gameObject);
+        EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
+        spawner.CleanList();
 
-        if(chance <= dropChance)
+        if (chance <= dropChance)
         {
             choice = Random.Range(1, 4);
             switch (choice)

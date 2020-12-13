@@ -34,14 +34,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int enIndex = 0; enIndex < LiveEn.Count(); enIndex++)
-        {
-            if (LiveEn[enIndex] == null)
-            {
-                Debug.Log("rm ded enemy");
-                LiveEn.RemoveAt(enIndex);
-            }
-        }
+        CleanList();
     }
 
     public void MakeWave(int cred)
@@ -90,18 +83,19 @@ public class EnemySpawner : MonoBehaviour
         {
             //Choose a random category's index based on the length of the remaining types list
             rCat = Random.Range(0, remainingCategories.Count());
-            Transform modified_pos = SpawnPoint.transform;
-            modified_pos.position += new Vector3(x_offset, 0, 0);
+            Vector3 modified_pos = SpawnPoint.transform.position;
+            modified_pos += new Vector3(x_offset, 0, 0);
 
             // Switch based on the index of the random category 
             switch (remainingCategories[rCat])
             {
                 // Small enemy
                 case 0:
-                    GameObject enemySmall = Instantiate(prefabEnemySmall, modified_pos);
+                    GameObject enemySmall = Instantiate(prefabEnemySmall, modified_pos, Quaternion.identity);
                     LiveEn.Add(enemySmall);
-                    GameObject enemySmall2 = Instantiate(prefabEnemySmall, modified_pos);
+                    GameObject enemySmall2 = Instantiate(prefabEnemySmall, modified_pos, Quaternion.identity);
                     LiveEn.Add(enemySmall2);
+                    Debug.Log("Spawning 2 s enemies");
                     remainingByCat["small"] = (int)remainingByCat["small"] - 2;
                     if ((int)remainingByCat["small"] == 0)
                     {
@@ -112,9 +106,10 @@ public class EnemySpawner : MonoBehaviour
                     break;
                 // Medium enemy
                 case 1:
-                    GameObject enemyMed = Instantiate(prefabEnemyMedium, modified_pos);
+                    GameObject enemyMed = Instantiate(prefabEnemyMedium, modified_pos, Quaternion.identity);
                     LiveEn.Add(enemyMed);
                     remainingByCat["medium"] = (int)remainingByCat["medium"] - 1;
+                    Debug.Log("Spawning 1 m enemy");
                     if ((int)remainingByCat["medium"] == 0)
                     {
                         int indexToDelete = remainingCategories.FindIndex(index => index == 1);
@@ -124,9 +119,10 @@ public class EnemySpawner : MonoBehaviour
                     break;
                 // Big enemy
                 case 2:
-                    GameObject enemyBig = Instantiate(prefabEnemyLarge, modified_pos);
+                    GameObject enemyBig = Instantiate(prefabEnemyLarge, modified_pos, Quaternion.identity);
                     LiveEn.Add(enemyBig);
                     remainingByCat["big"] = (int)remainingByCat["big"] - 1;
+                    Debug.Log("Spawning 1 l enemy");
                     if ((int)remainingByCat["big"] == 0)
                     {
                         int indexToDelete = remainingCategories.FindIndex(index => index == 2);
@@ -156,5 +152,11 @@ public class EnemySpawner : MonoBehaviour
         {
             LiveEn.Clear();
         }
+    }
+
+    // Removes dead mobs references
+    public void CleanList()
+    {
+        LiveEn.RemoveAll(item => item == null);
     }
 }
