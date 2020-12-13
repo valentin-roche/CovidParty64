@@ -15,7 +15,7 @@ namespace Stats
             baseSpeed = 300,
             baseRange = 0,
             baseArmor = 0,
-            baseDamage = 2,
+            baseDamage = 18,
             baseAtkSpeed = 1;
         private static bool
             baseDodge = false;

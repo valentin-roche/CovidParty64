@@ -36,33 +36,36 @@ public class HandleChoice : MonoBehaviour
             {
                 switch (power.AffectedStat)
                 {
-                    case "speed":
-                        Stats.PlayerStat.Speed += modif;
-                        break;
+                    //case "speed":
+                    //    Stats.PlayerStat.Speed += modif;
+                    //    break;
                     case "damage":
                         Stats.PlayerStat.BulletDamage += modif;
+                        Stats.PlayerStat.LaserDPS += modif;
                         break;
-                    case "contaminationDist":
-                        Stats.PlayerStat.ContaminationRate += modif;
-                        break;
+                    //case "contaminationDist":
+                    //    Stats.PlayerStat.ContaminationDist += modif;
+                    //    break;
                     case "armor":
                         Stats.PlayerStat.Armor += modif;
+                        Stats.PlayerStat.MaxContamination += Stats.PlayerStat.Armor;
                         break;
                     case "jump":
                         //TODO uncomment when jump modifier added
-                        //Stats.PlayerStat.Jump += modif;
+                        Stats.PlayerStat.Jump += modif * 100;
                         break;
                     case "projectileDistance":
                         //TODO uncomment when projectile distance modifier added
-                        //Stats.PlayerStat.ProjetcileDistance += modif;
+                        Stats.PlayerStat.ProjectileDistance *= modif;
                         break;
                     case "dropRate":
                         //TODO uncomment when droprate increase procedure defined
                         break;
-                    case "regen":
-                        //TODO uncomment when regenrate implemented
-                        //Stats.PlayerStat.RegenRate += modif;
-                        break;
+                    //case "regen":
+                    //    //TODO uncomment when regenrate implemented
+                    //    //Stats.PlayerStat.RegenRate += modif;
+                        //break;
+                    //Not in CoupleData, equivalent to Armor boost ?
                     case "life":
                         Stats.PlayerStat.MaxContamination += modif;
                         break;
@@ -102,6 +105,16 @@ public class HandleChoice : MonoBehaviour
             {
                 switch (power.AffectedStat)
                 {
+                    case "regen":
+                    //TODO uncomment when regenrate implemented
+                        Stats.PlayerStat.Regen = true;
+                        break;
+                    case "contaminationDist":
+                        Stats.PlayerStat.LowerContaminationArea = true;
+                        break;
+                    case "speed":
+                        Stats.PlayerStat.LowerSpeed = true;
+                        break;
                     //TODO special powers handling
                     case "critical":
                         Stats.PlayerStat.Critical = true;
@@ -111,14 +124,14 @@ public class HandleChoice : MonoBehaviour
                         break;
                     case "lifeSteal":
                         //TODO uncomment when lifesteal bullets implemented
-                        //Stats.PlayerStat.LifeSteal = true;
+                        Stats.PlayerStat.DrainAtTouch = true;
                         break;
                     case "lifeStealZone":
                         //TODO uncomment when lifesteal zone implemented
                         //Stats.PlayerStat.LifeStealZone = true;
                         break;
                     case "stun":
-                        //TODO uncomment when lifesteal zone implemented
+                        //TODO uncomment when stun zone implemented
                         //Stats.PlayerStat.Stun = true;
                         break;
                     case "IncreasedBossDamage":

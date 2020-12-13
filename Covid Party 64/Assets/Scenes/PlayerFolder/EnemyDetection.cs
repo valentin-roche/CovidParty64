@@ -9,6 +9,7 @@ public class EnemyDetection : MonoBehaviour
     public int nbrEnemySmall = 0;
     public int nbrEnemyMedium = 0;
     public int nbrEnemyBig = 0;
+    public int nbrBoss = 0;
 
     public static EnemyDetection instance;
 
@@ -40,6 +41,10 @@ public class EnemyDetection : MonoBehaviour
         nbrEnemyBig = GameObject.FindGameObjectsWithTag("EnemyL")
             .Count(enemyObject => Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y))
         < gameObject.GetComponent<CircleCollider2D>().radius);
+
+        nbrBoss = GameObject.FindGameObjectsWithTag("Boss")
+           .Count(enemyObject => Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), new Vector2(enemyObject.transform.position.x, enemyObject.transform.position.y))
+       < gameObject.GetComponent<CircleCollider2D>().radius);
     }
 
 }

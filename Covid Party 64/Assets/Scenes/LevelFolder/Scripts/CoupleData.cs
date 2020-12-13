@@ -44,14 +44,14 @@ public class CoupleData : MonoBehaviour
             Name = "fastercont",
             DisplayName = "Ennemis plus rapide /\n Distance de contamination réduite",
             EnemyMod = new Power() { Target = "enemy", AffectedStat = "speed", EffectType = "modify", Value = 5 },
-            PlayerMod = new Power() { Target = "player", AffectedStat = "contaminationDist", EffectType = "modify", Value = -5 }
+            PlayerMod = new Power() { Target = "player", AffectedStat = "contaminationDist", EffectType = "enable", Value = -5 }
         },
         new Couple()
         {
             Name = "weakerslower",
             DisplayName = "Ennemis plus faibles /\n Joueur plus lent",
             EnemyMod = new Power() { Target = "enemy", AffectedStat = "health", EffectType = "modify", Value = -10 },
-            PlayerMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "modify", Value = -5 }
+            PlayerMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "enable", Value = -5 }
         },
         new Couple()
         {

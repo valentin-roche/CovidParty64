@@ -11,7 +11,7 @@ public class PlayerStatsHandler : MonoBehaviour
 
     public  HealthBar healthBar;
     private  int minContamination = 0;
-    private  float readyForNextDamage;
+    private  float readyForNextDamage, readyForNextRegenTick;
 
     public Text maskCountText;
     public Text radioCountText;
@@ -34,6 +34,7 @@ public class PlayerStatsHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<CircleCollider2D>().radius = PlayerStat.ContaminationDist;
         initInventory(); //initialisation de l'inventaire à zéro
         PlayerStat.ContaminationRate = minContamination; //contamination du joueur nulle
         healthBar.SetContaminationInit(minContamination); //barre de vie initialisée à zéro
@@ -44,6 +45,17 @@ public class PlayerStatsHandler : MonoBehaviour
     {
         PlayerStat.addBonusEffect();
 
+        //Test si regen active
+        if (PlayerStat.Regen)
+        {
+            //Applique les effets de regen toutes les secondes
+            if (Time.time > readyForNextRegenTick)
+            {
+                readyForNextRegenTick = Time.time + 1;
+                Regen(PlayerStat.RegenTick);//Soigne la contamination du Player de "PlayerStat.RegenTick"
+                healthBar.SetContamination(PlayerStat.ContaminationRate);//Met a jour la barre de vie
+            }
+        }
 
         //prise de dégat du joueur par seconde
         if (Time.time > readyForNextDamage)
@@ -69,24 +81,38 @@ public class PlayerStatsHandler : MonoBehaviour
             return;
         }
     }
+    
+    public static void Regen(int _regenTick)
+    {
+        //ContaminationRate = vie actuelle du joueur
+        //on l'ajoute au dégat que subit le jouer
+        if (PlayerStat.ContaminationRate > 0)
+        {
+            PlayerStat.ContaminationRate -= _regenTick;
+        }
+    }
 
     //calcul des dégats en fonction des ennemis 
     //et du nombre présent dans le circle collider du joueur
     public static int CalculateDamage()
     {
-        int damage;
+        int damage = 0;
         int _nbrEnemySmall = 0;
         int _nbrEnemyMedium = 0;
         int _nbrEnemyBig = 0;
+        int _nbrBoss = 0;
         int dmgSmall = Stats.EnemyStatSmall.Damage;
         int dmgMed = Stats.EnemyStatMedium.Damage;
         int dmgLarge = Stats.EnemyStatLarge.Damage;
+        int dmgBoss = Stats.BossStat.Damage;
         int rand = Random.Range(0, 5);
 
 
+        
+
         //???????????????
         //applique des coups critiques
-        if (Stats.EnemyStatSmall.Critical == true)
+        if (Stats.EnemyStatSmall.Critical)
         {
             if(rand == 1)
             {
@@ -94,7 +120,7 @@ public class PlayerStatsHandler : MonoBehaviour
             }
         }
 
-        if (Stats.EnemyStatMedium.Critical == true)
+        if (Stats.EnemyStatMedium.Critical)
         {
             if (rand == 1)
             {
@@ -102,7 +128,7 @@ public class PlayerStatsHandler : MonoBehaviour
             }
         }
 
-        if (Stats.EnemyStatLarge.Critical == true)
+        if (Stats.EnemyStatLarge.Critical)
         {
             if (rand == 1)
             {
@@ -116,10 +142,27 @@ public class PlayerStatsHandler : MonoBehaviour
             _nbrEnemySmall = EnemyDetection.instance.nbrEnemySmall;
             _nbrEnemyMedium = EnemyDetection.instance.nbrEnemyMedium;
             _nbrEnemyBig = EnemyDetection.instance.nbrEnemyBig;
+            _nbrBoss = EnemyDetection.instance.nbrBoss;
         }
-
         //application des dégats 
-        damage = _nbrEnemySmall * dmgSmall + _nbrEnemyMedium * dmgMed + _nbrEnemyBig* dmgLarge; //Formule à modifier
+        if (Stats.PlayerStat.Dodge)
+        {
+            int rand2 = Random.Range(0, 7);
+            if (rand2 == 1)
+            {
+                damage = 0;
+            }
+            else
+            {
+                damage = _nbrBoss * dmgBoss + _nbrEnemySmall * dmgSmall + _nbrEnemyMedium * dmgMed + _nbrEnemyBig* dmgLarge; //Formule à modifier
+            }
+        }
+        else
+        {
+            damage = _nbrBoss * dmgBoss + _nbrEnemySmall * dmgSmall + _nbrEnemyMedium * dmgMed + _nbrEnemyBig * dmgLarge; //Formule à modifier
+        }
+        
+        
 
         //Saturation du nbr de degats pris
         if (damage >= 25)
@@ -187,6 +230,24 @@ public class PlayerStatsHandler : MonoBehaviour
         instance.maskCountText.text = PlayerStat.PlayerInventory["Mask"].ToString();
         PlayerStat.ContaminationRate = PlayerStat.MaxContamination / 2;
     }
+
+
+    public void Drain()
+    {
+        if(PlayerStat.ContaminationRate >= 2)
+        {
+            PlayerStat.ContaminationRate += 2;
+            healthBar.SetContamination(PlayerStat.ContaminationRate);//Met a jour la barre de vie
+        }
+        else
+        {
+            PlayerStat.ContaminationRate = 0;
+            healthBar.SetContamination(PlayerStat.ContaminationRate);//Met a jour la barre de vie
+        }
+        
+    }
+
+
 
 
     //initialisation de l'inventaire

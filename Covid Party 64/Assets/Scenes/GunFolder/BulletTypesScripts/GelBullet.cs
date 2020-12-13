@@ -10,7 +10,7 @@ public class GelBullet : MonoBehaviour
     public float bulletSpeed;
     public Rigidbody2D rb;
     int damage;
-    float range = 1f;
+    float range;
     float animDestroyDuration = .5f;
     bool collisionBool = false;
 
@@ -49,6 +49,22 @@ public class GelBullet : MonoBehaviour
 
         Destroy(gameObject, animDestroyDuration);
 
+        if (Stats.PlayerStat.DrainAtTouch)
+        {
+            PlayerStatsHandler.instance.Drain();
+        }
+
+        if (Stats.PlayerStat.Critical)
+        {
+            int rand = Random.Range(0, 5); // Genere un nombre aleatoire entre 0 et 4
+
+            if (rand == 1)
+            {
+                damage *= 2;
+            }
+
+        }
+
         if (collision.gameObject.tag == "EnemyS")
         {
             collision.gameObject.GetComponent<EnemySmallAI>().TakeDamage(damage);
@@ -68,8 +84,15 @@ public class GelBullet : MonoBehaviour
         }
         if (collision.gameObject.tag == "Boss")
         {
-            Debug.Log("Boss hit");
-            collision.gameObject.GetComponent<BossAI>().TakeDamage(damage);
+            if (Stats.PlayerStat.IncreasedBossDamage)
+            {
+                collision.gameObject.GetComponent<BossAI>().TakeDamage((int) (damage*1.5));
+            }
+            else
+            {
+                collision.gameObject.GetComponent<BossAI>().TakeDamage(damage);
+            }
+            
         }
     }
 
