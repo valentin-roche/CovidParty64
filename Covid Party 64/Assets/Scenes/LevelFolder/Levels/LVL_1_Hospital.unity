@@ -177,6 +177,22 @@ PrefabInstance:
       propertyPath: AudioSource
       value: 
       objectReference: {fileID: 247485733}
+    - target: {fileID: 5070969636888420400, guid: 566dbdc6ebd6ce346b7f52c2b19cd858, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070969636888420400, guid: 566dbdc6ebd6ce346b7f52c2b19cd858, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070969638355049877, guid: 566dbdc6ebd6ce346b7f52c2b19cd858, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070969638355049877, guid: 566dbdc6ebd6ce346b7f52c2b19cd858, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5070969638683570044, guid: 566dbdc6ebd6ce346b7f52c2b19cd858, type: 3}
       propertyPath: m_Name
       value: LVL_Base
