@@ -38,6 +38,7 @@ public class PlayerStatsHandler : MonoBehaviour
         initInventory(); //initialisation de l'inventaire à zéro
         PlayerStat.ContaminationRate = minContamination; //contamination du joueur nulle
         healthBar.SetContaminationInit(minContamination); //barre de vie initialisée à zéro
+        upArmor();
     }
 
     // Update is called once per frame
@@ -64,6 +65,9 @@ public class PlayerStatsHandler : MonoBehaviour
             GetContaminate(CalculateDamage());//calcul les dégats subits
             healthBar.SetContamination(PlayerStat.ContaminationRate);//augmente la barre de vie en fonction des dégats subits
         }
+
+
+        upArmor();
 
     }
 
@@ -243,6 +247,39 @@ public class PlayerStatsHandler : MonoBehaviour
         {
             PlayerStat.ContaminationRate = 0;
             healthBar.SetContamination(PlayerStat.ContaminationRate);//Met a jour la barre de vie
+        }
+        
+    }
+
+    public void upArmor()
+    { 
+        if(PlayerStat.DefenseLevel == 1)
+        {
+            gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 0);
+        }
+
+        if(PlayerStat.DefenseLevel == 2)
+        {
+            gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 0.68f);
+            gameObject.GetComponent<Renderer>().material.SetFloat("_Width", 0.008f);
+            gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43/255f, 184/255f, 195/255f, 1f));
+            
+
+        }
+
+        if (PlayerStat.DefenseLevel == 3)
+        {
+            gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 2.03f);
+            gameObject.GetComponent<Renderer>().material.SetFloat("_Width", 0.008f);
+            gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43 / 255f, 184 / 255f, 195 / 255f, 1f));
+
+        }
+
+        if (PlayerStat.DefenseLevel== 4)
+        {
+            gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 4.15f);
+            gameObject.GetComponent<Renderer>().material.SetFloat("_Width", 0.0185f);
+            gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43 / 255f, 184 / 255f, 195 / 255f, 1f));
         }
         
     }

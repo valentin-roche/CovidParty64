@@ -42,20 +42,20 @@ Material:
     m_Floats:
     - JustOutline: 0
     - TexturedOutline: 0
-    - _Brightness: 2.25
+    - _Brightness: 1.98
     - _ColorMask: 15
     - _EnableExternalAlpha: 0
     - _SpeedX: 0.003
-    - _SpeedY: 0.003
+    - _SpeedY: -0.4
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Width: 0.0085
+    - _Width: 0.0073
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0.38020647, g: 0.9056604, b: 0.42015323, a: 0}
+    - _OutlineColor: {r: 0.12967247, g: 0.5849056, b: 0, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
