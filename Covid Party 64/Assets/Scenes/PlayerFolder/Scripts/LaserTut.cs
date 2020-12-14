@@ -5,7 +5,6 @@ using UnityEngine;
 public class LaserTut : MonoBehaviour
 {
     //Declaration of objects
-    public Camera cam;
     public LineRenderer lineRenderer;
     public Transform firePoint;
     public GameObject startVFX;
@@ -44,6 +43,7 @@ public class LaserTut : MonoBehaviour
         }
     }
 
+    //Laser and particles activation 
     void EnableLaser()
     {
         lineRenderer.enabled = true;
@@ -54,15 +54,18 @@ public class LaserTut : MonoBehaviour
         }
     }
 
+
     void UpdateLaser()
     {
-        lineRenderer.SetPosition(0, firePoint.position);
-        startVFX.transform.position = firePoint.position;  
-         
-        lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 10);
+        lineRenderer.SetPosition(0, firePoint.position);                //start position of the laser
+        startVFX.transform.position = firePoint.position;               //blue light at the exit of the barrel 
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
+        lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 10);  //end position of the laser
 
+        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);  //object detection
+
+
+        //test if there is an enemy between the start and the end  laser position 
         if (hitInfo && Mathf.Abs(firePoint.position.x - hitInfo.point.x) < Mathf.Abs(firePoint.right.x * 10))
         {
             if(hitInfo.transform.tag == "EnemyS" || hitInfo.transform.tag == "EnemyM" || hitInfo.transform.tag == "EnemyL" || hitInfo.transform.tag == "Boss")
@@ -78,9 +81,11 @@ public class LaserTut : MonoBehaviour
             
         }
 
-        endVFX.transform.position = lineRenderer.GetPosition(1);
+        endVFX.transform.position = lineRenderer.GetPosition(1);  //blue light at the end of the laser position
     }
 
+
+    //Destroy laser
     void DisableLaser()
     {
         lineRenderer.enabled = false;
@@ -91,6 +96,8 @@ public class LaserTut : MonoBehaviour
         }
     }
 
+
+    //Instantiate particles coming out of the blue lights
     void FillLists()
     {
         for(int i = 0; i < startVFX.transform.childCount; i++)
@@ -112,22 +119,23 @@ public class LaserTut : MonoBehaviour
         }
     }
 
+    //Laser dammage on enemies
     void DamageEnemy(int DPS, RaycastHit2D target)
     {
         if (Time.time > readyForNextDamage)
         {
-
+            //apply critical dammage
             if (Stats.PlayerStat.Critical)
             {
                 int rand = Random.Range(0, 5); // Genere un nombre aleatoire entre 0 et 4
 
                 if(rand == 1)
                 {
-                    DPS *= 2;
+                    DPS *= 2; //Dammage per seconds
                 }
                 
             }
-
+            //apply DrainAtTouch effect
             if (Stats.PlayerStat.DrainAtTouch)
             {
                 PlayerStatsHandler.instance.Drain();
@@ -135,6 +143,8 @@ public class LaserTut : MonoBehaviour
 
             readyForNextDamage = Time.time + 0.1f;
             Debug.Log("Damage to : " + target.transform.tag +", DPS : "+DPS);
+
+            //test the enemy type
             if (target.transform.tag == "EnemyS")
             {
                 target.transform.GetComponent<EnemySmallAI>().TakeDamage(DPS);
