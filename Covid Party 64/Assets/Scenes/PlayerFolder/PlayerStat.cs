@@ -18,7 +18,7 @@ namespace Stats
             bulletDamage = 40,
             laserDPS = 30,
             jump = 700,
-            weaponLevel = 1,
+            weaponLevel = 3,
             defenseLevel = 1,
             regenTick = 1;
 
@@ -29,28 +29,14 @@ namespace Stats
             contaminationDist = 4f;
 
         private static bool
+            wallBang = true,
             lowerSpeed = false,
             stun = false,
-           lowerContaminationArea = false,
-           slowerContamination = false,
-           biggerJump = false,
-           extendRange = false,
-           increasedDropRate = false,
            increasedBossDamage = false,
-           slowEnnemy = false,
-           increasedSpeed = false,
-           increasedAttackSpeed = false,
-           explosionAtTouch = false,
-           purifiantLaserPlus = false,
            drainAtTouch = false,
            drainAtProximity = false,
-           getBackBonusChance = false,
-           additionalVaccine = false,
-           stunCrit = false,
            dodge = false,
-           block = false,
            critical = false,
-           slow = false,
            regen = false;
 
         public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
@@ -70,17 +56,12 @@ namespace Stats
 
 
         public static bool Dodge { get => dodge; set => dodge = value; }
-        public static bool Block { get => block; set => block = value; }
         public static bool Critical { get => critical; set => critical = value; }
-        public static bool Slow { get => slow; set => slow = value; }
         public static bool Regen { get => regen; set => regen = value; }
         public static bool IncreasedBossDamage { get => increasedBossDamage; set => increasedBossDamage = value; }
-        public static bool IncreasedSpeed { get => increasedSpeed; set => increasedSpeed = value; }
-        public static bool LowerSpeed { get => lowerSpeed; set => lowerSpeed = value; }
-        public static bool BiggerJump { get => biggerJump; set => biggerJump = value; }
-        public static bool LowerContaminationArea { get => lowerContaminationArea; set => lowerContaminationArea = value; }
         public static bool DrainAtTouch { get => drainAtTouch; set => drainAtTouch = value; }
         public static bool Stun { get => stun; set => stun = value; }
+        public static bool WallBang { get => wallBang; set => wallBang = value; }
 
         public static Dictionary<string, int> PlayerInventory { get => playerInventory; set => playerInventory = value; }
         
@@ -90,29 +71,10 @@ namespace Stats
         {
             contaminationRate = 0;
             speed = 2500;
-            jump = 500;
+            jump = 700;
             Armor = 0;
-            Dodge = false;
-            Block = false;
-            Critical = false;
-            Slow = false;
-            Fly = false;
-            Regen = false;
         }
 
-        public static void addBonusEffect()
-        {
-            //Reduce enemy detection area
-            if (lowerContaminationArea)
-            {
-                ContaminationDist = 0.95f * ContaminationDist;
-            }
-            //Lower Player speed
-            else if (lowerSpeed)
-            {
-                Speed = (int)Math.Truncate(Speed * 0.95);
-            }         
-        }
     }
 }
 

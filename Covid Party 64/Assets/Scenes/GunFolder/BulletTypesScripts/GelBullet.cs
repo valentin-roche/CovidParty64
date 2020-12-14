@@ -26,6 +26,10 @@ public class GelBullet : MonoBehaviour
         Physics2D.IgnoreLayerCollision(9, 10);
         Physics2D.IgnoreLayerCollision(10, 10);
         Physics2D.IgnoreLayerCollision(0, 10);
+        if (PlayerStat.WallBang)
+        {
+            Physics2D.IgnoreLayerCollision(8, 10);
+        }
     }
 
     private void Update()

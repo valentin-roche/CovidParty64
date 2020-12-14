@@ -10067,6 +10067,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5533891240960366398, guid: 3efc544233c623e4191d315cfd66247b, type: 3}
+      propertyPath: m_TagString
+      value: Foundation
+      objectReference: {fileID: 0}
     - target: {fileID: 5533891240997169661, guid: 3efc544233c623e4191d315cfd66247b, type: 3}
       propertyPath: m_Color.r
       value: 0.3764706

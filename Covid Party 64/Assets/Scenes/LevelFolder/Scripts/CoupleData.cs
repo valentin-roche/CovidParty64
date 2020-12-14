@@ -42,16 +42,16 @@ public class CoupleData : MonoBehaviour
         new Couple()
         {
             Name = "fastercont",
-            DisplayName = "Ennemis plus rapide /\n Distance de contamination réduite",
+            DisplayName = "Distance de contamination réduite /\n Ennemis plus  rapides",
             EnemyMod = new Power() { Target = "enemy", AffectedStat = "speed", EffectType = "modify", Value = 5 },
-            PlayerMod = new Power() { Target = "player", AffectedStat = "contaminationDist", EffectType = "enable", Value = -5 }
+            PlayerMod = new Power() { Target = "player", AffectedStat = "contaminationDist", EffectType = "modify", Value = -5 }
         },
         new Couple()
         {
             Name = "weakerslower",
-            DisplayName = "Ennemis plus faibles /\n Joueur plus lent",
+            DisplayName = "Joueur plus lent /\n Ennemis plus faibles",
             EnemyMod = new Power() { Target = "enemy", AffectedStat = "health", EffectType = "modify", Value = -10 },
-            PlayerMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "enable", Value = -5 }
+            PlayerMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "enable", Value = -200 }
         },
         new Couple()
         {
@@ -138,14 +138,14 @@ public class CoupleData : MonoBehaviour
         {
             Name = "slowerstronger",
             DisplayName = "Votre vitesse est réduite /\n Dégâts de projectiles considérablement augmentés",
-            EnemyMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "modify", Value = -5 },
-            PlayerMod = new Power() { Target = "player", AffectedStat = "damage", EffectType = "enable", Value = Stats.PlayerStat.BulletDamage},
+            EnemyMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "modify", Value = -200 },
+            PlayerMod = new Power() { Target = "player", AffectedStat = "damage", EffectType = "modify", Value = 20},
         },
         new Couple()
         {
             Name = "regenstun",
             DisplayName = "Les ennemis se régénèrent /\n Les dégâts critiques étourdissent les ennemis ",
-            EnemyMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "modify", Value = -5 },
+            EnemyMod = new Power() { Target = "player", AffectedStat = "speed", EffectType = "modify", Value = -200 },
             PlayerMod = new Power() { Target = "player", AffectedStat = "stun", EffectType = "enable", Value = 1},
         },
         new Couple()

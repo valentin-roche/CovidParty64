@@ -44,8 +44,6 @@ public class PlayerStatsHandler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        PlayerStat.addBonusEffect();
-
         //Test si regen active
         if (PlayerStat.Regen)
         {
