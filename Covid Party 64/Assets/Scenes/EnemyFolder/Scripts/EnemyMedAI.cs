@@ -74,7 +74,7 @@ public class EnemyMedAI : MonoBehaviour
 
         groundCheckRadius = 0.25f;
         collisionLayer = LayerMask.GetMask("Foundation");
-
+        Physics2D.IgnoreLayerCollision(11, 13);
         //Régénération
         if (regen == true)
         {

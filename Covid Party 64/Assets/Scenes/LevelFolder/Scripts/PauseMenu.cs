@@ -11,8 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject PauseMenuUI;
     private bool isPaused = false;
     public string mainMenuScene;
-    public Text EnemyEffects;
-    public Text PlayerEffects;
+    public Text Effects;
 
     
 
@@ -57,16 +56,12 @@ public class PauseMenu : MonoBehaviour
 
     public void effectsText()
     {
-        string playerEffects = "";
-        string enemyEffects = "";
+        string effects = "";
         for(int i = 0; i < PlayerStat.ChosenCouples.Count; i++)
         {
-            string[] split = PlayerStat.ChosenCouples[i].DisplayName.Split('\n');
-            playerEffects = playerEffects + split[0] + "\n";
-            enemyEffects = enemyEffects + split[1] + "\n";
+            effects += PlayerStat.ChosenCouples[i].DisplayName + "\n";
 
         }
-        PlayerEffects.text = playerEffects;
-        EnemyEffects.text = enemyEffects;
+        Effects.text = effects;
     }
 }

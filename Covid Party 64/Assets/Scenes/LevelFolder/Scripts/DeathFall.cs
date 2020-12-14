@@ -20,6 +20,9 @@ public class DeathFall : MonoBehaviour
     {
         switch (col.tag)
         {
+            case "Player":
+                col.gameObject.GetComponent<PlayerStatsHandler>().Kill();
+                break;
             case "EnemyS":
                 col.gameObject.GetComponent<EnemySmallAI>().death();
                 break;

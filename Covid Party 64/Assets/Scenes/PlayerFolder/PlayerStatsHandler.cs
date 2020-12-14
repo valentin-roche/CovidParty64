@@ -70,7 +70,7 @@ public class PlayerStatsHandler : MonoBehaviour
     }
 
     //dégats donnés au joeur
-    public static void GetContaminate(int _contamination)
+    public void GetContaminate(int _contamination)
     {
         //ContaminationRate = vie actuelle du joueur
         //on l'ajoute au dégat que subit le jouer
@@ -182,7 +182,7 @@ public class PlayerStatsHandler : MonoBehaviour
     }
 
     //Test possession masque + mort
-    public static void Die()
+    public void Die()
     {
         //si le joueur possède un masque on affiche le menu de respawn 
         //permettant de recommencer le niveau
@@ -202,7 +202,7 @@ public class PlayerStatsHandler : MonoBehaviour
     }
 
     //mort du joueur
-    public static void Kill()
+    public void Kill()
     {
         Debug.Log("Kill method called");
         Debug.Log("Le joueur a été contaminé ! GAME OVER");
@@ -244,7 +244,7 @@ public class PlayerStatsHandler : MonoBehaviour
     {
         if(PlayerStat.ContaminationRate >= 2)
         {
-            PlayerStat.ContaminationRate += 2;
+            PlayerStat.ContaminationRate -= 1;
             healthBar.SetContamination(PlayerStat.ContaminationRate);//Met a jour la barre de vie
         }
         else
@@ -275,7 +275,7 @@ public class PlayerStatsHandler : MonoBehaviour
         {
             gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 2.03f);
             gameObject.GetComponent<Renderer>().material.SetFloat("_Width", 0.008f);
-            gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43 / 255f, 184 / 255f, 195 / 255f, 1f));
+            gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43/255f, 184/255f, 195/255f, 1f));
 
         }
 
@@ -283,7 +283,7 @@ public class PlayerStatsHandler : MonoBehaviour
         {
             gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 4.15f);
             gameObject.GetComponent<Renderer>().material.SetFloat("_Width", 0.0185f);
-            gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43 / 255f, 184 / 255f, 195 / 255f, 1f));
+            gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43/255f, 184/255f, 195/255f, 1f));
         }
         
     }

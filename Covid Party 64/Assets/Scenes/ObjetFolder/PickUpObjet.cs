@@ -7,7 +7,7 @@ public class PickUpObjet : MonoBehaviour
     {
         Physics2D.IgnoreLayerCollision(11, 13);
         Physics2D.IgnoreLayerCollision(10, 13);
-
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

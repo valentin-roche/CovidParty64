@@ -29,7 +29,7 @@ public class WeaponSwitch : MonoBehaviour
     {
         totalWeapons = weaponHolder.transform.childCount;  //compte le nombre d'arme disponible
         guns = new GameObject[totalWeapons];                
-        Debug.Log("Nombre d'armes détectées : "+totalWeapons);
+        Debug.Log("WEAPON : Nombre d'armes détectées : "+totalWeapons);
 
         //création d'un tableau contenant toutes les armes
         for(int i = 0; i < totalWeapons; i++)
@@ -39,7 +39,13 @@ public class WeaponSwitch : MonoBehaviour
         }
 
         //initialisation de l'arme de niveau 1
-        currentWeaponIndex = Stats.PlayerStat.WeaponLevel - 1;
+        if(Stats.PlayerStat.WeaponLevel > totalWeapons)
+        {
+            Stats.PlayerStat.WeaponLevel = totalWeapons;
+            currentWeaponIndex = Stats.PlayerStat.WeaponLevel - 1;
+        }
+        
+        
         //currentWeaponIndex = 0;
 
         guns[currentWeaponIndex].SetActive(true);
@@ -50,10 +56,10 @@ public class WeaponSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    Stats.PlayerStat.DefenseLevel++;
-        //}
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Stats.PlayerStat.DefenseLevel++;
+        }
 
         //    // Code de test pour switch weapon
         //    if (Input.GetKeyDown(KeyCode.E))
@@ -78,6 +84,7 @@ public class WeaponSwitch : MonoBehaviour
         //Test if current weapon is up to date and if max weapon level is reached
         if (currentWeaponIndex != Stats.PlayerStat.WeaponLevel - 1 && (Stats.PlayerStat.WeaponLevel <= totalWeapons))
         {
+            Debug.Log("WEAPON : " + Stats.PlayerStat.WeaponLevel + ", total : " + totalWeapons);
             guns[currentWeaponIndex].SetActive(false);
             currentWeaponIndex = Stats.PlayerStat.WeaponLevel - 1;
             guns[currentWeaponIndex].SetActive(true);

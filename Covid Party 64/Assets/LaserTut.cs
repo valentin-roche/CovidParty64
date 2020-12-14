@@ -18,6 +18,7 @@ public class LaserTut : MonoBehaviour
 
     void Start()
     {
+        GameObject.Find("items").layer = LayerMask.NameToLayer("Ignore Raycast");
         FillLists();
         DisableLaser();
     }
@@ -63,14 +64,14 @@ public class LaserTut : MonoBehaviour
 
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
 
-        if (hitInfo && hitInfo.point.x < firePoint.position.x + firePoint.right.x * 10)
+        if (hitInfo && Mathf.Abs(firePoint.position.x - hitInfo.point.x) < Mathf.Abs(firePoint.right.x * 10))
         {
             if(hitInfo.transform.tag == "EnemyS" || hitInfo.transform.tag == "EnemyM" || hitInfo.transform.tag == "EnemyL" || hitInfo.transform.tag == "Boss")
             {
                 lineRenderer.SetPosition(1, hitInfo.point);
                 DamageEnemy(laserDPS, hitInfo);
             }
-            if(!Stats.PlayerStat.WallBang && hitInfo.transform.tag == "Foundation") 
+            if(!Stats.PlayerStat.WallBang && hitInfo.transform.tag == "Wall") 
             {
                 lineRenderer.SetPosition(1, hitInfo.point);
             }

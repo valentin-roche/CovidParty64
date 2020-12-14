@@ -9059,6 +9059,10 @@ PrefabInstance:
       propertyPath: Waves.Array.data[4].Credit
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 633885989459774180, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
+      propertyPath: NextUpgradeIsPlayerUpgrade
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 633885989483345498, guid: f8217a8a64e9d204ea2486fbd75993b9, type: 3}
       propertyPath: m_LocalPosition.y
       value: -5.24

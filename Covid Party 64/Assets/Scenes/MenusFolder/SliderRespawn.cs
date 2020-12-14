@@ -23,7 +23,7 @@ public class SliderRespawn : MonoBehaviour
         if (TimeRemaining <= 0)
         {
             TimeRemaining = 0;
-            PlayerStatsHandler.Kill();
+            PlayerStatsHandler.instance.Kill();
         }
 
         else if(TimeRemaining > 0)
@@ -39,7 +39,7 @@ public class SliderRespawn : MonoBehaviour
 
     public void No()
     {
-        PlayerStatsHandler.Kill();
+        PlayerStatsHandler.instance.Kill();
     }
 
     public void Yes()

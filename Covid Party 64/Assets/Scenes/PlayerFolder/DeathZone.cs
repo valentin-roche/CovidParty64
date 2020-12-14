@@ -16,7 +16,7 @@ public class DeathZone : MonoBehaviour
         Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Player")
         {
-            PlayerStatsHandler.Kill();
+            PlayerStatsHandler.instance.Kill();
         }
     }
 

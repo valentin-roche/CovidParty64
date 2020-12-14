@@ -8,7 +8,7 @@ namespace Stats
 {
     public static class PlayerStat
     {
-        private static List<Couple> chosenCouples;
+        private static List<Couple> chosenCouples = new List<Couple>();
 
         private static int
             contaminationRate = 0,
@@ -29,7 +29,7 @@ namespace Stats
             contaminationDist = 4f;
 
         private static bool
-            wallBang = true,
+            wallBang = false,
             lowerSpeed = false,
             stun = false,
            increasedBossDamage = false,
