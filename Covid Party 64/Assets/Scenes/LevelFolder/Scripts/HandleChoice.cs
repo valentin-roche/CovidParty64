@@ -36,16 +36,16 @@ public class HandleChoice : MonoBehaviour
             {
                 switch (power.AffectedStat)
                 {
-                    //case "speed":
-                    //    Stats.PlayerStat.Speed += modif;
-                    //    break;
+                    case "speed":
+                        Stats.PlayerStat.Speed += modif;
+                        break;
                     case "damage":
                         Stats.PlayerStat.BulletDamage += modif;
                         Stats.PlayerStat.LaserDPS += modif;
                         break;
-                    //case "contaminationDist":
-                    //    Stats.PlayerStat.ContaminationDist += modif;
-                    //    break;
+                    case "contaminationDist":
+                        Stats.PlayerStat.ContaminationDist += modif/10;
+                        break;
                     case "armor":
                         Stats.PlayerStat.Armor += modif;
                         Stats.PlayerStat.MaxContamination += Stats.PlayerStat.Armor;
@@ -109,12 +109,12 @@ public class HandleChoice : MonoBehaviour
                     //TODO uncomment when regenrate implemented
                         Stats.PlayerStat.Regen = true;
                         break;
-                    case "contaminationDist":
-                        Stats.PlayerStat.LowerContaminationArea = true;
-                        break;
-                    case "speed":
-                        Stats.PlayerStat.LowerSpeed = true;
-                        break;
+                    //case "contaminationDist":
+                    //    Stats.PlayerStat.LowerContaminationArea = true;
+                    //    break;
+                    //case "speed":
+                    //    Stats.PlayerStat.LowerSpeed = true;
+                    //    break;
                     //TODO special powers handling
                     case "critical":
                         Stats.PlayerStat.Critical = true;

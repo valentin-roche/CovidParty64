@@ -18,7 +18,6 @@ public class LaserTut : MonoBehaviour
 
     void Start()
     {
-
         FillLists();
         DisableLaser();
     }
@@ -60,15 +59,23 @@ public class LaserTut : MonoBehaviour
         lineRenderer.SetPosition(0, firePoint.position);
         startVFX.transform.position = firePoint.position;  
          
-        lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
+        lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 10);
 
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
 
-        if (hitInfo)
+        if (hitInfo && hitInfo.point.x < firePoint.position.x + firePoint.right.x * 10)
         {
-            lineRenderer.SetPosition(1, hitInfo.point);
+            if(hitInfo.transform.tag == "EnemyS" || hitInfo.transform.tag == "EnemyM" || hitInfo.transform.tag == "EnemyL" || hitInfo.transform.tag == "Boss")
+            {
+                lineRenderer.SetPosition(1, hitInfo.point);
+                DamageEnemy(laserDPS, hitInfo);
+            }
+            if(!Stats.PlayerStat.WallBang && hitInfo.transform.tag == "Foundation") 
+            {
+                lineRenderer.SetPosition(1, hitInfo.point);
+            }
 
-            DamageEnemy(laserDPS, hitInfo);
+            
         }
 
         endVFX.transform.position = lineRenderer.GetPosition(1);
