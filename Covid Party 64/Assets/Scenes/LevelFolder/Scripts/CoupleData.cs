@@ -201,7 +201,7 @@ public class CoupleData : MonoBehaviour
     public void handleArmorUpgrade()
     {
         // Increase player armor
-        Stats.PlayerStat.Armor = (int)(Stats.PlayerStat.Armor * 1.25);
+        Stats.PlayerStat.DefenseLevel += 1;
         // Increase armor level in level infos
         TransitionInfos.LevelTransitionInfo.ArmorLevel++;
 
@@ -212,7 +212,7 @@ public class CoupleData : MonoBehaviour
     public void handleWeaponUpgrade()
     {
         // Increase bullet damage (for now)
-        Stats.PlayerStat.BulletDamage = (int)(Stats.PlayerStat.BulletDamage * 1.25);
+        Stats.PlayerStat.WeaponLevel += 1;
         // Change Weapon level in level infos (usefull for upgrade generation)
         TransitionInfos.LevelTransitionInfo.GunLevel++;
         // TODO : Handle Weapon change
@@ -225,7 +225,7 @@ public class CoupleData : MonoBehaviour
     {
         HandleChoice.applyMod(couple.EnemyMod);
         HandleChoice.applyMod(couple.PlayerMod);
-        Stats.PlayerStat.ChosenCouples.Add(couple);
+        // Stats.PlayerStat.ChosenCouples.Add(couple);
 
         Debug.Log("Load next level");
         LevelsData.LoadNextLevel();

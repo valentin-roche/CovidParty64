@@ -132,8 +132,14 @@ MonoBehaviour:
   speed: 0
   nextWaypointDistance: 3
   life: 0
+  armor: 0
   groundCheck: {fileID: 647650890497801490}
   animator: {fileID: 6504210585279954911}
+  spitPoint: {fileID: 4660024257435270563}
+  spitBullet: {fileID: 1807762396655280089, guid: eae0f8ca148ee1d46a9ba84f6becff3c, type: 3}
+  gelBottle: {fileID: 6530810667752542985, guid: 7b8f1580acec6704db817df4a454e6a8, type: 3}
+  mask: {fileID: 4201832822436023167, guid: 78e277f3a809fd24986b635aee5e9618, type: 3}
+  radio: {fileID: 6890519981299190983, guid: fcaa6ea811fc4bc408addf12de2d283b, type: 3}
 --- !u!114 &6899366205759153697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +225,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemyS
       objectReference: {fileID: 0}
+    - target: {fileID: 2566106277651825835, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.996
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566106277651825835, guid: a0aad084843e05e469a87ad318485805, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.453
+      objectReference: {fileID: 0}
     - target: {fileID: 6083942282327658342, guid: a0aad084843e05e469a87ad318485805, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -243,5 +257,10 @@ GameObject:
 --- !u!4 &647650890497801490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7767570549603140634, guid: a0aad084843e05e469a87ad318485805, type: 3}
+  m_PrefabInstance: {fileID: 7149217357678229768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4660024257435270563 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2566106277651825835, guid: a0aad084843e05e469a87ad318485805, type: 3}
   m_PrefabInstance: {fileID: 7149217357678229768}
   m_PrefabAsset: {fileID: 0}

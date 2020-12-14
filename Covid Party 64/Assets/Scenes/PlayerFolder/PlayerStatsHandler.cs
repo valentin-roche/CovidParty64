@@ -107,7 +107,7 @@ public class PlayerStatsHandler : MonoBehaviour
         int dmgMed = Stats.EnemyStatMedium.Damage;
         int dmgLarge = Stats.EnemyStatLarge.Damage;
         int dmgBoss = Stats.BossStat.Damage;
-        int rand = Random.Range(0, 5);
+        int rand;
 
 
         
@@ -116,7 +116,9 @@ public class PlayerStatsHandler : MonoBehaviour
         //applique des coups critiques
         if (Stats.EnemyStatSmall.Critical)
         {
-            if(rand == 1)
+            rand = Random.Range(1, 5);
+
+            if (rand == 1)
             {
                 dmgSmall = dmgSmall * 2;
             }
@@ -124,6 +126,8 @@ public class PlayerStatsHandler : MonoBehaviour
 
         if (Stats.EnemyStatMedium.Critical)
         {
+            rand = Random.Range(1, 5);
+
             if (rand == 1)
             {
                 dmgMed = dmgMed * 2;
@@ -132,6 +136,8 @@ public class PlayerStatsHandler : MonoBehaviour
 
         if (Stats.EnemyStatLarge.Critical)
         {
+            rand = Random.Range(1, 5);
+
             if (rand == 1)
             {
                 dmgLarge = dmgLarge * 2;

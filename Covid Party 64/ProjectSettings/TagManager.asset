@@ -22,7 +22,9 @@ TagManager:
   - Mask
   - Radio
   - BottleGel
-  - Foundation
+  - SpitBullet
+  - Wall
+  
   layers:
   - Default
   - TransparentFX
@@ -59,4 +61,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 3445821293
     locked: 0

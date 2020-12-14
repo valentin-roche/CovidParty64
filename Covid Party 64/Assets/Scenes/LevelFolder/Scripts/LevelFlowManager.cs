@@ -39,7 +39,7 @@ public class LevelFlowManager : MonoBehaviour
             applyRadioEffect();
         }
 
-        //Debug.Log("remaining ennemies " + spawnerScript.LiveEn.Count());
+        // Debug.Log("remaining ennemies " + spawnerScript.LiveEn.Count());
         if (spawnerScript.LiveEn.Count() <= 0 && !BossFight && currentWave < Waves.Count())
         {
             Debug.Log("Spawning wave no " + currentWave);
@@ -48,9 +48,9 @@ public class LevelFlowManager : MonoBehaviour
         }
         if(spawnerScript.LiveEn.Count() <= 0 && currentWave <= Waves.Count() && !BossFight)
         {
+            BossFight = true;
             Debug.Log("Spawning boss");
             spawBoss();
-            BossFight = true;
         }
         if (spawnerScript.LiveEn.Count() <= 0 && BossFight)
         {

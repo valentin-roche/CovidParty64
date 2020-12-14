@@ -11,7 +11,7 @@ namespace Stats
     {
         private static int
             baseLife = 1000,
-            baseMaxHP = 100,
+            baseMaxHP = 1000,
             baseSpeed = 300,
             baseRange = 0,
             baseArmor = 0,
@@ -21,9 +21,9 @@ namespace Stats
             baseDodge = false;
 
         private static int
-            level = 1,
+            level = 10,
             life = 1000,
-            maxHP = 100,
+            maxHP = 1000,
             speed = 300,
             range = 0,
             armor = 0,

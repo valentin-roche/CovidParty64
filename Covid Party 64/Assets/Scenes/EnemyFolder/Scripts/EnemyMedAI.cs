@@ -15,6 +15,8 @@ public class EnemyMedAI : MonoBehaviour
     public int life;
     public int armor;
     private int maxLife;
+    private int range;
+    private int dropChance;
 
     private bool
         updateSpeed,
@@ -40,6 +42,14 @@ public class EnemyMedAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    private bool facingRight = true;
+    public Transform spitPoint;
+    public GameObject spitBullet;
+
+    public GameObject gelBottle;
+    public GameObject mask;
+    public GameObject radio;
+
     // Initialisation des composants
     void Start()
     {
@@ -53,8 +63,10 @@ public class EnemyMedAI : MonoBehaviour
         fly = Stats.EnemyStatMedium.Fly;
         regen = Stats.EnemyStatMedium.Regen;
         maxLife = Stats.EnemyStatMedium.Life;
+        dropChance = Stats.EnemyStatMedium.DropChance;
         life = maxLife;
         updateSpeed = true;
+        range = Stats.EnemyStatMedium.Range;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -70,11 +82,17 @@ public class EnemyMedAI : MonoBehaviour
         }
 
         //Vol
-        if(fly == true)
+        if (fly == true)
         {
             rb.angularDrag = 1;
             rb.gravityScale = 0;
             rb.drag = 2;
+        }
+
+        //Attaques à distance
+        if (spit == true)
+        {
+            InvokeRepeating("Spit", 2.0f, 2.0f);
         }
     }
 
@@ -147,13 +165,16 @@ public class EnemyMedAI : MonoBehaviour
         }
 
         //Changement d'orientation du sprite
-        if (rb.velocity.x >= 0.01f)
+        if (rb.velocity.x >= 0.01f && !facingRight)
         {
-            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+            facingRight = !facingRight;
+            transform.Rotate(0f, 180f, 0f);
+
         }
-        else if (rb.velocity.x <= -0.01f)
+        else if (rb.velocity.x <= -0.01f && facingRight)
         {
-            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+            facingRight = !facingRight;
+            transform.Rotate(0f, 180f, 0f);
         }
 
         //Changement de couleur en fonction des hp
@@ -166,7 +187,7 @@ public class EnemyMedAI : MonoBehaviour
         //L'ennemi à 1/4 chance de bloquer
         if(block == true)
         {
-            int rand1 = Random.Range(0, 5);
+            int rand1 = Random.Range(1, 5);
             if(rand1 == 1)
             {
                 damage = damage / 2;
@@ -176,7 +197,7 @@ public class EnemyMedAI : MonoBehaviour
         //L'ennemi à 1/6 chance d'esquiver
         if (dodge == true)
         {
-            int rand2 = Random.Range(0, 7);
+            int rand2 = Random.Range(1, 7);
             if (rand2 == 1)
             {
                 damage = 0;
@@ -223,15 +244,12 @@ public class EnemyMedAI : MonoBehaviour
         switch (col.tag)
         {
             case "Jump":
-                if (currentWaypoint + 1 <= path.vectorPath.Count)
+                /*if (currentWaypoint + 1 <= path.vectorPath.Count)
                 {
-                    //Debug.Log("gros chien 3 ground : "+isGrounded);
-                    //Debug.Log("gros chien 3 y : " + path.vectorPath[currentWaypoint].y);
-                    //Debug.Log("gros chien 3 y+1 : " + path.vectorPath[currentWaypoint + 1].y);
-                    //Debug.Log("gros chien 3 velocity : " + rb.velocity);
-                    if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y && isGrounded)
+
+                    if ((path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y || path.vectorPath[currentWaypoint].y < target.transform.position.y) && isGrounded)
+
                     {
-                        Debug.Log("gros chien 4");
                         if(rb.velocity.x < 3)
                         {
                             rb.AddForce(Vector2.up * 400f);
@@ -242,7 +260,30 @@ public class EnemyMedAI : MonoBehaviour
                         }
                         animator.SetBool("isJumping", true);
                     }
-                } 
+                } else if((transform.position.y < (target.transform.position.y+1)) && isGrounded)
+                {
+                    if (rb.velocity.x < 3)
+                    {
+                        rb.AddForce(Vector2.up * 400f);
+                    }
+                    else
+                    {
+                        rb.AddForce(Vector2.up * 300f);
+                    }
+                    animator.SetBool("isJumping", true);
+                }*/
+                if (path.vectorPath[currentWaypoint].y < target.transform.position.y && isGrounded)
+                {
+                    if (rb.velocity.x < 3)
+                    {
+                        rb.AddForce(Vector2.up * 400f);
+                    }
+                    else
+                    {
+                        rb.AddForce(Vector2.up * 300f);
+                    }
+                    animator.SetBool("isJumping", true);
+                }
                 break;
 
             case "JumpHole":
@@ -262,6 +303,18 @@ public class EnemyMedAI : MonoBehaviour
                         animator.SetBool("isJumping", true);
                     }
                 }
+                else if(transform.position.x >= target.transform.position.x && rb.velocity.x >= 0.01f && isGrounded)
+                {
+                    rb.AddForce(Vector2.up * 150f);
+                    rb.AddForce(Vector2.right * 5f);
+
+                }
+                else if (transform.position.x <= target.transform.position.x  && rb.velocity.x <= -0.01f && isGrounded)
+                {
+                    rb.AddForce(Vector2.up * 150f);
+                    rb.AddForce(Vector2.left * 5f);
+                }
+                animator.SetBool("isJumping", true);
                 break;
 
             case "JumpHigh":
@@ -337,9 +390,42 @@ public class EnemyMedAI : MonoBehaviour
         }
     }
 
+    //Attaques à distance
+    private void Spit()
+    {
+        if (Vector2.Distance(transform.position, target.transform.position) <= range)
+        {
+            Instantiate(spitBullet, spitPoint.position, spitPoint.rotation);
+        }
+    }
+
     //Fonction de mort
     public void death()
     {
-            Destroy(gameObject);
+        int chance = Random.Range(1, 101);
+        int choice;
+
+        Destroy(gameObject);
+        EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
+        spawner.CleanList();
+
+        if (chance <= dropChance)
+        {
+            choice = Random.Range(1, 4);
+            switch (choice)
+            {
+                case 1:
+                    Instantiate(gelBottle, transform.position, transform.rotation);
+                    break;
+
+                case 2:
+                    Instantiate(mask, transform.position, transform.rotation);
+                    break;
+
+                case 3:
+                    Instantiate(radio, transform.position, transform.rotation);
+                    break;
+            }
+        }
     }
 }
