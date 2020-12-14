@@ -1,4 +1,5 @@
 ﻿using Pathfinding;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,11 @@ public class BossAI : MonoBehaviour
     // States variables
     private StateMachine.StateMachine stateMachine = new StateMachine.StateMachine();
     private bool hasRevived = false;
+    private bool hasSpedUp = false;
+    private bool hasStrenghUp = false;
+    private bool hasBerzerk = false;
+
+
     
     // Stats variables
     public int life;
@@ -38,6 +44,11 @@ public class BossAI : MonoBehaviour
     Pathfinding.Seeker seeker;
     Rigidbody2D rb;
     public Transform groundCheck;
+
+    // Particle systems
+    public ParticleSystem particleSpeed;
+    public ParticleSystem particleStrong;
+    public ParticleSystem particleRevive;
 
     // Animator variable
     public Animator animator;
@@ -107,37 +118,46 @@ public class BossAI : MonoBehaviour
         {
             Debug.Log("Boss died");
 
-            // TODO Play death animation
-
-            Destroy(gameObject);
+            // If level 10 boss and 1 hp =>  second period (revive) without applying the modifier twice
+            if (Stats.BossStat.Level == 10 && life <= 1 && !hasRevived)
+            {
+                particleRevive.Play();
+                stateMachine.ChangeState(secondPeriod);
+                life = Stats.BossStat.MaxHP;
+                hasRevived = true;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         // Call state special update
         //stateMachine.CurrentState.Update();
 
         // If level 2 boss and up and half HP => speedup
-        if (Stats.BossStat.Level >= 2 && life == Stats.BossStat.MaxHP / 2 && !hasRevived)
+        if (Stats.BossStat.Level >= 2 && life <= Stats.BossStat.MaxHP / 2 && !hasRevived && !hasSpedUp)
         {
+            particleSpeed.Play();
             stateMachine.ChangeState(faster);
+            hasSpedUp = true;
         }
 
         // If level 4 boss and 1/4 HP => dmg up
-        if (Stats.BossStat.Level >= 4 && life == Stats.BossStat.MaxHP / 4 && !hasRevived)
+        if (Stats.BossStat.Level >= 4 && life <= Stats.BossStat.MaxHP / 4 && !hasRevived && !hasStrenghUp)
         {
+            particleStrong.Play();
             stateMachine.ChangeState(stronger);
+            hasStrenghUp = true;
         }
 
         // If level 8 boss and 1/8 HP => berzerk mode
-        if (Stats.BossStat.Level >= 8 && life == Stats.BossStat.MaxHP / 8 && !hasRevived)
+        if (Stats.BossStat.Level >= 8 && life <= Stats.BossStat.MaxHP / 8 && !hasRevived && !hasBerzerk)
         {
             stateMachine.ChangeState(berzerk);
+            hasBerzerk = true;
         }
 
-        // If level 10 boss and 1 hp =>  second period (revive) without applying the modifier twice
-        if (Stats.BossStat.Level == 10 && life == 1 && !hasRevived)
-        {
-            stateMachine.ChangeState(secondPeriod);
-        }
     }
 
     void FixedUpdate()
