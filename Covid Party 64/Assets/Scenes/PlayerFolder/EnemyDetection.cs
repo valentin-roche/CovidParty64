@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class EnemyDetection : MonoBehaviour
 {
-    public GameObject[] enemiesSmallAtProximity;
-    public GameObject[] enemiesMediumAtProximity;
-    public GameObject[] enemiesLargeAtProximity;
+    public GameObject[] enemiesSmallAtProximity = new GameObject[0];
+    public GameObject[] enemiesMediumAtProximity = new GameObject[0];
+    public GameObject[] enemiesLargeAtProximity = new GameObject[0];
 
     public int nbrEnemySmall = 0;
     public int nbrEnemyMedium = 0;

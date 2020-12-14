@@ -97,7 +97,7 @@ public class PlayerStatsHandler : MonoBehaviour
         //
         if (PlayerStat.DrainAtProximity && EnemyDetection.instance.nbrEnemySmall + EnemyDetection.instance.nbrEnemyMedium + EnemyDetection.instance.nbrEnemyBig >= 3)
         {        
-                PlayerStat.ContaminationRate -= 3;
+            PlayerStat.ContaminationRate -= 3;
             for(int i = 0; i < EnemyDetection.instance.enemiesSmallAtProximity.Length; i++)
             {
                 EnemyDetection.instance.enemiesSmallAtProximity[i].GetComponent<EnemySmallAI>().TakeDamage(2);
