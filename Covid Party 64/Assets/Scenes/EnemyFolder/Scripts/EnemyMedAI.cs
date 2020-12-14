@@ -219,33 +219,7 @@ public class EnemyMedAI : MonoBehaviour
     {
         switch (col.tag)
         {
-            case "Jump":
-                /*if (currentWaypoint + 1 <= path.vectorPath.Count)
-                {
-                    if ((path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint + 1].y || path.vectorPath[currentWaypoint].y < target.transform.position.y) && isGrounded)
-                    {
-                        if(rb.velocity.x < 3)
-                        {
-                            rb.AddForce(Vector2.up * 400f);
-                        }
-                        else
-                        {
-                            rb.AddForce(Vector2.up * 300f);
-                        }
-                        animator.SetBool("isJumping", true);
-                    }
-                } else if((transform.position.y < (target.transform.position.y+1)) && isGrounded)
-                {
-                    if (rb.velocity.x < 3)
-                    {
-                        rb.AddForce(Vector2.up * 400f);
-                    }
-                    else
-                    {
-                        rb.AddForce(Vector2.up * 300f);
-                    }
-                    animator.SetBool("isJumping", true);
-                }*/
+            case "Jump":              
                 if (path.vectorPath[currentWaypoint].y < target.transform.position.y && isGrounded)
                 {
                     if (rb.velocity.x < 3)
