@@ -9,22 +9,20 @@ public class PlayerMovement : MonoBehaviour
     //Test booleans
     private bool isJumping;
     private bool isGrounded;
+    private bool isFacingRight = true;
     //GroundCheck variables
     public Transform groundCheck;
     private float groundCheckRadius;
     //Layers
     private LayerMask collisionLayer;
     private LayerMask collisionEnemy;
-
+    //Player components
     private Rigidbody2D rb;
     public Animator animator;
-    //private SpriteRenderer spriteRenderer;
-
+    //Variables
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
-
-    private bool isFacingRight = true;
-
+    //Instance
     public static PlayerMovement instance;
 
     private void Awake()
@@ -40,27 +38,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        //Layer gesture and initialization
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        //spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        groundCheckRadius = .5f;
-        rb = GetComponent<Rigidbody2D>();
         collisionLayer = LayerMask.GetMask("Foundation");
         collisionEnemy = LayerMask.GetMask("Enemy");
+        //Components initialization
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        groundCheckRadius = .5f;
     }
 
     void Update()
     {
-        //si une fondation ou un ennemi est reperé dans le cercle, isGrounded = true
+        //Check if the player is grounded to allow jump or not
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer) || Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionEnemy);
-
+        //Calculate player speed
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-
-
-        //fait sauter le joueur
-        //et active l'animation
+        //Check if Player can jump
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
+            //Set info that player wants to jump
             animator.SetBool("Jump", true);
             isJumping = true;
         }
@@ -70,14 +67,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {   
+        //Update stat from bonuses active
         UpdateBonusEffect();
-        //mouvement du joueur
+        //Add force to the player to make it move
         MovePlayer(horizontalMovement);
         float characterVeclocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", characterVeclocity);
 
-        //?????????????????????????????????????????????????????????
-        //permet de ralentir le joueur quand des ennemis sont présents dans le circle collider?
+        //Slow down the player speed if enemies at proximity
         if(Stats.EnemyStatSmall.Slow == true || Stats.EnemyStatMedium.Slow == true || Stats.EnemyStatLarge.Slow == true)
         {
             if(EnemyDetection.instance.nbrEnemySmall+ EnemyDetection.instance.nbrEnemyMedium+ EnemyDetection.instance.nbrEnemyBig > 0)
@@ -93,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //permet de faire déplacer le joueur horizontalement ainsi que de le faire sauter
+    //Add force to the player to make it move
     void MovePlayer(float _horizontalMovement)
     {
         
@@ -101,9 +98,9 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
 
 
-        //donne le sens du sprite en fonction du signe de la vitesse 
-        //si vitesse positive -> joueur regarde à droite
-        //si vitesse négative -> joueur regarde à gauche
+        //Give the sens of  the player sprite (and animator) 
+        //positive -> player look at the right
+        //negative -> player look at the right
         if(_horizontalMovement > 0 && !isFacingRight)
         {
             Flip();
@@ -113,8 +110,7 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
 
-        // si boolean est vrai alors le joueur saute
-        //boolean vrai si la fondation et repéré et si le joueur appui sur la touche espace
+        //Make player jump
         if(isJumping == true)
         {
             rb.AddForce(new Vector2(0f, jumpForce));
@@ -122,15 +118,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //rotation du sprite du joueur
+    //Rotate the player sprite
     void Flip()
     {
         isFacingRight = !isFacingRight;
         transform.Rotate(0f, 180f, 0f);
     }
 
-    //Gizmos qui sera utilisé pour la detection des fondations
-    //et permettre le saut du joueur
+    //Gizmos used to detect the ground
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -139,9 +134,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //recupère les valeurs de playerStat
-    //permet ainsi d'être à jour si il y a eu modification 
-    //du à un bonus
+    //Update stats from PlayerStat
     private void UpdateBonusEffect()
     {
         if (moveSpeed != PlayerStat.Speed)
@@ -155,13 +148,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //permet l'animation de mort du joueur
+    //Play death animation
     public void PlayerMovementStop()
     {
-        Debug.Log("PlayerMovementStopCalled");
         if (!animator.GetBool("DeathPlayer")) 
         { 
-            Debug.Log("Animation Death set");
             animator.SetBool("DeathPlayer", true);
             animator.SetTrigger("Death");
         }

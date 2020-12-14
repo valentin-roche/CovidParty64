@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class LaserTut : MonoBehaviour
 {
-
+    //Declaration of objects
     public Camera cam;
     public LineRenderer lineRenderer;
     public Transform firePoint;
     public GameObject startVFX;
     public GameObject endVFX;
+    //Variables
     private int laserDPS = Stats.PlayerStat.LaserDPS;
     private float readyForNextDamage;
-
     private Quaternion rotation;
     private List<ParticleSystem> particles = new List<ParticleSystem>();
 
@@ -23,7 +23,6 @@ public class LaserTut : MonoBehaviour
         DisableLaser();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

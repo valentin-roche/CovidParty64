@@ -41,7 +41,7 @@ namespace Stats
            critical = false,
            regen = false;
 
-        //Getters and Setters to intercat with the Stats of the Player
+        //Getters and Setters to interact with the Stats of the Player
         public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
         public static int LaserDPS { get => laserDPS; set => laserDPS = value; }
         public static int Jump { get => jump; set => jump = value; }
@@ -63,6 +63,7 @@ namespace Stats
         public static bool Regen { get => regen; set => regen = value; }
         public static bool IncreasedBossDamage { get => increasedBossDamage; set => increasedBossDamage = value; }
         public static bool DrainAtTouch { get => drainAtTouch; set => drainAtTouch = value; }
+        public static bool DrainAtProximity { get => drainAtProximity; set => drainAtProximity = value; }
         public static bool Stun { get => stun; set => stun = value; }
         public static bool WallBang { get => wallBang; set => wallBang = value; }
 

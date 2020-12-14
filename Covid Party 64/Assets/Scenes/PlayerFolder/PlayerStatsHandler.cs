@@ -94,6 +94,23 @@ public class PlayerStatsHandler : MonoBehaviour
         {
             PlayerStat.ContaminationRate -= _regenTick;
         }
+        //
+        if (PlayerStat.DrainAtProximity && EnemyDetection.instance.nbrEnemySmall + EnemyDetection.instance.nbrEnemyMedium + EnemyDetection.instance.nbrEnemyBig >= 3)
+        {        
+                PlayerStat.ContaminationRate -= 3;
+            for(int i = 0; i < EnemyDetection.instance.enemiesSmallAtProximity.Length; i++)
+            {
+                EnemyDetection.instance.enemiesSmallAtProximity[i].GetComponent<EnemySmallAI>().TakeDamage(2);
+            }
+            for(int i = 0; i < EnemyDetection.instance.enemiesMediumAtProximity.Length; i++)
+            {
+                EnemyDetection.instance.enemiesMediumAtProximity[i].GetComponent<EnemyMedAI>().TakeDamage(2);
+            }
+            for(int i = 0; i < EnemyDetection.instance.enemiesLargeAtProximity.Length; i++)
+            {
+                EnemyDetection.instance.enemiesLargeAtProximity[i].GetComponent<EnemyLargeAI>().TakeDamage(2);
+            }
+        }
     }
 
     //Calculate damages taken regarding the number of ennemies in the detection area
