@@ -8,17 +8,17 @@ using Random = UnityEngine.Random;
 
 public class PlayerStatsHandler : MonoBehaviour
 {
-
-    public  HealthBar healthBar;
-    private  int minContamination = 0;
-    private  float readyForNextDamage, readyForNextRegenTick;
-
+    //Declaration of Objects
+    public HealthBar healthBar;
     public Text maskCountText;
     public Text radioCountText;
     public Text bottleCountText;
-
     public GameObject Particles;
-
+    //Declaration of variables used in this class
+    private  int minContamination = 0;
+    private  float readyForNextDamage, readyForNextRegenTick;
+    //Declaration of the instance to allow other class to call this 
+    //instance and so access the class content
     public static PlayerStatsHandler instance;
 
     private void Awake()
@@ -31,52 +31,55 @@ public class PlayerStatsHandler : MonoBehaviour
         instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        GetComponent<CircleCollider2D>().radius = PlayerStat.ContaminationDist;
-        initInventory(); //initialisation de l'inventaire à zéro
-        PlayerStat.ContaminationRate = minContamination; //contamination du joueur nulle
-        healthBar.SetContaminationInit(minContamination); //barre de vie initialisée à zéro
-        upArmor();
+        GetComponent<CircleCollider2D>().radius = PlayerStat.ContaminationDist;     //Put the radius value from PlayerStat of the circle that detect enemies
+        if(PlayerStat.PlayerInventory.Count == 0)
+        {
+            initInventory();                                                        //Initialize inventory if needed
+        }
+        PlayerStat.ContaminationRate = minContamination;                            //Reset contamination of the player
+        healthBar.SetContaminationInit(minContamination);                           //Update Health Bar with the right value of the current contamination
+        upArmor();                                                                  //Update armor state if needed
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        //Test si regen active
+        //Test if regen mode is active
         if (PlayerStat.Regen)
         {
-            //Applique les effets de regen toutes les secondes
+            //Apply regen effects every seconds
             if (Time.time > readyForNextRegenTick)
             {
                 readyForNextRegenTick = Time.time + 1;
-                Regen(PlayerStat.RegenTick);//Soigne la contamination du Player de "PlayerStat.RegenTick"
-                healthBar.SetContamination(PlayerStat.ContaminationRate);//Met a jour la barre de vie
+                Regen(PlayerStat.RegenTick);                                        //Reduce contamination by "PlayerStat.RegenTick"
+                healthBar.SetContamination(PlayerStat.ContaminationRate);           //Update Health Bar
             }
         }
 
-        //prise de dégat du joueur par seconde
+        //Damages from enemies
         if (Time.time > readyForNextDamage)
         {
             readyForNextDamage = Time.time + 1;
-            GetContaminate(CalculateDamage());//calcul les dégats subits
-            healthBar.SetContamination(PlayerStat.ContaminationRate);//augmente la barre de vie en fonction des dégats subits
+            GetContaminate(CalculateDamage());                                      //Apply damages calculated to the player
+            healthBar.SetContamination(PlayerStat.ContaminationRate);               //Update Health Bar
         }
-
-
-        upArmor();
-
+        upArmor();                                                                  //Update armor state if needed
+        if(!maskCountText.text.Equals(PlayerStat.PlayerInventory["Mask"].ToString())//Update inventory quantities if not to date
+            || !bottleCountText.text.Equals(PlayerStat.PlayerInventory["BottleGel"].ToString())
+            || !radioCountText.text.Equals(PlayerStat.PlayerInventory["Radio"].ToString()))
+        {
+            updateInventoryDisplay();
+        }
     }
 
     //dégats donnés au joeur
     public void GetContaminate(int _contamination)
     {
-        //ContaminationRate = vie actuelle du joueur
-        //on l'ajoute au dégat que subit le jouer
+        //Update the player's contamination if damages are taken
         PlayerStat.ContaminationRate += _contamination;
 
-        //si la contamination du joueur dépasse 100, il meurt
+        //Handle death case (contaminationMax reached)
         if (PlayerStat.ContaminationRate >= PlayerStat.MaxContamination)
         {
             Die();
@@ -86,16 +89,14 @@ public class PlayerStatsHandler : MonoBehaviour
     
     public static void Regen(int _regenTick)
     {
-        //ContaminationRate = vie actuelle du joueur
-        //on l'ajoute au dégat que subit le jouer
+        //Reduce contamination rate by _regenTick
         if (PlayerStat.ContaminationRate > 0)
         {
             PlayerStat.ContaminationRate -= _regenTick;
         }
     }
 
-    //calcul des dégats en fonction des ennemis 
-    //et du nombre présent dans le circle collider du joueur
+    //Calculate damages taken regarding the number of ennemies in the detection area
     public static int CalculateDamage()
     {
         int damage = 0;
@@ -109,11 +110,7 @@ public class PlayerStatsHandler : MonoBehaviour
         int dmgBoss = Stats.BossStat.Damage;
         int rand;
 
-
-        
-
-        //???????????????
-        //applique des coups critiques
+        //Apply Critical Enemy effect if bonus active
         if (Stats.EnemyStatSmall.Critical)
         {
             rand = Random.Range(1, 5);
@@ -144,7 +141,7 @@ public class PlayerStatsHandler : MonoBehaviour
             }
         }
 
-        //calcul le nombre d'ennemi dans le circle collider du joueur
+        //Retrieve numbers of enemy by types detected by EnemeyDetection script
         if (EnemyDetection.instance)
         {
             _nbrEnemySmall = EnemyDetection.instance.nbrEnemySmall;
@@ -152,8 +149,8 @@ public class PlayerStatsHandler : MonoBehaviour
             _nbrEnemyBig = EnemyDetection.instance.nbrEnemyBig;
             _nbrBoss = EnemyDetection.instance.nbrBoss;
         }
-        //application des dégats 
-        if (Stats.PlayerStat.Dodge)
+        //Calculate damages 
+        if (Stats.PlayerStat.Dodge)                                                     //Check if Dodge bonus is active to apply its effect
         {
             int rand2 = Random.Range(0, 7);
             if (rand2 == 1)
@@ -162,17 +159,17 @@ public class PlayerStatsHandler : MonoBehaviour
             }
             else
             {
-                damage = _nbrBoss * dmgBoss + _nbrEnemySmall * dmgSmall + _nbrEnemyMedium * dmgMed + _nbrEnemyBig* dmgLarge; //Formule à modifier
+                damage = _nbrBoss * dmgBoss + _nbrEnemySmall * dmgSmall + _nbrEnemyMedium * dmgMed + _nbrEnemyBig* dmgLarge;
             }
         }
         else
         {
-            damage = _nbrBoss * dmgBoss + _nbrEnemySmall * dmgSmall + _nbrEnemyMedium * dmgMed + _nbrEnemyBig * dmgLarge; //Formule à modifier
+            damage = _nbrBoss * dmgBoss + _nbrEnemySmall * dmgSmall + _nbrEnemyMedium * dmgMed + _nbrEnemyBig * dmgLarge;
         }
         
         
 
-        //Saturation du nbr de degats pris
+        //Saturation of damages
         if (damage >= 25)
         {
             damage = 25;
@@ -181,109 +178,113 @@ public class PlayerStatsHandler : MonoBehaviour
         return damage;
     }
 
-    //Test possession masque + mort
+    //Method called if the player reaches the max contamination rate
     public void Die()
     {
-        //si le joueur possède un masque on affiche le menu de respawn 
-        //permettant de recommencer le niveau
-        //sinon il meurt
-
-        if (PlayerStat.PlayerInventory["Mask"]>0) //Test pour savoir si joueur peut revive
+        //Check if the player can revive
+        if (PlayerStat.PlayerInventory["Mask"]>0)
         {
+            //Display menu to use the mask or not
             GameOverManager.instance.OnPlayerRespawnActive();
-            //Stoper interaction Player / Niveau / Ennemis
         }
         else
         {
+            //Kill the player if mask is not used or possessed
             Kill();
         }
 
 
     }
 
-    //mort du joueur
+    //Method called to kill the player
     public void Kill()
     {
-        Debug.Log("Kill method called");
-        Debug.Log("Le joueur a été contaminé ! GAME OVER");
-        //Bloquer mouvements du personnages
+        //Block the player
         PlayerMovement.instance.PlayerMovementStop();
         PlayerMovement.instance.enabled = false;
         GameObject.Find("WeaponHolder").SetActive(false);
-        Shoot.instance.enabled = false;
-
-        //Jouer animation de mort
-
-        
+        Shoot.instance.enabled = false;        
 
         GameOverManager.instance.OnPlayerRespawnNoActive();
         GameOverManager.instance.OnPlayerDeath();
-
-
-        
-        
-        
-
-        //Empêcher l'interaction avec le reste de la scène.
     }
 
-
-    //affichages du menu de respawn
-    //diminution du nombre de masque dans l'inventaire
-    //division par 2 de la contamination du joueur
+    //Make the player respawn
     public static void Respawn()
     {
+        //Display th respawn UI
         GameOverManager.instance.OnPlayerRespawnNoActive();
+        //Use the item Mask
         PlayerStat.PlayerInventory["Mask"]--;
         instance.maskCountText.text = PlayerStat.PlayerInventory["Mask"].ToString();
+        //Update the contamination of the player
         PlayerStat.ContaminationRate = PlayerStat.MaxContamination / 2;
     }
 
-
+    //Steal life when enemy is touch by bullet/laser
     public void Drain()
     {
-        if(PlayerStat.ContaminationRate >= 2)
+        if(PlayerStat.ContaminationRate >= 1)
         {
+            //Update player's contamination if enough contamination to be decreased
             PlayerStat.ContaminationRate -= 1;
-            healthBar.SetContamination(PlayerStat.ContaminationRate);//Met a jour la barre de vie
+            healthBar.SetContamination(PlayerStat.ContaminationRate);//Update Health Bar
         }
         else
         {
+            //Leave contamination to zero if the player has no contamination
             PlayerStat.ContaminationRate = 0;
-            healthBar.SetContamination(PlayerStat.ContaminationRate);//Met a jour la barre de vie
+            healthBar.SetContamination(PlayerStat.ContaminationRate);//Update Health Bar
         }
         
     }
 
+    //Make the aura of the player correspond to its DefenseLevel
     public void upArmor()
     { 
         if(PlayerStat.DefenseLevel == 1)
         {
+            //Update display
             gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 0);
+            //Update stats
+            PlayerStat.Armor += 10;
+            PlayerStat.MaxContamination += PlayerStat.Armor;
         }
 
         if(PlayerStat.DefenseLevel == 2)
         {
+            //Update display
             gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 0.68f);
             gameObject.GetComponent<Renderer>().material.SetFloat("_Width", 0.008f);
             gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43/255f, 184/255f, 195/255f, 1f));
-            
+            //Update stats
+            PlayerStat.Armor += 10;
+            PlayerStat.MaxContamination += PlayerStat.Armor;
+
 
         }
 
         if (PlayerStat.DefenseLevel == 3)
         {
+            //Update display
             gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 2.03f);
             gameObject.GetComponent<Renderer>().material.SetFloat("_Width", 0.008f);
             gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43/255f, 184/255f, 195/255f, 1f));
+            //Update stats
+            PlayerStat.Armor += 10;
+            PlayerStat.MaxContamination += PlayerStat.Armor;
 
         }
 
         if (PlayerStat.DefenseLevel== 4)
         {
+            //Update display
             gameObject.GetComponent<Renderer>().material.SetFloat("_Brightness", 4.15f);
             gameObject.GetComponent<Renderer>().material.SetFloat("_Width", 0.0185f);
             gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(43/255f, 184/255f, 195/255f, 1f));
+            //Update stats
+            PlayerStat.Armor += 10;
+            PlayerStat.MaxContamination += PlayerStat.Armor;
         }
         
     }
@@ -291,17 +292,24 @@ public class PlayerStatsHandler : MonoBehaviour
 
 
 
-    //initialisation de l'inventaire
+    //Initialize the inventory with the objects names
     public static void initInventory()
     {
         PlayerStat.PlayerInventory["Mask"] = 0;
         PlayerStat.PlayerInventory["Radio"] = 0;
         PlayerStat.PlayerInventory["BottleGel"] = 0;
     }
-    
-    //ajout à l'inventaire de l'objet récupéré
-    //mise a jour du canvas
-     public void addItem(GameObject objet)
+
+    //Update inventory display
+    public void updateInventoryDisplay()
+    {
+        maskCountText.text = PlayerStat.PlayerInventory["Mask"].ToString();
+        radioCountText.text = PlayerStat.PlayerInventory["Radio"].ToString();
+        bottleCountText.text = PlayerStat.PlayerInventory["BottleGel"].ToString();
+    }
+
+    //Update inventory when item looted
+    public void addItem(GameObject objet)
     {
         switch (objet.tag)
         {
@@ -320,16 +328,14 @@ public class PlayerStatsHandler : MonoBehaviour
         }
     }
 
-    //diminution de l'objet utilisé 
-    //mise à jour du canvas
+    //Update inventory when item used
     public void useItem(string tagObject)
     {
         switch (tagObject)
         {
             case "BottleGel":
+                //Apply Bottle effect : -60% contamination
                 PlayerStat.PlayerInventory["BottleGel"]--;
-
-                //on diminue de 60% la contamination du joueur
                 if(PlayerStat.ContaminationRate - (int)(PlayerStat.MaxContamination * 0.6) < 0)
                 {
                     PlayerStat.ContaminationRate = 0;
@@ -337,15 +343,18 @@ public class PlayerStatsHandler : MonoBehaviour
                 else
                 {
                     PlayerStat.ContaminationRate -= (int) (PlayerStat.MaxContamination * 0.6);
-                }                
+                }  
+                //Update inventory
                 bottleCountText.text = PlayerStat.PlayerInventory["BottleGel"].ToString();
                 Particles.SetActive(true);
                 LifeParticule.Instance.Life(gameObject.transform.position);
-
                 break;
+
             case "Radio":
+                //Update inventory
                 PlayerStat.PlayerInventory["Radio"]--;
                 radioCountText.text = PlayerStat.PlayerInventory["Radio"].ToString();
+                //Apply flash effect
                 PlayFlashEffect.instance.FlashEffect();
                 break;
         }

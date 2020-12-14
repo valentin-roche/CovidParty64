@@ -3,17 +3,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-
+    //Stats
     private float moveSpeed = PlayerStat.Speed;
     private float jumpForce = PlayerStat.Jump;
+    //Test booleans
     private bool isJumping;
     private bool isGrounded;
-
+    //GroundCheck variables
     public Transform groundCheck;
-
-
     private float groundCheckRadius;
+    //Layers
     private LayerMask collisionLayer;
     private LayerMask collisionEnemy;
 

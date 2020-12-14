@@ -8,6 +8,7 @@ namespace Stats
 {
     public static class PlayerStat
     {
+        //Declaration of the Player's Stats
         private static List<Couple> chosenCouples = new List<Couple>();
 
         private static int
@@ -23,6 +24,7 @@ namespace Stats
             regenTick = 1;
 
         private static Dictionary<string, int> playerInventory = new Dictionary<string, int>();
+        
 
         private static float
             projectileDistance = 1f,
@@ -39,6 +41,7 @@ namespace Stats
            critical = false,
            regen = false;
 
+        //Getters and Setters to intercat with the Stats of the Player
         public static int BulletDamage { get => bulletDamage; set => bulletDamage = value; }
         public static int LaserDPS { get => laserDPS; set => laserDPS = value; }
         public static int Jump { get => jump; set => jump = value; }
@@ -67,12 +70,36 @@ namespace Stats
         
         public static List<Couple> ChosenCouples { get => chosenCouples; set => chosenCouples = value; }
 
+
+        //Method that should be used to Reset all the Stats of the Player
         public static void ResetStat()
         {
             contaminationRate = 0;
+            maxContamination = 100;
             speed = 2500;
+            armor = 0;
+            bulletDamage = 40;
+            laserDPS = 30;
             jump = 700;
-            Armor = 0;
+            weaponLevel = 3;
+            defenseLevel = 1;
+            regenTick = 1;
+
+            playerInventory = new Dictionary<string, int>();
+            chosenCouples = new List<Couple>();
+
+            projectileDistance = 1f;
+            contaminationDist = 4f;
+
+            wallBang = false;
+            lowerSpeed = false;
+            stun = false;
+            increasedBossDamage = false;
+            drainAtTouch = false;
+            drainAtProximity = false;
+            dodge = false;
+            critical = false;
+            regen = false;
         }
 
     }
